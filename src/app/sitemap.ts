@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next'
+import { RESOURCES } from '@/content/resources'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://axcrivo.in'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
       lastModified: new Date(),
@@ -41,4 +42,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
   ]
+
+  const resourceRoutes: MetadataRoute.Sitemap = RESOURCES.map((resource) => ({
+    url: `${SITE_URL}/resources/${resource.slug}`,
+    lastModified: new Date(resource.publishDate),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }))
+
+  return [...staticRoutes, ...resourceRoutes]
 }
