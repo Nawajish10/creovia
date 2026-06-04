@@ -7,7 +7,8 @@ export async function submitValuationLead(data: any) {
   try {
     const supabase = getServiceRoleClient()
     const parsed = valuationSchema.parse(data)
-    const { error } = await supabase.from('valuation_requests').insert([parsed])
+    const { website, ...dbData } = parsed
+    const { error } = await supabase.from('valuation_requests').insert([dbData])
     if (error) throw error;
     
     return { success: true }
@@ -22,11 +23,12 @@ export async function submitSellerLead(data: any) {
     const supabase = getServiceRoleClient()
     const parsed = sellerSchema.parse(data)
     
+    const { website, ...rest } = parsed
     const dbData = {
-      ...parsed,
-      monetization_status: Array.isArray(parsed.monetization_status)
-        ? parsed.monetization_status.join(", ")
-        : parsed.monetization_status
+      ...rest,
+      monetization_status: Array.isArray(rest.monetization_status)
+        ? rest.monetization_status.join(", ")
+        : rest.monetization_status
     }
     
     const { error } = await supabase.from('seller_leads').insert([dbData])
@@ -43,7 +45,8 @@ export async function submitBuyerLead(data: any) {
   try {
     const supabase = getServiceRoleClient()
     const parsed = buyerSchema.parse(data)
-    const { error } = await supabase.from('buyer_leads').insert([parsed])
+    const { website, ...dbData } = parsed
+    const { error } = await supabase.from('buyer_leads').insert([dbData])
     if (error) throw error;
     
     return { success: true }
