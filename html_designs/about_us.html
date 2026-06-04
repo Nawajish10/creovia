@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About - Creator Asset Marketplace</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#dde1ff",
+                        "on-primary-fixed-variant": "#0036bc",
+                        "primary-container": "#2d5af7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#ffe8e0",
+                        "primary": "#003fd8",
+                        "on-tertiary-fixed": "#380d00",
+                        "outline": "#747687",
+                        "on-surface-variant": "#434656",
+                        "surface-dim": "#d9d9e6",
+                        "on-secondary-container": "#00714d",
+                        "on-primary-container": "#eaebff",
+                        "tertiary-container": "#bd4100",
+                        "surface-variant": "#e2e1ee",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0effd",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "secondary": "#006c49",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "on-secondary-fixed-variant": "#005236",
+                        "surface-container-low": "#f3f2ff",
+                        "surface-container-highest": "#e2e1ee",
+                        "outline-variant": "#c4c5d8",
+                        "surface": "#fbf8ff",
+                        "inverse-surface": "#2e303a",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-primary-fixed": "#001355",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-background": "#191b24",
+                        "tertiary": "#943100",
+                        "surface-tint": "#174cea",
+                        "on-surface": "#191b24",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#b8c4ff",
+                        "surface-container-high": "#e8e7f4",
+                        "on-tertiary-fixed-variant": "#802a00",
+                        "surface-container": "#ededfa",
+                        "background": "#fbf8ff",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#002113",
+                        "surface-bright": "#fbf8ff",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#6cf8bb",
+                        "tertiary-fixed": "#ffdbcf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "80px",
+                        "base": "8px",
+                        "margin-desktop": "64px",
+                        "lg": "48px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "sm": "12px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "display-lg-mobile": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fbf8ff;
+            color: #191b24;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .glow-accent {
+            box-shadow: 0px 10px 30px rgba(45, 90, 247, 0.1);
+        }
+    </style>
+</head>
+
+<body class="font-body-md text-on-surface antialiased flex flex-col min-h-screen">
+    <!-- TopAppBar -->
+    <header
+        class="sticky top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant shadow-sm flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-7xl mx-auto">
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">grid_view</span>
+            <span class="font-display-lg-mobile text-headline-sm text-on-surface tracking-tight">Creator Asset
+                Marketplace</span>
+        </div>
+        <div>
+            <button
+                class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity">Get
+                Valuation</button>
+        </div>
+    </header>
+    <!-- Main Content Canvas -->
+    <main class="flex-grow flex flex-col">
+        <!-- Hero Section -->
+        <section
+            class="relative pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto w-full flex flex-col items-center text-center">
+            <div
+                class="absolute inset-0 z-0 pointer-events-none opacity-40 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary-fixed via-background to-background">
+            </div>
+            <div class="z-10 max-w-4xl space-y-8">
+                <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight text-on-surface">
+                    Building The Future Marketplace For <span class="text-primary">Creator Assets</span>
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    We are engineering a high-stakes, data-dense platform where trust is the primary currency. A modern
+                    enterprise ecosystem designed for professional creators, entrepreneurs, and institutional buyers to
+                    transact with unprecedented precision.
+                </p>
+            </div>
+        </section>
+        <!-- Mission Section -->
+        <section
+            class="py-24 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto w-full border-t border-outline-variant">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
+                <div class="space-y-6">
+                    <h2 class="font-headline-md text-headline-md text-on-surface">Creating the most trusted platform.
+                    </h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        Our mission is to establish the gold standard for liquidity in the creator economy. By blending
+                        institutional stability with cutting-edge technological prowess, we eliminate opacity and
+                        friction from digital asset acquisitions.
+                    </p>
+                </div>
+                <div
+                    class="glass-panel rounded-xl p-8 aspect-video flex items-center justify-center glow-accent relative overflow-hidden">
+                    <img alt="Abstract representation of data and trust"
+                        class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-multiply"
+                        data-alt="A sophisticated, abstract 3D render representing secure data transfer and institutional trust in a high-stakes digital marketplace. The scene features translucent, glass-like geometric structures interlocked over a deep obsidian black background. Subtle, pulsing neon electric blue highlights (#2d5af7) trace the edges of the structures, suggesting flow and technological prowess. The lighting is precise and dramatic, casting soft reflections that emphasize a pristine, modern enterprise aesthetic."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo8wrTPB2Y0vc4bDsIbLjGi2kd5_AuTA1N1uzsKLZuoXWjzmgnxr7oISxCr3BVosQ6OlX8kkY9mkoGuaFsK9nGHu4bAOFDbJSIeePt1BIoJDiRAMJljUAwFdbi93Gaa6xp7S8KvPhTAx7jrmepmoWu_tNI55XWV7WcJnEfHtZqS1tCbx3TcvxnPJ9hfBAMR3NquQPewUkGqKXRNJaHZ8xkP_2QoxUotczvIndF7hgBlZco-Nice3_9B5EPkZXntpLa2LYSFfEpF7A" />
+                    <span class="material-symbols-outlined text-6xl text-primary z-10" data-weight="fill"
+                        style="font-variation-settings: 'FILL' 1;">account_balance</span>
+                </div>
+            </div>
+        </section>
+        <!-- Founder Story -->
+        <section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-low w-full">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter">
+                <div class="md:col-span-5 h-[400px] md:h-auto glass-panel rounded-xl overflow-hidden relative">
+                    <img alt="Founders working" class="w-full h-full object-cover opacity-80"
+                        data-alt="A cinematic, candid portrait of two professional founders reviewing data on a high-end financial terminal in a dimly lit, minimalist office. The environment is dark and sleek, with deep charcoal tones (#131313) dominating the background. Ambient, soft white light illuminates their faces, while reflections of electric blue data charts glow faintly on the glass partitions behind them. The mood is serious, focused, and conveys institutional stability and cutting-edge vision."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMf8gQmVihBjKNVvEPoK-QIoQLvvN7d9_eTD5A3tMrAxvO98k2jB6nMGZHnwlmsqqw34Nw27Pkxq8FS7Z4VQtpyeoXkWAkrWfR69XqBOwbJaHPtoOW11wOl6ZIeRpSOUJqDqTQxs2YSvHn5EEmjQ8voCMRhzzFs_Vngbmm-Rh0ODEUVABvZjvPcUvCRQCC-rMMu08unClBqztjjqVxiou-ajLg6a2blNRo7PMxmKL-uzveeW7qHsnydkK0aINh3XW0bbzr_loPUZY" />
+                </div>
+                <div class="md:col-span-7 flex flex-col justify-center space-y-6 md:pl-12 py-8">
+                    <span class="font-label-md text-label-md text-primary uppercase tracking-widest">Why We
+                        Started</span>
+                    <h2 class="font-headline-md text-headline-md text-on-surface">
+                        Bridging the gap between raw potential and institutional capital.
+                    </h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        We observed a rapidly maturing creator economy struggling with antiquated transaction
+                        infrastructure. Professional creators lacked a dedicated, secure venue to realize the true
+                        enterprise value of their intellectual property. We built this marketplace to act as that
+                        critical, trusted intermediary—bringing high-end financial terminal precision to digital asset
+                        sales.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Marketplace Principles (Bento Grid) -->
+        <section class="py-32 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto w-full">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="font-headline-md text-headline-md text-on-surface">Marketplace Principles</h2>
+                <p class="font-body-md text-body-md text-on-surface-variant">The core tenets that govern our platform
+                    architecture and operations.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                <!-- Principle 1 -->
+                <div
+                    class="bg-surface-container-low rounded-xl p-8 space-y-4 border border-outline-variant hover:border-primary transition-colors">
+                    <div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">visibility</span>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface">Transparency</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant text-sm">
+                        Absolute clarity in valuation models, historical performance data, and fee structures. No hidden
+                        variables.
+                    </p>
+                </div>
+                <!-- Principle 2 -->
+                <div
+                    class="bg-surface-container-low rounded-xl p-8 space-y-4 border border-outline-variant hover:border-primary transition-colors">
+                    <div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">verified</span>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface">Verification</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant text-sm">
+                        Rigorous, multi-layered auditing of all listed assets, ensuring ownership provenance and revenue
+                        authenticity.
+                    </p>
+                </div>
+                <!-- Principle 3 -->
+                <div
+                    class="bg-surface-container-low rounded-xl p-8 space-y-4 border border-outline-variant hover:border-primary transition-colors">
+                    <div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">security</span>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface">Trust</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant text-sm">
+                        Escrow-backed transactions and legally binding transfer frameworks designed to protect both
+                        institutional buyers and creators.
+                    </p>
+                </div>
+                <!-- Principle 4 -->
+                <div
+                    class="bg-surface-container-low rounded-xl p-8 space-y-4 border border-outline-variant hover:border-primary transition-colors">
+                    <div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">insights</span>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface">Market Intelligence</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant text-sm">
+                        Providing actionable, real-time analytics and predictive modeling to empower informed investment
+                        decisions.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Vision Section -->
+        <section
+            class="py-32 px-margin-mobile md:px-margin-desktop bg-primary-fixed border-t border-outline-variant w-full relative overflow-hidden">
+            <div class="max-w-3xl mx-auto text-center space-y-8 relative z-10">
+                <span class="material-symbols-outlined text-4xl text-primary mb-4 block">rocket_launch</span>
+                <h2 class="font-headline-md text-headline-md text-on-surface">
+                    The future of creator economy transactions.
+                </h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant">
+                    We envision a landscape where digital intellectual property is traded with the same fluidity,
+                    security, and analytical depth as traditional financial equities. A future where creators can
+                    instantly capitalize on their life's work, and enterprises can acquire validated, revenue-generating
+                    digital assets seamlessly.
+                </p>
+                <div class="pt-8">
+                    <button
+                        class="bg-primary text-on-primary px-8 py-3 rounded-lg font-label-md text-label-md tracking-wide hover:opacity-90 transition-all glow-accent">
+                        Explore The Market
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer
+        class="w-full py-16 border-t border-outline-variant bg-surface-container-lowest grid grid-cols-2 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto mt-auto">
+        <div class="col-span-2 md:col-span-4 mb-8">
+            <span class="font-headline-sm text-headline-sm text-primary font-bold">Creator Asset Marketplace</span>
+        </div>
+        <div class="flex flex-col space-y-4">
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+                href="#">Marketplace</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+                href="#">Valuation Tool</a>
+        </div>
+        <div class="flex flex-col space-y-4">
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+                href="#">Selling</a>
+            <a class="font-body-md text-body-md text-primary underline hover:text-primary transition-colors"
+                href="#">About Us</a>
+        </div>
+        <div class="flex flex-col space-y-4">
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+                href="#">Resources</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+                href="#">Privacy Policy</a>
+        </div>
+        <div
+            class="col-span-2 md:col-span-4 mt-12 pt-8 border-t border-outline-variant/50 text-on-surface-variant font-body-md text-sm">
+            © 2024 Creator Asset Marketplace. All rights reserved.
+        </div>
+    </footer>
+</body>
+
+</html>
