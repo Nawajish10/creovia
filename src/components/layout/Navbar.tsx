@@ -28,7 +28,7 @@ export function Navbar() {
             className="font-headline-sm text-on-background tracking-tight"
             style={{ fontFamily: "var(--font-hanken)", fontSize: "20px", lineHeight: "28px", fontWeight: 700, color: "#191b24" }}
           >
-            Creovia
+            Axcrivo
           </span>
         </Link>
 

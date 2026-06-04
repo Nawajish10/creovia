@@ -14,7 +14,7 @@ export const homeContent = {
     subtitle: "Hand-picked, highly vetted assets with proven revenue streams and engaged audiences."
   },
   howItWorks: {
-    title: "How Creovia Works",
+    title: "How Axcrivo Works",
     subtitle: "A secure, transparent process for both buyers and sellers.",
     steps: [
       { title: "1. Discover or List", description: "Browse vetted assets or submit yours for valuation." },

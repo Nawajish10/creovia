@@ -4,7 +4,7 @@ export const sellContent = {
     subheadline: "Reach thousands of vetted buyers and get the best price for the digital business you've built."
   },
   benefits: {
-    title: "Why Sell on Creovia?"
+    title: "Why Sell on Axcrivo?"
   },
   process: {
     title: "The Selling Process"

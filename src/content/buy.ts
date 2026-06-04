@@ -4,6 +4,6 @@ export const buyContent = {
     subheadline: "Invest in profitable YouTube channels, newsletters, and social communities."
   },
   benefits: {
-    title: "Why Buy on Creovia?"
+    title: "Why Buy on Axcrivo?"
   }
 };

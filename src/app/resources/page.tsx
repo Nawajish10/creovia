@@ -1,9 +1,6 @@
 import { PageWrapper } from "@/components/layout/PageWrapper";
 import { createMetadata } from "@/lib/seo";
-import { Hero } from "@/features/resources/sections/Hero";
-import { CategoryFilter } from "@/features/resources/sections/CategoryFilter";
-import { ResourceCards } from "@/features/resources/sections/ResourceCards";
-import { NewsletterCTA } from "@/features/resources/sections/NewsletterCTA";
+import { ResourceHub } from "@/features/resources/components/ResourceHub";
 
 export const metadata = createMetadata({
   title: "Resources",
@@ -14,10 +11,7 @@ export const metadata = createMetadata({
 export default function ResourcesPage() {
   return (
     <PageWrapper>
-      <Hero />
-      <CategoryFilter />
-      <ResourceCards />
-      <NewsletterCTA />
+      <ResourceHub />
     </PageWrapper>
   );
 }

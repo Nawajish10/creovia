@@ -15,6 +15,10 @@ export function SubmissionForm() {
   const [errorMsg, setErrorMsg] = useState("");
   const [hasStarted, setHasStarted] = useState(false);
 
+  const [selectedMonetization, setSelectedMonetization] = useState<string[]>([]);
+  const [screenshotName, setScreenshotName] = useState("");
+  const [screenshotUploading, setScreenshotUploading] = useState(false);
+
   const handleStart = () => {
     if (!hasStarted) {
       setHasStarted(true);
@@ -22,12 +26,49 @@ export function SubmissionForm() {
     }
   };
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<z.infer<typeof sellerSchema>>({
+  const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm<z.infer<typeof sellerSchema>>({
     resolver: zodResolver(sellerSchema) as any,
     defaultValues: {
-      platform: "youtube"
+      platform: "youtube",
+      monetization_status: [],
+      ownership_confirmed: false,
+      screenshot_url: ""
     }
   });
+
+  const handleMonetizationToggle = (option: string) => {
+    let updated: string[];
+    if (selectedMonetization.includes(option)) {
+      updated = selectedMonetization.filter(x => x !== option);
+    } else {
+      if (option === "Not Monetized") {
+        updated = ["Not Monetized"];
+      } else {
+        updated = [...selectedMonetization.filter(x => x !== "Not Monetized"), option];
+      }
+    }
+    setSelectedMonetization(updated);
+    setValue("monetization_status", updated, { shouldValidate: true });
+  };
+
+  const handleScreenshotChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert("File size must be under 5MB");
+        return;
+      }
+      setScreenshotName(file.name);
+      setScreenshotUploading(true);
+      
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setValue("screenshot_url", reader.result as string, { shouldValidate: true });
+        setScreenshotUploading(false);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const onSubmit = async (data: z.infer<typeof sellerSchema>) => {
     setIsSubmitting(true);
@@ -38,6 +79,8 @@ export function SubmissionForm() {
     if (res.success) {
       setIsSuccess(true);
       reset();
+      setSelectedMonetization([]);
+      setScreenshotName("");
     } else {
       setErrorMsg(res.error || "Failed to submit. Please try again.");
     }
@@ -81,9 +124,9 @@ export function SubmissionForm() {
                   <input {...register("website")} type="text" tabIndex={-1} autoComplete="off" />
                 </div>
                 
-                {/* Personal Info Section */}
+                {/* Section 1: Contact Information */}
                 <div className="space-y-5">
-                  <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">1. Personal Details</h3>
+                  <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">Section 1: Contact Information</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                     <div className="space-y-1.5 group">
                       <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Full Name *</label>
@@ -91,24 +134,24 @@ export function SubmissionForm() {
                       {errors.name && <span className="text-error text-xs font-medium">{errors.name.message}</span>}
                     </div>
                     <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Email Address *</label>
+                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Email *</label>
                       <input {...register("email")} className={`${inputClasses} ${errors.email ? 'border-error ring-1 ring-error' : ''}`} placeholder="john@example.com" type="email" />
                       {errors.email && <span className="text-error text-xs font-medium">{errors.email.message}</span>}
                     </div>
                     <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Phone Number</label>
+                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Phone *</label>
                       <input {...register("phone")} className={`${inputClasses} ${errors.phone ? 'border-error ring-1 ring-error' : ''}`} placeholder="+91 98765 43210" type="tel" />
                       {errors.phone && <span className="text-error text-xs font-medium">{errors.phone.message}</span>}
                     </div>
                   </div>
                 </div>
 
-                {/* Asset Details Section */}
+                {/* Section 2: Asset Information */}
                 <div className="space-y-5">
-                  <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">2. Asset Details</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">Section 2: Asset Information</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                     <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Primary Platform *</label>
+                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Platform *</label>
                       <div className="relative">
                         <select {...register("platform")} className={`${inputClasses} appearance-none ${errors.platform ? 'border-error ring-1 ring-error' : ''}`}>
                           <option value="youtube">YouTube Channel</option>
@@ -125,7 +168,7 @@ export function SubmissionForm() {
                     </div>
                     
                     <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Asset URL (Optional)</label>
+                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Asset URL</label>
                       <div className="relative">
                         <span className="absolute left-4 top-3.5 text-on-surface-variant material-symbols-outlined text-[20px]">link</span>
                         <input {...register("asset_url")} className={`${inputClasses} pl-11`} placeholder="https://..." type="url" />
@@ -133,35 +176,55 @@ export function SubmissionForm() {
                     </div>
 
                     <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Content Niche</label>
-                      <input {...register("niche")} className={inputClasses} placeholder="e.g. Finance, Gaming, Tech" type="text" />
+                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Niche *</label>
+                      <input {...register("niche")} className={`${inputClasses} ${errors.niche ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. Finance, Gaming, Tech" type="text" />
+                      {errors.niche && <span className="text-error text-xs font-medium">{errors.niche.message}</span>}
                     </div>
 
                     <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Primary Audience Geo *</label>
+                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Audience Geography *</label>
                       <input {...register("country")} className={`${inputClasses} ${errors.country ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. India, US, Global" type="text" />
                       {errors.country && <span className="text-error text-xs font-medium">{errors.country.message}</span>}
+                    </div>
+
+                    <div className="space-y-1.5 group">
+                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Asset Age *</label>
+                      <input {...register("asset_age")} className={`${inputClasses} ${errors.asset_age ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. 2 years, 6 months" type="text" />
+                      {errors.asset_age && <span className="text-error text-xs font-medium">{errors.asset_age.message}</span>}
                     </div>
                   </div>
                 </div>
 
-                {/* Metrics Section */}
+                {/* Section 3: Performance */}
                 <div className="space-y-5">
-                  <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">3. Metrics & Expectations</h3>
+                  <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">Section 3: Performance</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                     <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Total Audience Size *</label>
+                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Audience Size *</label>
                       <input {...register("audience_size")} className={`${inputClasses} ${errors.audience_size ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. 500000" type="number" />
                       {errors.audience_size && <span className="text-error text-xs font-medium">{errors.audience_size.message}</span>}
                     </div>
+
+                    <div className="space-y-1.5 group">
+                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Monthly Reach/Traffic *</label>
+                      <input {...register("monthly_reach")} className={`${inputClasses} ${errors.monthly_reach ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. 1M reach or 50K visits" type="text" />
+                      {errors.monthly_reach && <span className="text-error text-xs font-medium">{errors.monthly_reach.message}</span>}
+                    </div>
                     
                     <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">12M Revenue (INR)</label>
+                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Revenue Last 12 Months (INR)</label>
                       <div className="relative">
                         <span className="absolute left-4 top-3.5 text-on-surface-variant font-label-md font-bold">₹</span>
-                        <input {...register("monthly_revenue")} className={`${inputClasses} pl-9`} placeholder="0" type="number" />
+                        <input {...register("revenue_last_12_months")} className={`${inputClasses} pl-9`} placeholder="0" type="number" />
                       </div>
-                      {errors.monthly_revenue && <span className="text-error text-xs font-medium">{errors.monthly_revenue.message}</span>}
+                    </div>
+
+                    <div className="space-y-1.5 group">
+                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Average Monthly Profit (INR)</label>
+                      <div className="relative">
+                        <span className="absolute left-4 top-3.5 text-on-surface-variant font-label-md font-bold">₹</span>
+                        <input {...register("average_monthly_profit")} className={`${inputClasses} pl-9`} placeholder="0" type="number" />
+                      </div>
                     </div>
 
                     <div className="space-y-1.5 group">
@@ -173,9 +236,103 @@ export function SubmissionForm() {
                       {errors.asking_price && <span className="text-error text-xs font-medium">{errors.asking_price.message}</span>}
                     </div>
                   </div>
-                  <div className="space-y-1.5 group">
-                    <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Reason for Selling</label>
-                    <textarea {...register("reason_for_selling")} className={`${inputClasses} resize-none h-24`} placeholder="e.g. Moving to other projects, Need capital..." />
+                </div>
+
+                {/* Section 4: Verification & Monetization */}
+                <div className="space-y-5">
+                  <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">Section 4: Verification</h3>
+                  
+                  {/* Monetization Status Checklist */}
+                  <div className="space-y-3">
+                    <label className="font-label-md text-on-surface font-bold block">Monetization Status *</label>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {[
+                        "Ad Revenue",
+                        "Sponsorships",
+                        "Affiliate Income",
+                        "Digital Products",
+                        "E-commerce",
+                        "Not Monetized"
+                      ].map((option) => {
+                        const isChecked = selectedMonetization.includes(option);
+                        return (
+                          <button
+                            key={option}
+                            type="button"
+                            onClick={() => handleMonetizationToggle(option)}
+                            className={`flex items-center gap-3 p-3.5 rounded-xl border text-left font-body-md transition-all cursor-pointer ${
+                              isChecked
+                                ? 'bg-primary/10 border-primary text-primary font-semibold shadow-sm'
+                                : 'bg-white/30 dark:bg-surface-container/30 border-outline-variant/50 text-on-surface-variant hover:bg-surface-container'
+                            }`}
+                          >
+                            <span className="material-symbols-outlined text-[20px]">
+                              {isChecked ? 'check_box' : 'check_box_outline_blank'}
+                            </span>
+                            {option}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {errors.monetization_status && <span className="text-error text-xs font-medium block">{errors.monetization_status.message}</span>}
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4">
+                    {/* Analytics Screenshot Upload */}
+                    <div className="space-y-2">
+                      <label className="font-label-md text-on-surface-variant block">Analytics Screenshot Upload *</label>
+                      <div className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer relative group transition-all ${
+                        errors.screenshot_url
+                          ? 'border-error bg-error/5'
+                          : 'border-outline-variant/50 hover:border-primary/50 bg-white/10 dark:bg-surface-container/10'
+                      }`}>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleScreenshotChange}
+                          className="absolute inset-0 opacity-0 cursor-pointer"
+                        />
+                        <div className="space-y-2">
+                          <span className={`material-symbols-outlined text-4xl transition-colors ${
+                            errors.screenshot_url
+                              ? 'text-error'
+                              : 'text-outline-variant group-hover:text-primary'
+                          }`}>
+                            cloud_upload
+                          </span>
+                          <p className="font-label-md text-on-surface-variant">
+                            {screenshotUploading ? "Processing..." : screenshotName ? `Selected: ${screenshotName}` : "Click or drag screenshot here"}
+                          </p>
+                          <p className="font-label-sm text-xs text-outline-variant/70">PNG, JPG or WEBP up to 5MB</p>
+                        </div>
+                      </div>
+                      {errors.screenshot_url && <span className="text-error text-xs font-medium">{errors.screenshot_url.message}</span>}
+                    </div>
+
+                    {/* Reason for Selling */}
+                    <div className="space-y-2">
+                      <label className="font-label-md text-on-surface-variant block">Reason for Selling</label>
+                      <textarea
+                        {...register("reason_for_selling")}
+                        className={`${inputClasses} resize-none h-[120px]`}
+                        placeholder="e.g. Moving to other projects, Need capital..."
+                      />
+                    </div>
+                  </div>
+
+                  {/* Ownership Confirmation Checkbox */}
+                  <div className="space-y-2 pt-2">
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        {...register("ownership_confirmed")}
+                        className="rounded border-outline-variant text-primary focus:ring-primary h-5 w-5 mt-0.5 cursor-pointer"
+                      />
+                      <span className="font-body-md text-on-surface-variant select-none">
+                        I confirm that I am the legal owner of this asset or authorized to negotiate its sale. *
+                      </span>
+                    </label>
+                    {errors.ownership_confirmed && <span className="text-error text-xs font-medium block">{errors.ownership_confirmed.message}</span>}
                   </div>
                 </div>
 

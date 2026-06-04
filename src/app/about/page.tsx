@@ -7,7 +7,7 @@ import { Roadmap } from "@/features/about/sections/Roadmap";
 
 export const metadata = createMetadata({
   title: "About Us",
-  description: "Learn about Creovia's mission to empower the creator economy.",
+  description: "Learn about Axcrivo's mission to empower the creator economy.",
   path: "/about"
 });
 

@@ -3,7 +3,7 @@ import { PageWrapper } from "@/components/layout/PageWrapper";
 
 export const metadata = createMetadata({
   title: "Privacy Policy",
-  description: "Read Creovia's privacy policy to understand how we collect, use, and protect your personal data.",
+  description: "Read Axcrivo's privacy policy to understand how we collect, use, and protect your personal data.",
   path: "/privacy",
 });
 
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="font-headline-sm text-on-surface mb-3">1. Information We Collect</h2>
             <p>
-              When you submit a valuation request, seller listing, or buyer inquiry on Creovia, we collect personal information including your name, email address, phone number, and details about the digital asset you are buying or selling. We use this data solely to facilitate the transaction process and connect buyers with sellers.
+              When you submit a valuation request, seller listing, or buyer inquiry on Axcrivo, we collect personal information including your name, email address, phone number, and details about the digital asset you are buying or selling. We use this data solely to facilitate the transaction process and connect buyers with sellers.
             </p>
           </section>
 
@@ -64,8 +64,8 @@ export default function PrivacyPage() {
             <h2 className="font-headline-sm text-on-surface mb-3">7. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, please contact us at{" "}
-              <a href="mailto:privacy@creovia.in" className="text-primary hover:underline">
-                privacy@creovia.in
+              <a href="mailto:privacy@axcrivo.in" className="text-primary hover:underline">
+                privacy@axcrivo.in
               </a>
             </p>
           </section>

@@ -35,7 +35,7 @@ export default async function AdminDashboardPage() {
       <div>
         <h2 className="font-headline-md text-on-surface">Dashboard Overview</h2>
         <p className="text-on-surface-variant mt-2 font-body-lg">
-          Welcome to the Creovia admin dashboard. Here is a high-level summary of your project&apos;s activity.
+          Welcome to the Axcrivo admin dashboard. Here is a high-level summary of your project&apos;s activity.
         </p>
       </div>
 
@@ -115,7 +115,7 @@ export default async function AdminDashboardPage() {
                 </div>
                 <h4 className="font-title-lg text-on-surface mb-2">Visit Live Site</h4>
                 <p className="text-on-surface-variant text-sm">
-                  Open the main Creovia website in a new tab.
+                  Open the main Axcrivo website in a new tab.
                 </p>
               </div>
             </div>

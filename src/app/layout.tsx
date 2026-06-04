@@ -4,11 +4,22 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import Script from "next/script";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://creovia.in"),
-  title: "Creovia",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://axcrivo.in"),
+  title: "Axcrivo",
   description: "Buy & Sell Creator Assets With Confidence",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -68,6 +79,12 @@ export default function RootLayout({
         className={`${inter.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable} antialiased min-h-screen flex flex-col`}
         style={{ backgroundColor: "#fbf8ff", color: "#191b24" }}
       >
+        {/* Announcement Bar */}
+        <div className="bg-primary-container text-white text-center py-2 px-4 font-body-md text-[14px] flex items-center justify-center gap-2 z-50 relative">
+          <span className="material-symbols-outlined text-sm">campaign</span>
+          Early Access Open — Get a Free Creator Asset Valuation.
+          <Link className="underline font-semibold ml-2 hover:opacity-90 transition-opacity" href="/valuation">Apply Now</Link>
+        </div>
         <Navbar />
         <div className="flex-1 flex flex-col">
           {children}

@@ -1,5 +1,5 @@
-export const SITE_NAME = "Creovia";
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://creovia.in";
+export const SITE_NAME = "Axcrivo";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://axcrivo.in";
 export const SITE_DESCRIPTION = "The premier marketplace for buying and selling creator assets.";
 
 export const NAV_LINKS = [
@@ -22,7 +22,7 @@ export const ASSET_CATEGORIES = [
 ];
 
 export const SOCIAL_LINKS = {
-  twitter: "https://twitter.com/creovia",
-  instagram: "https://instagram.com/creovia",
-  linkedin: "https://linkedin.com/company/creovia",
+  twitter: "https://twitter.com/axcrivo",
+  instagram: "https://instagram.com/axcrivo",
+  linkedin: "https://linkedin.com/company/axcrivo",
 };
