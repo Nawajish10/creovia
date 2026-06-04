@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { RESOURCES } from '@/content/resources'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://axcrivo.in'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.axcrivo.in'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

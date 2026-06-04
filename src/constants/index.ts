@@ -1,5 +1,5 @@
 export const SITE_NAME = "Axcrivo";
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://axcrivo.in";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.axcrivo.in";
 export const SITE_DESCRIPTION = "The premier marketplace for buying and selling creator assets.";
 
 export const NAV_LINKS = [
