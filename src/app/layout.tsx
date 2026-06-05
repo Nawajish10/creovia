@@ -10,6 +10,30 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.axcrivo.in"),
   title: "Axcrivo — Buy & Sell Social Pages & Digital Assets",
   description: "India's trusted marketplace to buy & sell Instagram pages, YouTube channels, Telegram groups, newsletters and digital businesses.",
+  openGraph: {
+    title: "Buy & Sell Social Pages & Digital Assets | Axcrivo",
+    description: "India's trusted marketplace to buy & sell Instagram pages, YouTube channels, Telegram groups, newsletters and digital businesses.",
+    url: "https://www.axcrivo.in",
+    siteName: "Axcrivo",
+    images: [
+      {
+        url: "https://www.axcrivo.in/og-image-v3.png?v=3",
+        width: 1200,
+        height: 630,
+        alt: "Axcrivo — Buy & Sell Social Pages & Digital Assets",
+        type: "image/png",
+      },
+    ],
+    type: "website",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Buy & Sell Social Pages & Digital Assets | Axcrivo",
+    description: "India's trusted marketplace to buy & sell Instagram pages, YouTube channels, Telegram groups, newsletters and digital businesses.",
+    images: ["https://www.axcrivo.in/og-image-v3.png?v=3"],
+    site: "@axcrivo",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -46,6 +70,16 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Explicit OG/Twitter meta tags — failsafe for WhatsApp, Facebook, LinkedIn crawlers */}
+        <meta property="og:image" content="https://www.axcrivo.in/og-image-v3.png?v=3" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:site_name" content="Axcrivo" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://www.axcrivo.in/og-image-v3.png?v=3" />
+        <meta name="twitter:site" content="@axcrivo" />
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"

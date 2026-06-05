@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
@@ -83,19 +83,22 @@ export function ResourceHub() {
   };
 
   return (
-    <div className="pt-4 md:pt-6 pb-8 md:pb-16 px-margin-mobile md:px-margin-desktop max-w-screen-2xl mx-auto">
+    <div className="pt-2 md:pt-6 pb-8 md:pb-16 px-4 md:px-margin-desktop max-w-screen-2xl mx-auto overflow-x-hidden">
       {/* Section 1: Compact Hero */}
-      <section className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 md:gap-6 mb-6 md:mb-12">
+      <section className="flex flex-col md:flex-row justify-between items-start md:items-end gap-3 md:gap-6 mb-4 md:mb-12">
         <div className="max-w-3xl">
-          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2 md:mb-3 tracking-tight">
+          <h2
+            className="font-display-lg text-on-surface mb-2 md:mb-3 tracking-tight break-words"
+            style={{ fontSize: "clamp(22px, 5.5vw, 40px)", lineHeight: "1.2", fontWeight: 700 }}
+          >
             Social Pages & Digital Assets Intelligence
-          </h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+          </h2>
+          <p className="text-on-surface-variant max-w-2xl leading-relaxed" style={{ fontSize: "clamp(13px, 3vw, 16px)" }}>
             Research, valuation frameworks, market insights, and practical guides to navigating the institutional creator economy.
           </p>
         </div>
         
-        <div className="flex gap-3 md:gap-6 bg-surface-container rounded-xl p-3 md:p-4 border border-outline-variant/20 shrink-0 w-full md:w-auto">
+        <div className="flex gap-3 md:gap-6 bg-surface-container rounded-xl p-2.5 md:p-4 border border-outline-variant/20 shrink-0 w-full md:w-auto">
           <div className="text-center flex-1 md:flex-initial">
             <div className="font-headline-sm text-headline-sm text-primary">{RESOURCES.length}+</div>
             <div className="font-label-sm text-[10px] md:font-label-sm text-on-surface-variant uppercase tracking-wider">Resources</div>
@@ -143,7 +146,7 @@ export function ResourceHub() {
       {showFeatured && featuredResource && (
         <section className="mb-6 md:mb-12">
           <div className="group relative bg-surface-container-lowest border border-outline-variant/20 rounded-2xl md:rounded-[2rem] overflow-hidden flex flex-col md:flex-row shadow-sm hover:shadow-xl transition-all duration-500">
-            <Link href={`/resources/${featuredResource.slug}`} className="md:w-1/2 h-48 md:h-auto overflow-hidden relative min-h-[200px] md:min-h-[250px]">
+            <Link href={`/resources/${featuredResource.slug}`} className="md:w-1/2 h-36 md:h-auto overflow-hidden relative min-h-[160px] md:min-h-[250px]">
               <Image
                 src={featuredResource.thumbnail}
                 alt={featuredResource.title}

@@ -1,4 +1,4 @@
-import { PageWrapper } from "@/components/layout/PageWrapper";
+﻿import { PageWrapper } from "@/components/layout/PageWrapper";
 import { createMetadata } from "@/lib/seo";
 import { Hero } from "@/features/valuation/sections/Hero";
 import { Calculator } from "@/features/valuation/sections/Calculator";
@@ -9,7 +9,7 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 export const metadata = createMetadata({
   title: "Free Social Pages & Digital Assets Valuation | Axcrivo",
   description: "Get the true market value of your Instagram page, YouTube channel, Telegram group or newsletter with Axcrivo's data-driven valuation tool. Free & instant.",
-  ogImage: "/og-image-v2.png",
+  ogImage: "/og-image-v3.png",
   path: "/valuation",
   keywords: [
     "social pages valuation",

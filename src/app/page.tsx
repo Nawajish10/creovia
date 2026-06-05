@@ -1,4 +1,4 @@
-import { Hero } from "@/features/home/sections/Hero";
+﻿import { Hero } from "@/features/home/sections/Hero";
 import { Categories } from "@/features/home/sections/Categories";
 import { FeaturedOpportunities } from "@/features/home/sections/FeaturedOpportunities";
 import { HowItWorks } from "@/features/home/sections/HowItWorks";
@@ -12,7 +12,7 @@ import { SEOHomeContent } from "@/features/home/sections/SEOHomeContent";
 export const metadata = createMetadata({
   title: "Buy & Sell Social Pages & Digital Assets | Axcrivo",
   description: "India's marketplace to buy & sell Instagram pages, YouTube channels, Telegram groups, newsletters & digital businesses. Get a free expert valuation today.",
-  ogImage: "/og-image-v2.png",
+  ogImage: "/og-image-v3.png",
   path: "/",
   exactTitle: true,
 });
