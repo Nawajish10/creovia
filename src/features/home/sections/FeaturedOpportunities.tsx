@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const listings = [
   {
@@ -87,7 +88,7 @@ export function FeaturedOpportunities() {
             >
               {/* Image */}
               <div className="h-40 md:h-48 w-full relative" style={{ backgroundColor: "#e8e7f4" }}>
-                <img src={listing.image} alt={listing.title} className="w-full h-full object-cover" />
+                <Image src={listing.image} alt={listing.title} fill className="object-cover" />
                 <div
                   className="absolute top-3 left-3 md:top-4 md:left-4 flex items-center gap-1.5 px-2.5 py-0.5 md:px-3 md:py-1 rounded-full"
                   style={{ background: "rgba(255,255,255,0.9)", backdropFilter: "blur(8px)", border: "1px solid rgba(0,0,0,0.08)" }}
