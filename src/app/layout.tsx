@@ -107,10 +107,11 @@ export default function RootLayout({
         style={{ backgroundColor: "#fbf8ff", color: "#191b24" }}
       >
         {/* Announcement Bar */}
-        <div className="bg-primary-container text-white text-center py-2 px-4 font-body-md text-[14px] flex items-center justify-center gap-2 z-50 relative">
-          <span className="material-symbols-outlined text-sm">campaign</span>
-          Early Access Open — Get a Free Social Pages & Digital Assets Valuation.
-          <Link className="underline font-semibold ml-2 hover:opacity-90 transition-opacity" href="/valuation">Apply Now</Link>
+        <div className="bg-primary-container text-white text-center py-2 px-3 text-[12px] md:text-[14px] flex items-center justify-center gap-1.5 z-50 relative flex-wrap">
+          <span className="material-symbols-outlined hidden sm:inline" style={{ fontSize: "16px" }}>campaign</span>
+          <span className="hidden md:inline">Early Access Open — Get a Free Social Pages &amp; Digital Assets Valuation.</span>
+          <span className="md:hidden">Get a Free Asset Valuation.</span>
+          <Link className="underline font-semibold ml-1 hover:opacity-90 transition-opacity whitespace-nowrap" href="/valuation">Apply Now</Link>
         </div>
         <Navbar />
         <div className="flex-1 flex flex-col">

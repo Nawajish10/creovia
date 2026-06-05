@@ -83,43 +83,53 @@ export function ResourceHub() {
   };
 
   return (
-    <div className="pt-2 md:pt-6 pb-8 md:pb-16 px-4 md:px-margin-desktop max-w-screen-2xl mx-auto overflow-x-hidden">
+    <div className="pt-2 md:pt-6 pb-8 md:pb-16 px-4 md:px-[64px] w-full max-w-screen-2xl mx-auto" style={{ overflowX: "hidden" }}>
       {/* Section 1: Compact Hero */}
-      <section className="flex flex-col md:flex-row justify-between items-start md:items-end gap-3 md:gap-6 mb-4 md:mb-12">
-        <div className="max-w-3xl">
+      <section className="mb-4 md:mb-12">
+        {/* Title + description */}
+        <div className="w-full min-w-0 mb-4">
           <h2
-            className="font-display-lg text-on-surface mb-2 md:mb-3 tracking-tight break-words"
-            style={{ fontSize: "clamp(22px, 5.5vw, 40px)", lineHeight: "1.2", fontWeight: 700 }}
+            className="text-on-surface mb-2 break-words w-full min-w-0"
+            style={{
+              fontFamily: "var(--font-hanken)",
+              fontSize: "clamp(20px, 5vw, 36px)",
+              lineHeight: "1.25",
+              fontWeight: 700,
+              letterSpacing: "-0.01em",
+              wordBreak: "break-word",
+              overflowWrap: "anywhere",
+            }}
           >
-            Social Pages & Digital Assets Intelligence
+            Social Pages &amp; Digital Assets Intelligence
           </h2>
-          <p className="text-on-surface-variant max-w-2xl leading-relaxed" style={{ fontSize: "clamp(13px, 3vw, 16px)" }}>
+          <p
+            className="text-on-surface-variant leading-relaxed"
+            style={{ fontSize: "clamp(13px, 3.2vw, 16px)", lineHeight: "1.55" }}
+          >
             Research, valuation frameworks, market insights, and practical guides to navigating the institutional creator economy.
           </p>
         </div>
-        
-        <div className="flex gap-3 md:gap-6 bg-surface-container rounded-xl p-2.5 md:p-4 border border-outline-variant/20 shrink-0 w-full md:w-auto">
-          <div className="text-center flex-1 md:flex-initial">
-            <div className="font-headline-sm text-headline-sm text-primary">{RESOURCES.length}+</div>
-            <div className="font-label-sm text-[10px] md:font-label-sm text-on-surface-variant uppercase tracking-wider">Resources</div>
+        {/* Stats row — on mobile: single row, equal width columns */}
+        <div className="grid grid-cols-3 gap-2 bg-surface-container rounded-xl p-3 border border-outline-variant/20">
+          <div className="text-center">
+            <div className="font-headline-sm text-primary" style={{ fontSize: "clamp(18px, 4vw, 24px)", fontWeight: 700 }}>{RESOURCES.length}+</div>
+            <div className="text-on-surface-variant uppercase tracking-wider" style={{ fontSize: "10px" }}>Resources</div>
           </div>
-          <div className="w-[1px] h-8 md:h-10 bg-outline-variant/30 self-center"></div>
-          <div className="text-center flex-1 md:flex-initial">
-            <div className="font-headline-sm text-headline-sm text-primary">{CATEGORIES.length - 1}</div>
-            <div className="font-label-sm text-[10px] md:font-label-sm text-on-surface-variant uppercase tracking-wider">Categories</div>
+          <div className="text-center border-x border-outline-variant/30">
+            <div className="font-headline-sm text-primary" style={{ fontSize: "clamp(18px, 4vw, 24px)", fontWeight: 700 }}>{CATEGORIES.length - 1}</div>
+            <div className="text-on-surface-variant uppercase tracking-wider" style={{ fontSize: "10px" }}>Categories</div>
           </div>
-          <div className="w-[1px] h-8 md:h-10 bg-outline-variant/30 self-center"></div>
-          <div className="text-center flex-1 md:flex-initial">
-            <div className="font-headline-sm text-headline-sm text-primary">Weekly</div>
-            <div className="font-label-sm text-[10px] md:font-label-sm text-on-surface-variant uppercase tracking-wider">Updates</div>
+          <div className="text-center">
+            <div className="font-headline-sm text-primary" style={{ fontSize: "clamp(18px, 4vw, 24px)", fontWeight: 700 }}>Weekly</div>
+            <div className="text-on-surface-variant uppercase tracking-wider" style={{ fontSize: "10px" }}>Updates</div>
           </div>
         </div>
       </section>
 
-      {/* Section 2: Search Experience */}
-      <section className="mb-6 md:mb-12">
-        <div className="relative max-w-4xl font-body-md">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">
+      {/* Section 2: Search */}
+      <section className="mb-4 md:mb-12">
+        <div className="relative w-full">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" style={{ fontSize: "20px" }}>
             search
           </span>
           <input
@@ -128,67 +138,64 @@ export function ResourceHub() {
             placeholder="Search guides..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl py-4 pl-12 pr-24 font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all"
+            className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl py-3.5 pl-10 pr-4 md:pr-24 text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all"
+            style={{ fontSize: "15px" }}
             suppressHydrationWarning
           />
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-none hidden sm:flex">
-            <kbd className="px-2 py-1 bg-surface-container-high text-on-surface-variant rounded font-label-sm text-[10px] border border-outline-variant/30">
-              Ctrl
-            </kbd>
-            <kbd className="px-2 py-1 bg-surface-container-high text-on-surface-variant rounded font-label-sm text-[10px] border border-outline-variant/30">
-              K
-            </kbd>
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 items-center gap-1 pointer-events-none hidden sm:flex">
+            <kbd className="px-2 py-1 bg-surface-container-high text-on-surface-variant rounded text-[10px] border border-outline-variant/30">Ctrl</kbd>
+            <kbd className="px-2 py-1 bg-surface-container-high text-on-surface-variant rounded text-[10px] border border-outline-variant/30">K</kbd>
           </div>
         </div>
       </section>
 
-      {/* Section 3: Featured Research (Only shown under All Categories / No Search) */}
+      {/* Section 3: Featured Research */}
       {showFeatured && featuredResource && (
-        <section className="mb-6 md:mb-12">
-          <div className="group relative bg-surface-container-lowest border border-outline-variant/20 rounded-2xl md:rounded-[2rem] overflow-hidden flex flex-col md:flex-row shadow-sm hover:shadow-xl transition-all duration-500">
-            <Link href={`/resources/${featuredResource.slug}`} className="md:w-1/2 h-36 md:h-auto overflow-hidden relative min-h-[160px] md:min-h-[250px]">
+        <section className="mb-5 md:mb-12">
+          <div className="group relative bg-surface-container-lowest border border-outline-variant/20 rounded-2xl overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all duration-300">
+            {/* Image — compact on mobile */}
+            <Link href={`/resources/${featuredResource.slug}`} className="w-full overflow-hidden relative" style={{ height: "clamp(140px, 35vw, 220px)" }}>
               <Image
                 src={featuredResource.thumbnail}
                 alt={featuredResource.title}
                 fill
-                className="object-cover group-hover:scale-102 transition-transform duration-700"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
                 priority
               />
             </Link>
-            <div className="md:w-1/2 p-5 md:p-8 flex flex-col justify-center">
-              <div className="inline-flex items-center gap-2 bg-secondary-container/20 text-on-secondary-container px-2.5 py-0.5 md:px-3 md:py-1 rounded-full w-fit mb-3 md:mb-4">
-                <span className="material-symbols-outlined text-[16px] text-secondary" style={{ fontVariationSettings: "'FILL' 1" }}>
-                  auto_awesome
-                </span>
-                <span className="font-label-sm text-[10px] font-bold uppercase tracking-wider">Featured Intelligence</span>
+            {/* Content */}
+            <div className="p-4 md:p-8 flex flex-col">
+              <div className="inline-flex items-center gap-1.5 bg-secondary-container/20 text-on-secondary-container px-2.5 py-0.5 rounded-full w-fit mb-2 md:mb-4">
+                <span className="material-symbols-outlined text-secondary" style={{ fontSize: "14px", fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
+                <span className="uppercase tracking-wider font-bold" style={{ fontSize: "10px" }}>Featured Intelligence</span>
               </div>
-              
               <Link href={`/resources/${featuredResource.slug}`}>
-                <h2 className="font-headline-md text-title-large md:text-headline-lg mb-2 md:mb-4 leading-tight group-hover:text-primary transition-colors">
+                <h3
+                  className="mb-2 md:mb-3 leading-snug group-hover:text-primary transition-colors"
+                  style={{ fontFamily: "var(--font-hanken)", fontSize: "clamp(16px, 4vw, 22px)", fontWeight: 600, lineHeight: "1.3" }}
+                >
                   {featuredResource.title}
-                </h2>
+                </h3>
               </Link>
-              
-              <p className="font-body-md text-sm md:text-body-md text-on-surface-variant mb-4 md:mb-6 line-clamp-3">
+              <p className="text-on-surface-variant line-clamp-2 mb-3" style={{ fontSize: "13px", lineHeight: "1.5" }}>
                 {featuredResource.description}
               </p>
-              
-              <div className="flex items-center gap-6 mb-4 md:mb-8 text-outline">
+              <div className="flex items-center gap-4 mb-3 text-outline" style={{ fontSize: "12px" }}>
                 <div className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm">schedule</span>
-                  <span className="font-label-sm text-[12px]">{featuredResource.readTime}</span>
+                  <span className="material-symbols-outlined" style={{ fontSize: "14px" }}>schedule</span>
+                  <span>{featuredResource.readTime}</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm">person</span>
-                  <span className="font-label-sm text-[12px]">{featuredResource.author}</span>
+                  <span className="material-symbols-outlined" style={{ fontSize: "14px" }}>person</span>
+                  <span>{featuredResource.author}</span>
                 </div>
               </div>
-              
               <Link
                 href={`/resources/${featuredResource.slug}`}
-                className="flex items-center gap-2 text-primary font-bold font-body-md hover:translate-x-2 transition-transform w-fit"
+                className="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all w-fit"
+                style={{ fontSize: "14px" }}
               >
-                Read Full Research <span className="material-symbols-outlined">arrow_forward</span>
+                Read Full Research <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>arrow_forward</span>
               </Link>
             </div>
           </div>
