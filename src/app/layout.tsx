@@ -7,7 +7,7 @@ import Script from "next/script";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.axcrivo.in"),
+  metadataBase: new URL("https://www.axcrivo.in"),
   title: "Axcrivo",
   description: "Buy & Sell Creator Assets With Confidence",
   icons: {
