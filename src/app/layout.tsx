@@ -30,11 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
-        {/* Google Analytics 4 — only loads when a real ID is configured */}
+        {/* Google tag (gtag.js) */}
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && !process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID.includes('X') && (
           <>
             <Script
@@ -42,21 +38,24 @@ export default function RootLayout({
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
             />
             <Script
-              id="google-analytics"
+              id="google-tag"
               strategy="afterInteractive"
               dangerouslySetInnerHTML={{
                 __html: `
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
-                  gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', {
-                    page_path: window.location.pathname,
-                  });
+
+                  gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
                 `,
               }}
             />
           </>
         )}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet"
+        />
 
         {/* Microsoft Clarity — only loads when a real ID is configured */}
         {process.env.NEXT_PUBLIC_CLARITY_ID && !process.env.NEXT_PUBLIC_CLARITY_ID.includes('X') && (
