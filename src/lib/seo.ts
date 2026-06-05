@@ -21,6 +21,9 @@ export function createMetadata({
   const url = `${SITE_URL}${path}`;
   const fullTitle = exactTitle && title ? title : (title ? `${title} | ${SITE_NAME}` : SITE_NAME);
 
+  // Append cache-busting version query ?v=2 to OG image if not already present
+  const imageUrl = ogImage.includes("v=") ? ogImage : `${ogImage}${ogImage.includes("?") ? "&" : "?"}v=2`;
+
   return {
     title: fullTitle,
     description,
@@ -32,7 +35,7 @@ export function createMetadata({
       siteName: SITE_NAME,
       images: [
         {
-          url: ogImage,
+          url: imageUrl,
           width: 1200,
           height: 630,
           alt: fullTitle,
@@ -44,10 +47,11 @@ export function createMetadata({
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [ogImage],
+      images: [imageUrl],
     },
     alternates: {
       canonical: url,
     },
   };
 }
+
