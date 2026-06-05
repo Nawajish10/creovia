@@ -34,13 +34,12 @@ export default function RootLayout({
         {/* Google tag (gtag.js) */}
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && !process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID.includes('X') && (
           <>
-            <Script
-              strategy="afterInteractive"
+            <script
+              async
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
             />
-            <Script
+            <script
               id="google-tag"
-              strategy="afterInteractive"
               dangerouslySetInnerHTML={{
                 __html: `
                   window.dataLayer = window.dataLayer || [];
