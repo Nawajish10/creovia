@@ -45,7 +45,7 @@ export function BuyerForm() {
     setIsSubmitting(false);
   };
 
-  const inputClasses = "w-full bg-white/50 dark:bg-surface-container/50 border border-outline-variant/50 rounded-xl px-4 py-3.5 font-label-md placeholder:text-outline/40 focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all shadow-sm hover:shadow-md";
+  const inputClasses = "w-full bg-white/50 dark:bg-surface-container/50 border border-outline-variant/50 rounded-xl px-4 py-3.5 font-label-md placeholder:text-outline/40 focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all shadow-sm hover:shadow-md text-on-surface";
 
   return (
     <SectionWrapper id="buyerform" className="py-12">

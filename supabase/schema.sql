@@ -93,4 +93,9 @@ ADD COLUMN IF NOT EXISTS revenue_last_12_months BIGINT,
 ADD COLUMN IF NOT EXISTS average_monthly_profit BIGINT,
 ADD COLUMN IF NOT EXISTS screenshot_url TEXT,
 ADD COLUMN IF NOT EXISTS ownership_confirmed BOOLEAN DEFAULT FALSE,
-ADD COLUMN IF NOT EXISTS monetization_status TEXT;
+ADD COLUMN IF NOT EXISTS monetization_status TEXT,
+ADD COLUMN IF NOT EXISTS analytics_image_path TEXT,
+ADD COLUMN IF NOT EXISTS analytics_signed_url TEXT,
+ADD COLUMN IF NOT EXISTS analytics_file_name TEXT,
+ADD COLUMN IF NOT EXISTS analytics_file_size BIGINT,
+ADD COLUMN IF NOT EXISTS analytics_uploaded_at TIMESTAMP WITH TIME ZONE;

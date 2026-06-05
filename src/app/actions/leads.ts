@@ -26,9 +26,12 @@ export async function submitSellerLead(data: any) {
     const { website, ...rest } = parsed
     const dbData = {
       ...rest,
+      screenshot_url: rest.analytics_signed_url || "", // legacy field fallback
+      monthly_revenue: Math.round((rest.revenue_last_12_months || 0) / 12) || 0,
       monetization_status: Array.isArray(rest.monetization_status)
         ? rest.monetization_status.join(", ")
-        : rest.monetization_status
+        : rest.monetization_status,
+      analytics_uploaded_at: new Date().toISOString()
     }
     
     const { error } = await supabase.from('seller_leads').insert([dbData])

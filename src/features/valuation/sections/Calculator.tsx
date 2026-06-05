@@ -7,7 +7,23 @@ import { valuationSchema } from "@/lib/schemas";
 import { submitValuationLead } from "@/app/actions/leads";
 import { trackEvent } from "@/lib/analytics";
 import { z } from "zod";
+
+const getAudienceUnit = (p: string) => {
+  switch (p) {
+    case 'youtube':
+    case 'newsletter':
+      return 'Subscribers';
+    case 'podcast':
+      return 'Listeners';
+    default:
+      return 'Followers';
+  }
+};
+
 export function Calculator() {
+  const inputGroupContainerClasses = "flex rounded-xl border border-outline-variant/50 focus-within:ring-2 focus-within:ring-primary/50 focus-within:border-primary transition-all shadow-sm bg-white/50 dark:bg-surface-container/50 hover:shadow-md overflow-hidden";
+  const inputGroupInputClasses = "flex-1 bg-transparent px-4 py-3.5 font-label-md placeholder:text-outline/40 focus:outline-none text-on-surface";
+  const inputGroupUnitClasses = "bg-surface-container border-l border-outline-variant/30 px-4 py-3.5 text-on-surface-variant font-label-md font-bold select-none shrink-0 flex items-center justify-center min-w-[100px] text-center text-xs";
   const [platform, setPlatform] = useState("youtube");
   const [niche, setNiche] = useState("entertainment");
   const [assetUrl, setAssetUrl] = useState("");
@@ -164,42 +180,50 @@ export function Calculator() {
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="space-y-1.5 group">
-                <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Total Audience Size</label>
-                <input 
-                  suppressHydrationWarning
-                  className="w-full bg-white/50 dark:bg-surface-container/50 border border-outline-variant/50 rounded-xl px-4 py-3.5 font-label-md placeholder:text-outline/40 focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all shadow-sm hover:shadow-md" 
-                  placeholder="e.g. 500000" 
-                  type="number"
-                  value={audience}
-                  onChange={(e) => setAudience(e.target.value)}
-                />
-              </div>
-              <div className="space-y-1.5 group">
-                <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Avg. Engagement (%)</label>
-                <input 
-                  suppressHydrationWarning
-                  className="w-full bg-white/50 dark:bg-surface-container/50 border border-outline-variant/50 rounded-xl px-4 py-3.5 font-label-md placeholder:text-outline/40 focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all shadow-sm hover:shadow-md" 
-                  placeholder="e.g. 4.5" 
-                  step="0.1" 
-                  type="number"
-                  value={engagement}
-                  onChange={(e) => setEngagement(e.target.value)}
-                />
-              </div>
+                <div className="space-y-1.5 group">
+                  <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Total Audience Size</label>
+                  <div className={inputGroupContainerClasses}>
+                    <input 
+                      suppressHydrationWarning
+                      className={inputGroupInputClasses} 
+                      placeholder="e.g. 500000" 
+                      type="number"
+                      value={audience}
+                      onChange={(e) => setAudience(e.target.value)}
+                    />
+                    <span className={inputGroupUnitClasses}>
+                      {getAudienceUnit(platform)}
+                    </span>
+                  </div>
+                </div>
+                <div className="space-y-1.5 group">
+                  <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Avg. Engagement (%)</label>
+                  <div className={inputGroupContainerClasses}>
+                    <input 
+                      suppressHydrationWarning
+                      className={inputGroupInputClasses} 
+                      placeholder="e.g. 4.5" 
+                      step="0.1" 
+                      type="number"
+                      value={engagement}
+                      onChange={(e) => setEngagement(e.target.value)}
+                    />
+                    <span className={inputGroupUnitClasses}>%</span>
+                  </div>
+                </div>
             </div>
             <div className="space-y-1.5 group">
-              <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Trailing 12-Month Revenue (INR)</label>
-              <div className="relative">
-                <span className="absolute left-4 top-3.5 text-on-surface-variant font-label-md font-bold">₹</span>
+              <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Trailing 12-Month Revenue</label>
+              <div className={inputGroupContainerClasses}>
                 <input 
                   suppressHydrationWarning
-                  className="w-full bg-white/50 dark:bg-surface-container/50 border border-outline-variant/50 rounded-xl pl-9 pr-4 py-3.5 font-label-md placeholder:text-outline/40 focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all shadow-sm hover:shadow-md" 
+                  className={inputGroupInputClasses} 
                   placeholder="0" 
                   type="number"
                   value={revenue}
                   onChange={(e) => setRevenue(e.target.value)}
                 />
+                <span className={inputGroupUnitClasses}>INR</span>
               </div>
             </div>
             <div className="space-y-1.5">

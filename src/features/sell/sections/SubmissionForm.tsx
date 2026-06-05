@@ -1,12 +1,13 @@
 "use client";
 
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { sellerSchema } from "@/lib/schemas";
 import { submitSellerLead } from "@/app/actions/leads";
 import { trackEvent } from "@/lib/analytics";
+import { supabase } from "@/lib/supabase";
 import { z } from "zod";
 
 export function SubmissionForm() {
@@ -18,6 +19,13 @@ export function SubmissionForm() {
   const [selectedMonetization, setSelectedMonetization] = useState<string[]>([]);
   const [screenshotName, setScreenshotName] = useState("");
   const [screenshotUploading, setScreenshotUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [previewUrl, setPreviewUrl] = useState("");
+  const [uploadError, setUploadError] = useState("");
+
+  // Asset Age input group states
+  const [ageValue, setAgeValue] = useState("2");
+  const [ageUnit, setAgeUnit] = useState("Years");
 
   const handleStart = () => {
     if (!hasStarted) {
@@ -26,15 +34,26 @@ export function SubmissionForm() {
     }
   };
 
-  const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm<z.infer<typeof sellerSchema>>({
+  const { register, handleSubmit, setValue, watch, formState: { errors }, reset } = useForm<z.infer<typeof sellerSchema>>({
     resolver: zodResolver(sellerSchema) as any,
     defaultValues: {
       platform: "youtube",
       monetization_status: [],
       ownership_confirmed: false,
-      screenshot_url: ""
+      screenshot_url: "",
+      analytics_image_path: "",
+      analytics_signed_url: "",
+      analytics_file_name: "",
+      analytics_file_size: 0
     }
   });
+
+  const selectedPlatform = watch("platform") || "youtube";
+
+  // Keep asset_age form field in sync with the input group states
+  useEffect(() => {
+    setValue("asset_age", `${ageValue} ${ageUnit}`, { shouldValidate: true });
+  }, [ageValue, ageUnit, setValue]);
 
   const handleMonetizationToggle = (option: string) => {
     let updated: string[];
@@ -51,22 +70,95 @@ export function SubmissionForm() {
     setValue("monetization_status", updated, { shouldValidate: true });
   };
 
-  const handleScreenshotChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleScreenshotChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        alert("File size must be under 5MB");
+      // Validate type
+      const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        setUploadError("Invalid file type. Only PNG, JPG, JPEG, and WEBP are allowed.");
         return;
       }
+      // Validate size (5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        setUploadError("File size must be under 5MB.");
+        return;
+      }
+
+      setUploadError("");
       setScreenshotName(file.name);
       setScreenshotUploading(true);
-      
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setValue("screenshot_url", reader.result as string, { shouldValidate: true });
+      setUploadProgress(0);
+
+      // Create local preview URL immediately (low-memory impact, no base64 lag)
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+      const localUrl = URL.createObjectURL(file);
+      setPreviewUrl(localUrl);
+
+      // Upload to Supabase Storage via our backend API (bypassing client RLS policies)
+      try {
+        const uploadViaAPI = () => {
+          return new Promise<{ filePath: string; signedUrl: string; fileName: string; fileSize: number }>((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            const formData = new FormData();
+            formData.append("file", file);
+
+            xhr.upload.addEventListener("progress", (event) => {
+              if (event.lengthComputable) {
+                const pct = (event.loaded / event.total) * 100;
+                setUploadProgress(Math.round(pct));
+              }
+            });
+
+            xhr.addEventListener("load", () => {
+              if (xhr.status >= 200 && xhr.status < 300) {
+                try {
+                  const response = JSON.parse(xhr.responseText);
+                  resolve(response);
+                } catch (err) {
+                  reject(new Error("Failed to parse server response"));
+                }
+              } else {
+                try {
+                  const response = JSON.parse(xhr.responseText);
+                  reject(new Error(response.error || `Upload failed with status ${xhr.status}`));
+                } catch {
+                  reject(new Error(`Upload failed with status ${xhr.status}`));
+                }
+              }
+            });
+
+            xhr.addEventListener("error", () => {
+              reject(new Error("Network error during upload"));
+            });
+
+            xhr.open("POST", "/api/upload");
+            xhr.send(formData);
+          });
+        };
+
+        const uploadResult = await uploadViaAPI();
+
+        // Populate metadata in form state
+        setValue("analytics_image_path", uploadResult.filePath, { shouldValidate: true });
+        setValue("analytics_signed_url", uploadResult.signedUrl, { shouldValidate: true });
+        setValue("analytics_file_name", uploadResult.fileName, { shouldValidate: true });
+        setValue("analytics_file_size", uploadResult.fileSize, { shouldValidate: true });
+        setValue("screenshot_url", uploadResult.signedUrl, { shouldValidate: true });
+
+      } catch (err: any) {
+        console.error("Storage Upload Error:", err);
+        setUploadError(err.message || "Failed to upload image. Please try again.");
+        setScreenshotName("");
+        if (previewUrl) {
+          URL.revokeObjectURL(previewUrl);
+          setPreviewUrl("");
+        }
+      } finally {
         setScreenshotUploading(false);
-      };
-      reader.readAsDataURL(file);
+      }
     }
   };
 
@@ -81,13 +173,35 @@ export function SubmissionForm() {
       reset();
       setSelectedMonetization([]);
       setScreenshotName("");
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+        setPreviewUrl("");
+      }
     } else {
       setErrorMsg(res.error || "Failed to submit. Please try again.");
     }
     setIsSubmitting(false);
   };
 
-  const inputClasses = "w-full bg-white/50 dark:bg-surface-container/50 border border-outline-variant/50 rounded-xl px-4 py-3.5 font-label-md placeholder:text-outline/40 focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all shadow-sm hover:shadow-md";
+  const getAudienceUnit = (platform: string) => {
+    switch (platform) {
+      case 'youtube':
+      case 'newsletter':
+        return 'Subscribers';
+      case 'telegram':
+        return 'Members';
+      case 'website':
+        return 'Monthly Visitors';
+      default:
+        return 'Followers';
+    }
+  };
+
+  const inputClasses = "w-full bg-white/50 dark:bg-surface-container/50 border border-outline-variant/50 rounded-xl px-4 py-3.5 font-label-md placeholder:text-outline/40 focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all shadow-sm hover:shadow-md text-on-surface";
+  
+  const inputGroupContainerClasses = "flex rounded-xl border border-outline-variant/50 focus-within:ring-2 focus-within:ring-primary/50 focus-within:border-primary transition-all shadow-sm bg-white/50 dark:bg-surface-container/50 hover:shadow-md overflow-hidden";
+  const inputGroupInputClasses = "flex-1 bg-transparent px-4 py-3.5 font-label-md placeholder:text-outline/40 focus:outline-none text-on-surface";
+  const inputGroupUnitClasses = "bg-surface-container border-l border-outline-variant/30 px-4 py-3.5 text-on-surface-variant font-label-md font-bold select-none shrink-0 flex items-center justify-center min-w-[120px] text-center text-xs";
 
   return (
     <SectionWrapper id="submissionform" className="py-12">
@@ -149,48 +263,71 @@ export function SubmissionForm() {
                 {/* Section 2: Asset Information */}
                 <div className="space-y-5">
                   <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">Section 2: Asset Information</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Platform *</label>
-                      <div className="relative">
-                        <select {...register("platform")} className={`${inputClasses} appearance-none ${errors.platform ? 'border-error ring-1 ring-error' : ''}`}>
-                          <option value="youtube">YouTube Channel</option>
-                          <option value="instagram">Instagram Page</option>
-                          <option value="tiktok">TikTok Account</option>
-                          <option value="telegram">Telegram Community</option>
-                          <option value="newsletter">Newsletter / Email List</option>
-                          <option value="website">Website / Blog</option>
-                          <option value="other">Other</option>
-                        </select>
-                        <span className="absolute right-4 top-3.5 text-outline-variant pointer-events-none material-symbols-outlined">expand_more</span>
+                  <div className="space-y-5">
+                    {/* Row 1: Platform, URL, Niche */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                      <div className="space-y-1.5 group">
+                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Platform *</label>
+                        <div className="relative">
+                          <select {...register("platform")} className={`${inputClasses} appearance-none ${errors.platform ? 'border-error ring-1 ring-error' : ''}`}>
+                            <option value="youtube">YouTube Channel</option>
+                            <option value="instagram">Instagram Page</option>
+                            <option value="tiktok">TikTok Account</option>
+                            <option value="telegram">Telegram Community</option>
+                            <option value="newsletter">Newsletter / Email List</option>
+                            <option value="website">Website / Blog</option>
+                            <option value="other">Other</option>
+                          </select>
+                          <span className="absolute right-4 top-3.5 text-outline-variant pointer-events-none material-symbols-outlined">expand_more</span>
+                        </div>
+                        {errors.platform && <span className="text-error text-xs font-medium">{errors.platform.message}</span>}
                       </div>
-                      {errors.platform && <span className="text-error text-xs font-medium">{errors.platform.message}</span>}
-                    </div>
-                    
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Asset URL</label>
-                      <div className="relative">
-                        <span className="absolute left-4 top-3.5 text-on-surface-variant material-symbols-outlined text-[20px]">link</span>
-                        <input {...register("asset_url")} className={`${inputClasses} pl-11`} placeholder="https://..." type="url" />
+                      
+                      <div className="space-y-1.5 group">
+                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Asset URL</label>
+                        <div className="relative">
+                          <span className="absolute left-4 top-3.5 text-on-surface-variant material-symbols-outlined text-[20px]">link</span>
+                          <input {...register("asset_url")} className={`${inputClasses} pl-11`} placeholder="https://..." type="url" />
+                        </div>
+                      </div>
+
+                      <div className="space-y-1.5 group">
+                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Niche *</label>
+                        <input {...register("niche")} className={`${inputClasses} ${errors.niche ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. Finance, Gaming, Tech" type="text" />
+                        {errors.niche && <span className="text-error text-xs font-medium">{errors.niche.message}</span>}
                       </div>
                     </div>
 
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Niche *</label>
-                      <input {...register("niche")} className={`${inputClasses} ${errors.niche ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. Finance, Gaming, Tech" type="text" />
-                      {errors.niche && <span className="text-error text-xs font-medium">{errors.niche.message}</span>}
-                    </div>
+                    {/* Row 2: Geography, Asset Age */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div className="space-y-1.5 group">
+                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Audience Geography *</label>
+                        <input {...register("country")} className={`${inputClasses} ${errors.country ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. India, US, Global" type="text" />
+                        {errors.country && <span className="text-error text-xs font-medium">{errors.country.message}</span>}
+                      </div>
 
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Audience Geography *</label>
-                      <input {...register("country")} className={`${inputClasses} ${errors.country ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. India, US, Global" type="text" />
-                      {errors.country && <span className="text-error text-xs font-medium">{errors.country.message}</span>}
-                    </div>
-
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Asset Age *</label>
-                      <input {...register("asset_age")} className={`${inputClasses} ${errors.asset_age ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. 2 years, 6 months" type="text" />
-                      {errors.asset_age && <span className="text-error text-xs font-medium">{errors.asset_age.message}</span>}
+                      <div className="space-y-1.5 group">
+                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Asset Age *</label>
+                        <div className={inputGroupContainerClasses}>
+                          <input 
+                            type="number" 
+                            value={ageValue} 
+                            onChange={(e) => setAgeValue(e.target.value)} 
+                            className={inputGroupInputClasses} 
+                            placeholder="2" 
+                            min="0"
+                          />
+                          <select 
+                            value={ageUnit} 
+                            onChange={(e) => setAgeUnit(e.target.value)} 
+                            className="bg-surface-container border-l border-outline-variant/30 px-4 py-3.5 text-on-surface-variant font-label-md outline-none cursor-pointer text-on-surface"
+                          >
+                            <option value="Years">Years</option>
+                            <option value="Months">Months</option>
+                          </select>
+                        </div>
+                        {errors.asset_age && <span className="text-error text-xs font-medium">{errors.asset_age.message}</span>}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -198,42 +335,55 @@ export function SubmissionForm() {
                 {/* Section 3: Performance */}
                 <div className="space-y-5">
                   <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">Section 3: Performance</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Audience Size *</label>
-                      <input {...register("audience_size")} className={`${inputClasses} ${errors.audience_size ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. 500000" type="number" />
-                      {errors.audience_size && <span className="text-error text-xs font-medium">{errors.audience_size.message}</span>}
-                    </div>
+                  <div className="space-y-5">
+                    {/* Row 1: Audience Size, Monthly Reach, Revenue */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                      <div className="space-y-1.5 group">
+                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Audience Size *</label>
+                        <div className={inputGroupContainerClasses}>
+                          <input {...register("audience_size")} className={inputGroupInputClasses} placeholder="e.g. 500000" type="number" />
+                          <span className={inputGroupUnitClasses}>
+                            {getAudienceUnit(selectedPlatform)}
+                          </span>
+                        </div>
+                        {errors.audience_size && <span className="text-error text-xs font-medium">{errors.audience_size.message}</span>}
+                      </div>
 
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Monthly Reach/Traffic *</label>
-                      <input {...register("monthly_reach")} className={`${inputClasses} ${errors.monthly_reach ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. 1M reach or 50K visits" type="text" />
-                      {errors.monthly_reach && <span className="text-error text-xs font-medium">{errors.monthly_reach.message}</span>}
-                    </div>
-                    
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Revenue Last 12 Months (INR)</label>
-                      <div className="relative">
-                        <span className="absolute left-4 top-3.5 text-on-surface-variant font-label-md font-bold">₹</span>
-                        <input {...register("revenue_last_12_months")} className={`${inputClasses} pl-9`} placeholder="0" type="number" />
+                      <div className="space-y-1.5 group">
+                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Monthly Reach/Traffic *</label>
+                        <input {...register("monthly_reach")} className={`${inputClasses} ${errors.monthly_reach ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. 1M reach or 50K visits" type="text" />
+                        {errors.monthly_reach && <span className="text-error text-xs font-medium">{errors.monthly_reach.message}</span>}
+                      </div>
+                      
+                      <div className="space-y-1.5 group">
+                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Revenue Last 12 Months</label>
+                        <div className={inputGroupContainerClasses}>
+                          <input {...register("revenue_last_12_months")} className={inputGroupInputClasses} placeholder="0" type="number" />
+                          <span className={inputGroupUnitClasses}>INR</span>
+                        </div>
+                        {errors.revenue_last_12_months && <span className="text-error text-xs font-medium">{errors.revenue_last_12_months.message}</span>}
                       </div>
                     </div>
 
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Average Monthly Profit (INR)</label>
-                      <div className="relative">
-                        <span className="absolute left-4 top-3.5 text-on-surface-variant font-label-md font-bold">₹</span>
-                        <input {...register("average_monthly_profit")} className={`${inputClasses} pl-9`} placeholder="0" type="number" />
+                    {/* Row 2: Monthly Profit, Expected Price */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div className="space-y-1.5 group">
+                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Average Monthly Profit</label>
+                        <div className={inputGroupContainerClasses}>
+                          <input {...register("average_monthly_profit")} className={inputGroupInputClasses} placeholder="0" type="number" />
+                          <span className={inputGroupUnitClasses}>INR</span>
+                        </div>
+                        {errors.average_monthly_profit && <span className="text-error text-xs font-medium">{errors.average_monthly_profit.message}</span>}
                       </div>
-                    </div>
 
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Expected Price (INR) *</label>
-                      <div className="relative">
-                        <span className="absolute left-4 top-3.5 text-on-surface-variant font-label-md font-bold">₹</span>
-                        <input {...register("asking_price")} className={`${inputClasses} pl-9 ${errors.asking_price ? 'border-error ring-1 ring-error' : ''}`} placeholder="0" type="number" />
+                      <div className="space-y-1.5 group">
+                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Expected Price *</label>
+                        <div className={inputGroupContainerClasses}>
+                          <input {...register("asking_price")} className={`${inputGroupInputClasses} ${errors.asking_price ? 'border-error' : ''}`} placeholder="0" type="number" />
+                          <span className={inputGroupUnitClasses}>INR</span>
+                        </div>
+                        {errors.asking_price && <span className="text-error text-xs font-medium">{errors.asking_price.message}</span>}
                       </div>
-                      {errors.asking_price && <span className="text-error text-xs font-medium">{errors.asking_price.message}</span>}
                     </div>
                   </div>
                 </div>
@@ -244,7 +394,7 @@ export function SubmissionForm() {
                   
                   {/* Monetization Status Checklist */}
                   <div className="space-y-3">
-                    <label className="font-label-md text-on-surface font-bold block">Monetization Status *</label>
+                    <label className="font-label-md text-on-surface font-bold block text-on-surface">Monetization Status *</label>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                       {[
                         "Ad Revenue",
@@ -281,32 +431,77 @@ export function SubmissionForm() {
                     {/* Analytics Screenshot Upload */}
                     <div className="space-y-2">
                       <label className="font-label-md text-on-surface-variant block">Analytics Screenshot Upload *</label>
-                      <div className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer relative group transition-all ${
-                        errors.screenshot_url
-                          ? 'border-error bg-error/5'
-                          : 'border-outline-variant/50 hover:border-primary/50 bg-white/10 dark:bg-surface-container/10'
-                      }`}>
-                        <input
-                          type="file"
-                          accept="image/*"
-                          onChange={handleScreenshotChange}
-                          className="absolute inset-0 opacity-0 cursor-pointer"
-                        />
-                        <div className="space-y-2">
-                          <span className={`material-symbols-outlined text-4xl transition-colors ${
-                            errors.screenshot_url
-                              ? 'text-error'
-                              : 'text-outline-variant group-hover:text-primary'
-                          }`}>
-                            cloud_upload
-                          </span>
-                          <p className="font-label-md text-on-surface-variant">
-                            {screenshotUploading ? "Processing..." : screenshotName ? `Selected: ${screenshotName}` : "Click or drag screenshot here"}
-                          </p>
-                          <p className="font-label-sm text-xs text-outline-variant/70">PNG, JPG or WEBP up to 5MB</p>
+                      
+                      {previewUrl ? (
+                        <div className="relative border border-outline-variant/30 rounded-2xl overflow-hidden bg-surface-container-low max-w-[400px] shadow-sm group">
+                          <img src={previewUrl} className="w-full h-48 object-contain p-2" alt="Screenshot Preview" />
+                          <button
+                            type="button"
+                            disabled={screenshotUploading}
+                            onClick={() => {
+                              setValue("analytics_image_path", "");
+                              setValue("analytics_signed_url", "");
+                              setValue("analytics_file_name", "");
+                              setValue("analytics_file_size", 0);
+                              setValue("screenshot_url", "");
+                              setScreenshotName("");
+                              if (previewUrl) {
+                                URL.revokeObjectURL(previewUrl);
+                                setPreviewUrl("");
+                              }
+                            }}
+                            className="absolute top-2 right-2 bg-error text-on-error w-8 h-8 rounded-full flex items-center justify-center shadow-md hover:bg-error/90 active:scale-95 transition-all cursor-pointer disabled:opacity-50"
+                            title="Remove image"
+                          >
+                            <span className="material-symbols-outlined text-[18px]">close</span>
+                          </button>
+                          <div className="p-3 bg-surface-container-lowest text-xs font-label-md text-on-surface-variant truncate border-t border-outline-variant/10 flex justify-between items-center">
+                            <span className="truncate">{screenshotName}</span>
+                          </div>
                         </div>
-                      </div>
-                      {errors.screenshot_url && <span className="text-error text-xs font-medium">{errors.screenshot_url.message}</span>}
+                      ) : (
+                        <div className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer relative group transition-all ${
+                          errors.analytics_image_path
+                            ? 'border-error bg-error/5'
+                            : 'border-outline-variant/50 hover:border-primary/50 bg-white/10 dark:bg-surface-container/10'
+                        }`}>
+                          <input
+                            type="file"
+                            accept="image/png, image/jpeg, image/jpg, image/webp"
+                            onChange={handleScreenshotChange}
+                            className="absolute inset-0 opacity-0 cursor-pointer"
+                            disabled={screenshotUploading}
+                          />
+                          <div className="space-y-2">
+                            <span className={`material-symbols-outlined text-4xl transition-colors ${
+                              errors.analytics_image_path
+                                ? 'text-error'
+                                : 'text-outline-variant group-hover:text-primary'
+                            }`}>
+                              cloud_upload
+                            </span>
+                            <p className="font-label-md text-on-surface-variant">
+                              Click or drag screenshot here
+                            </p>
+                            <p className="font-label-sm text-xs text-outline-variant/70">PNG, JPG, JPEG, or WEBP up to 5MB</p>
+                          </div>
+                        </div>
+                      )}
+
+                      {screenshotUploading && (
+                        <div className="space-y-1.5 mt-2">
+                          <div className="flex justify-between text-xs font-label-sm text-on-surface-variant">
+                            <span>Uploading screenshot...</span>
+                            <span>{uploadProgress}%</span>
+                          </div>
+                          <div className="w-full bg-surface-container rounded-full h-2 overflow-hidden border border-outline-variant/10">
+                            <div className="bg-primary h-full transition-all duration-300" style={{ width: `${uploadProgress}%` }}></div>
+                          </div>
+                        </div>
+                      )}
+
+                      {uploadError && <span className="text-error text-xs font-medium block mt-1">{uploadError}</span>}
+                      {errors.analytics_image_path && <span className="text-error text-xs font-medium block mt-1">{errors.analytics_image_path.message}</span>}
                     </div>
 
                     {/* Reason for Selling */}
@@ -338,8 +533,14 @@ export function SubmissionForm() {
 
                 {/* Submit */}
                 <div className="pt-4">
-                  <button disabled={isSubmitting} className="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-on-primary font-label-md font-bold uppercase tracking-widest hover:shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.4)] hover:-translate-y-0.5 transition-all duration-300 flex justify-center items-center gap-2 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none" type="submit">
-                    {isSubmitting ? <><span className="material-symbols-outlined text-[18px] animate-spin">refresh</span> Submitting...</> : "Submit Asset for Review"}
+                  <button disabled={isSubmitting || screenshotUploading} className="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-on-primary font-label-md font-bold uppercase tracking-widest hover:shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.4)] hover:-translate-y-0.5 transition-all duration-300 flex justify-center items-center gap-2 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none cursor-pointer" type="submit">
+                    {isSubmitting ? (
+                      <><span className="material-symbols-outlined text-[18px] animate-spin">refresh</span> Submitting...</>
+                    ) : screenshotUploading ? (
+                      <><span className="material-symbols-outlined text-[18px] animate-spin">refresh</span> Uploading screenshot...</>
+                    ) : (
+                      "Submit Asset for Review"
+                    )}
                   </button>
                   <p className="font-label-sm text-on-surface-variant text-center mt-4 flex items-center justify-center gap-1.5">
                     <span className="material-symbols-outlined text-[16px]">lock</span>

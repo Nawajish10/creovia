@@ -56,34 +56,42 @@ export default async function AdminDashboardPage() {
 
       {/* Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <MetricCard 
-          title="Total Leads" 
-          value={totalLeads.toString()} 
-          icon="group" 
-          trend="All Time" 
-          colorClass="bg-primary-container text-on-primary-container" 
-        />
-        <MetricCard 
-          title="Valuation Requests" 
-          value={valuationCount.toString()} 
-          icon="real_estate_agent" 
-          trend="All Time"
-          colorClass="bg-secondary-container text-on-secondary-container" 
-        />
-        <MetricCard 
-          title="Seller Leads" 
-          value={sellerCount.toString()} 
-          icon="sell" 
-          trend="All Time"
-          colorClass="bg-tertiary-container text-on-tertiary-container" 
-        />
-        <MetricCard 
-          title="Buyer Leads" 
-          value={buyerCount.toString()} 
-          icon="shopping_cart" 
-          trend="All Time"
-          colorClass="bg-surface-container-high text-on-surface" 
-        />
+        <Link href="/admin/leads?tab=valuation" className="block transform hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+          <MetricCard 
+            title="Total Leads" 
+            value={totalLeads.toString()} 
+            icon="group" 
+            trend="All Time" 
+            colorClass="bg-primary-container text-on-primary-container" 
+          />
+        </Link>
+        <Link href="/admin/leads?tab=valuation" className="block transform hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+          <MetricCard 
+            title="Valuation Requests" 
+            value={valuationCount.toString()} 
+            icon="real_estate_agent" 
+            trend="All Time"
+            colorClass="bg-secondary-container text-on-secondary-container" 
+          />
+        </Link>
+        <Link href="/admin/leads?tab=sellers" className="block transform hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+          <MetricCard 
+            title="Seller Leads" 
+            value={sellerCount.toString()} 
+            icon="sell" 
+            trend="All Time"
+            colorClass="bg-tertiary-container text-on-tertiary-container" 
+          />
+        </Link>
+        <Link href="/admin/leads?tab=buyers" className="block transform hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+          <MetricCard 
+            title="Buyer Leads" 
+            value={buyerCount.toString()} 
+            icon="shopping_cart" 
+            trend="All Time"
+            colorClass="bg-surface-container-high text-on-surface" 
+          />
+        </Link>
       </div>
 
       {/* Quick Links Section */}
@@ -128,7 +136,7 @@ export default async function AdminDashboardPage() {
 
 function MetricCard({ title, value, icon, trend, colorClass }: { title: string, value: string, icon: string, trend: string, colorClass: string }) {
   return (
-    <div className={`p-6 rounded-3xl ${colorClass} transition-transform hover:-translate-y-1 duration-300 shadow-sm hover:shadow-md`}>
+    <div className={`p-6 rounded-3xl ${colorClass} shadow-sm hover:shadow-md transition-shadow duration-300 h-full`}>
       <div className="flex justify-between items-start mb-4">
         <div className="bg-white/20 p-3 rounded-2xl backdrop-blur-sm">
           <span className="material-symbols-outlined text-[28px]">{icon}</span>

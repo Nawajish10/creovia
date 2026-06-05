@@ -1,8 +1,14 @@
 import { getServiceRoleClient } from "@/lib/supabase"
 import { LeadsDashboardClient } from "./LeadsDashboardClient"
 
-export default async function AdminLeadsPage() {
+export default async function AdminLeadsPage({ 
+  searchParams 
+}: { 
+  searchParams: Promise<{ tab?: string }> 
+}) {
   try {
+    const { tab } = await searchParams;
+    const initialTab = tab && ["valuation", "sellers", "buyers"].includes(tab) ? tab : "valuation";
     const supabase = getServiceRoleClient()
     
     // Fetch data in parallel
@@ -12,11 +18,33 @@ export default async function AdminLeadsPage() {
       supabase.from('buyer_leads').select('*').order('created_at', { ascending: false })
     ])
 
+    // Regenerate signed URLs dynamically for seller leads (1 year expiry)
+    const sellerLeads = await Promise.all((sellerRes.data || []).map(async (lead: any) => {
+      if (lead.analytics_image_path) {
+        try {
+          const { data } = await supabase.storage
+            .from('analytics-screenshots')
+            .createSignedUrl(lead.analytics_image_path, 31536000); // 1 year
+          
+          if (data?.signedUrl) {
+            return {
+              ...lead,
+              analytics_signed_url: data.signedUrl
+            };
+          }
+        } catch (err) {
+          console.error(`Failed to generate signed URL for lead ${lead.id}:`, err);
+        }
+      }
+      return lead;
+    }));
+
     return (
       <LeadsDashboardClient 
         initialValuationLeads={valuationRes.data || []}
-        initialSellerLeads={sellerRes.data || []}
+        initialSellerLeads={sellerLeads}
         initialBuyerLeads={buyerRes.data || []}
+        initialTab={initialTab}
       />
     )
   } catch (error: any) {

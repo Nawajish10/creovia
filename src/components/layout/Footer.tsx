@@ -147,6 +147,7 @@ export function Footer() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="bg-surface-container border border-outline-variant/50 rounded-xl px-4 py-3 text-body-md placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none w-full lg:w-72"
                     placeholder="professional@email.com"
+                    suppressHydrationWarning
                   />
                   <button type="submit" className="bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md text-label-md hover:opacity-95 transition-all cursor-pointer">
                     Subscribe
@@ -229,6 +230,7 @@ export function Footer() {
                 <li><Link href="/privacy" className="text-on-surface-variant font-body-md hover:text-primary transition-colors py-1 block">Privacy Policy</Link></li>
                 <li><Link href="/privacy" className="text-on-surface-variant font-body-md hover:text-primary transition-colors py-1 block">Terms of Service</Link></li>
                 <li><Link href="/privacy" className="text-on-surface-variant font-body-md hover:text-primary transition-colors py-1 block">Disclaimer</Link></li>
+                <li><Link href="/admin" className="text-on-surface-variant font-body-md hover:text-primary transition-colors py-1 block">Admin</Link></li>
               </ul>
             </nav>
           </div>

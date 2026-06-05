@@ -126,6 +126,7 @@ export function ResourceHub() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl py-4 pl-12 pr-24 font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all"
+            suppressHydrationWarning
           />
           <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-none hidden sm:flex">
             <kbd className="px-2 py-1 bg-surface-container-high text-on-surface-variant rounded font-label-sm text-[10px] border border-outline-variant/30">
@@ -330,6 +331,7 @@ export function ResourceHub() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 flex-1 text-white font-body-md placeholder:text-white/40 focus:bg-white/20 focus:outline-none focus:ring-1 focus:ring-primary transition-all"
                   placeholder="professional@email.com"
+                  suppressHydrationWarning
                 />
                 <button
                   type="submit"
