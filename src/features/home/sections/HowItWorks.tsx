@@ -1,10 +1,10 @@
-const steps = [
+﻿const steps = [
   {
     number: "01",
     icon: "search",
     title: "List or Browse",
     description:
-      "Sellers submit their creator asset for valuation and listing review. Buyers browse verified, data-rich listings filtered by niche, size, and revenue.",
+      "Sellers submit their Social Pages & Digital Assets for valuation and listing review. Buyers browse verified, data-rich listings filtered by niche, size, and revenue.",
   },
   {
     number: "02",

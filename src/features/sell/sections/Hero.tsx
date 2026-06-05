@@ -1,4 +1,4 @@
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
+﻿import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -15,7 +15,7 @@ export function Hero() {
         {/* Decorative Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
         <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-6 relative z-10 font-black tracking-tight drop-shadow-sm">
-          Sell Your Creator Asset in India
+          Sell Your Social Pages & Digital Assets in India
         </h2>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-12 relative z-10 leading-relaxed text-lg">
           Connect directly with India's largest buyers, D2C brands, and media groups. Sell your digital property with the best valuation and secure escrow.

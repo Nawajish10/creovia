@@ -1,10 +1,10 @@
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
+﻿import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { FAQJsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
 
 const faqs = [
   {
-    question: "What is required to list my creator asset for sale?",
+    question: "What is required to list my Social Pages & Digital Assets for sale?",
     answer: "You need to confirm ownership of the asset (social profile, channel, or newsletter domain), provide trailing 3 to 12 months of financial documentation (Stripe, bank statements, or dashboard screenshots), and provide active read-only analytics access to verify engagement and demographics."
   },
   {

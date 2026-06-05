@@ -7,11 +7,12 @@ import { ValuationFAQ } from "@/features/valuation/sections/ValuationFAQ";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export const metadata = createMetadata({
-  title: "Creator Asset Valuation Hub | Value Your Account",
-  description: "Understand the true market value of your Instagram page, YouTube channel, Telegram group, or email newsletter using Axcrivo's data-driven valuation models.",
+  title: "Free Social Pages & Digital Assets Valuation | Axcrivo",
+  description: "Get the true market value of your Instagram page, YouTube channel, Telegram group or newsletter with Axcrivo's data-driven valuation tool. Free & instant.",
+  ogImage: "/og-image-v2.png",
   path: "/valuation",
   keywords: [
-    "creator asset valuation",
+    "social pages valuation",
     "instagram page valuation",
     "youtube channel valuation",
     "telegram group valuation",

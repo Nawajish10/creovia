@@ -1,4 +1,4 @@
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
+﻿import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -16,7 +16,7 @@ export function Hero() {
           <span className="w-2 h-2 rounded-full bg-secondary animate-pulse shadow-[0_0_10px_rgba(var(--color-secondary-rgb),0.8)]"></span>
           <span className="font-label-sm text-on-surface uppercase tracking-widest font-bold">Premium Indian Assets Available</span>
         </div>
-        <h1 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-6 font-black tracking-tight drop-shadow-sm">Acquire Verified Indian Creator Assets</h1>
+        <h1 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-6 font-black tracking-tight drop-shadow-sm">Acquire Verified Indian Social Pages & Digital Assets</h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12 leading-relaxed text-lg">Purchase India's top YouTube channels, Instagram pages, Telegram groups, and WhatsApp communities — fully verified and priced in INR.</p>
         <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
           <Link href="#featuredassets" className="bg-gradient-to-r from-primary to-primary/80 text-on-primary font-label-md px-10 py-4 rounded-xl hover:shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.4)] hover:-translate-y-0.5 transition-all glow-hover uppercase tracking-widest font-bold shadow-lg">Browse Listings</Link>

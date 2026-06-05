@@ -10,8 +10,9 @@ import { OrganizationJsonLd, WebsiteJsonLd } from "@/components/seo/JsonLd";
 import { SEOHomeContent } from "@/features/home/sections/SEOHomeContent";
 
 export const metadata = createMetadata({
-  title: "Buy & Sell Creator Assets | Creator Asset Marketplace | Axcrivo",
-  description: "Buy, sell and value creator assets including Instagram pages, YouTube channels, Telegram communities and newsletters. Get expert valuation and acquisition support from Axcrivo.",
+  title: "Buy & Sell Social Pages & Digital Assets | Axcrivo",
+  description: "India's marketplace to buy & sell Instagram pages, YouTube channels, Telegram groups, newsletters & digital businesses. Get a free expert valuation today.",
+  ogImage: "/og-image-v2.png",
   path: "/",
   exactTitle: true,
 });

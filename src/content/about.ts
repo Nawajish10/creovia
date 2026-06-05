@@ -1,7 +1,7 @@
-export const aboutContent = {
+﻿export const aboutContent = {
   mission: {
     title: "Our Mission",
-    description: "To create the most secure, transparent, and liquid marketplace for digital creator assets."
+    description: "To create the most secure, transparent, and liquid marketplace for digital Social Pages & Digital Assets."
   },
   vision: {
     title: "Our Vision",

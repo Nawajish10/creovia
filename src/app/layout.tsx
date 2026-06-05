@@ -8,8 +8,8 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.axcrivo.in"),
-  title: "Axcrivo",
-  description: "Buy & Sell Creator Assets With Confidence",
+  title: "Axcrivo — Buy & Sell Social Pages & Digital Assets",
+  description: "India's trusted marketplace to buy & sell Instagram pages, YouTube channels, Telegram groups, newsletters and digital businesses.",
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -75,7 +75,7 @@ export default function RootLayout({
         {/* Announcement Bar */}
         <div className="bg-primary-container text-white text-center py-2 px-4 font-body-md text-[14px] flex items-center justify-center gap-2 z-50 relative">
           <span className="material-symbols-outlined text-sm">campaign</span>
-          Early Access Open — Get a Free Creator Asset Valuation.
+          Early Access Open — Get a Free Social Pages & Digital Assets Valuation.
           <Link className="underline font-semibold ml-2 hover:opacity-90 transition-opacity" href="/valuation">Apply Now</Link>
         </div>
         <Navbar />

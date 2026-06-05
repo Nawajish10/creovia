@@ -1,4 +1,4 @@
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
+﻿import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { FAQJsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
 
@@ -63,7 +63,7 @@ const faqs = [
   },
   {
     question: "What is the typical multiple for buying digital businesses?",
-    answer: "Most creator assets sell for multiples of 2.0x to 4.5x Annual SDE (Seller Discretionary Earnings), varying based on niche strength, platform compliance, and passive cash flow reliability."
+    answer: "Most Social Pages & Digital Assets sell for multiples of 2.0x to 4.5x Annual SDE (Seller Discretionary Earnings), varying based on niche strength, platform compliance, and passive cash flow reliability."
   }
 ];
 

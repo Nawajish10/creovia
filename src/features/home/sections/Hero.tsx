@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export function Hero() {
   return (
@@ -9,7 +9,7 @@ export function Hero() {
       <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center relative z-10">
         <div className="flex flex-col gap-4 md:gap-6">
           <h1 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-text-primary leading-tight">
-            Buy & Sell Creator Assets With <span className="text-primary">Confidence</span>
+            Buy & Sell Social Pages & Digital Assets With <span className="text-primary">Confidence</span>
           </h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
             Acquire or sell Instagram pages, YouTube channels, Telegram communities, and digital audiences through a trusted, data-driven marketplace designed for professionals.

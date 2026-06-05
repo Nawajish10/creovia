@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { FAQJsonLd } from "@/components/seo/JsonLd";
 
 const factors = [
@@ -49,7 +49,7 @@ const categories = [
 
 const faqs = [
   {
-    question: "How does Axcrivo calculate the value of my creator asset?",
+    question: "How does Axcrivo calculate the value of my Social Pages & Digital Assets?",
     answer: "Axcrivo uses a proprietary valuation engine that combines your trailing 12-month net revenue, platform-specific engagement metrics, audience geography, and niche standard multiples to calculate a realistic market value range."
   },
   {
@@ -156,7 +156,7 @@ export function ValuationFAQ() {
         <div className="text-center space-y-4">
           <h2 className="font-headline-xl text-2xl md:text-3xl text-on-surface">Frequently Asked Questions</h2>
           <p className="font-body-md text-on-surface-variant text-sm">
-            Everything you need to know about creator asset valuations and acquisitions.
+            Everything you need to know about Social Pages & Digital Assets valuations and acquisitions.
           </p>
         </div>
 

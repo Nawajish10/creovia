@@ -1,10 +1,10 @@
-import { MetadataRoute } from 'next'
+﻿import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Axcrivo',
     short_name: 'Axcrivo',
-    description: 'Buy & Sell Creator Assets With Confidence',
+    description: 'Buy & Sell Social Pages & Digital Assets With Confidence',
     start_url: '/',
     display: 'standalone',
     background_color: '#fbf8ff',

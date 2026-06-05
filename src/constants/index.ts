@@ -1,6 +1,6 @@
 export const SITE_NAME = "Axcrivo";
 export const SITE_URL = "https://www.axcrivo.in";
-export const SITE_DESCRIPTION = "The premier marketplace for buying and selling creator assets.";
+export const SITE_DESCRIPTION = "India's trusted marketplace to buy & sell Instagram pages, YouTube channels, Telegram groups, newsletters & digital businesses safely.";
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },

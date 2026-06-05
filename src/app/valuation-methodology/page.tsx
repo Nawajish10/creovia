@@ -1,16 +1,16 @@
-import { PageWrapper } from "@/components/layout/PageWrapper";
+﻿import { PageWrapper } from "@/components/layout/PageWrapper";
 import { createMetadata } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { FAQJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
 
 export const metadata = createMetadata({
-  title: "Creator Asset Valuation Methodology | How We Price Audients",
-  description: "Learn how Axcrivo values creator assets, Instagram accounts, YouTube channels, and email lists using revenue multiples, SDE, audience quality indexes, and geo modifiers.",
+  title: "Social Pages & Digital Assets Valuation Methodology | How We Price Audients",
+  description: "Learn how Axcrivo values Social Pages & Digital Assets, Instagram accounts, YouTube channels, and email lists using revenue multiples, SDE, audience quality indexes, and geo modifiers.",
   path: "/valuation-methodology",
   keywords: [
-    "creator asset valuation methodology",
-    "how creator assets are valued",
+    "Social Pages & Digital Assets valuation methodology",
+    "how Social Pages & Digital Assets are valued",
     "instagram valuation formula",
     "youtube channel valuation",
     "multiplier calculation"
@@ -61,7 +61,7 @@ export default function ValuationMethodologyPage() {
             <span className="font-label-sm text-xs text-primary uppercase tracking-widest font-bold">Advisory & Mathematics</span>
           </div>
           <h1 className="font-display-lg-mobile md:font-display-lg text-on-surface tracking-tight leading-tight">
-            Axcrivo Creator Asset <span className="text-primary">Valuation Methodology</span>
+            Axcrivo Social Pages & Digital Assets <span className="text-primary">Valuation Methodology</span>
           </h1>
           <p className="font-body-lg text-on-surface-variant leading-relaxed text-base md:text-lg">
             This document outlines the operational and financial frameworks used by Axcrivo to analyze, audit, and appraise creator-economy properties, establishing a standardized baseline for asset acquisitions.

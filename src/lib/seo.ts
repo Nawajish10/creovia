@@ -13,7 +13,7 @@ interface SeoProps {
 export function createMetadata({
   title,
   description = SITE_DESCRIPTION,
-  ogImage = "/og-image.png",
+  ogImage = "/og-image-v2.png",
   path = "",
   keywords = [],
   exactTitle = false,
@@ -22,7 +22,7 @@ export function createMetadata({
   const fullTitle = exactTitle && title ? title : (title ? `${title} | ${SITE_NAME}` : SITE_NAME);
 
   // Append cache-busting version query ?v=2 to OG image if not already present
-  const imageUrl = ogImage.includes("v=") ? ogImage : `${ogImage}${ogImage.includes("?") ? "&" : "?"}v=2`;
+  const imageUrl = ogImage.includes("v=") ? ogImage : `${ogImage}${ogImage.includes("?") ? "&" : "?"}v=1`;
 
   return {
     title: fullTitle,

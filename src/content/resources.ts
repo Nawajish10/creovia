@@ -1,4 +1,4 @@
-export interface ResourceType {
+﻿export interface ResourceType {
   id: string;
   title: string;
   slug: string;
@@ -15,8 +15,8 @@ export interface ResourceType {
 export const CATEGORIES = [
   "All Resources",
   "Valuation",
-  "Buying Creator Assets",
-  "Selling Creator Assets",
+  "Buying Social Pages & Digital Assets",
+  "Selling Social Pages & Digital Assets",
   "Creator Economy",
   "Marketplace Insights",
 ];
@@ -68,7 +68,7 @@ Ultimately, Instagram pages are digital real estate. Buyers value them based on 
     content: `
 ## Pricing YouTube Channels in 2026
 
-YouTube channels are unique among creator assets because their historical content library continues to generate passive ad revenue (AdSense) long after publication. This makes them highly attractive to digital investors.
+YouTube channels are unique among Social Pages & Digital Assets because their historical content library continues to generate passive ad revenue (AdSense) long after publication. This makes them highly attractive to digital investors.
 
 ### AdSense Revenue & Monthly Multiples
 The baseline valuation for most YouTube channels is calculated using a multiple of average monthly net profit, usually looked at over the trailing 6 to 12 months. 
@@ -125,19 +125,19 @@ Valuations generally fall between **8x to 15x monthly revenue**, reflecting the 
   },
   {
     id: "v4",
-    title: "Creator Asset Pricing Explained",
+    title: "Social Pages & Digital Assets Pricing Explained",
     slug: "creator-asset-pricing-explained",
     category: "Valuation",
     description: "How buyers evaluate digital audiences.",
     content: `
 ## The Framework for Pricing Creator Businesses
 
-Pricing a creator asset bridges the gap between traditional business valuation and digital audience metrics. Here is the framework professional buyers use.
+Pricing a Social Pages & Digital Assets bridges the gap between traditional business valuation and digital audience metrics. Here is the framework professional buyers use.
 
 ### The Baseline: SDE (Seller Discretionary Earnings)
 For monetized assets, the baseline valuation is a multiple of Seller Discretionary Earnings. SDE is the net profit of the business plus any personal expenses or owner salary added back in. 
 
-Most creator assets sell for a multiple of **2x to 4x Annual SDE** (or 24x to 48x Monthly SDE).
+Most Social Pages & Digital Assets sell for a multiple of **2x to 4x Annual SDE** (or 24x to 48x Monthly SDE).
 
 ### The Multiplier Modifiers
 Once the baseline SDE is established, buyers adjust the multiple up or down based on risk and growth potential:
@@ -199,7 +199,7 @@ A micro-influencer with 25,000 highly engaged followers in a specialized B2B nic
     id: "b1",
     title: "How To Buy An Instagram Page Safely",
     slug: "how-to-buy-instagram-page-safely",
-    category: "Buying Creator Assets",
+    category: "Buying Social Pages & Digital Assets",
     description: "Mitigate risk during acquisition with our due diligence checklist and escrow best practices.",
     content: `
 ## Securing Your Acquisition
@@ -228,9 +228,9 @@ When taking ownership:
   },
   {
     id: "b2",
-    title: "Creator Asset Due Diligence Checklist",
+    title: "Social Pages & Digital Assets Due Diligence Checklist",
     slug: "creator-asset-due-diligence-checklist",
-    category: "Buying Creator Assets",
+    category: "Buying Social Pages & Digital Assets",
     description: "A comprehensive checklist for verifying asset authenticity.",
     content: `
 ## The Complete Buyer's Checklist
@@ -262,7 +262,7 @@ Before making an offer on a digital asset, run through this rigorous due diligen
     id: "b3",
     title: "Red Flags To Watch Before Buying",
     slug: "red-flags-to-watch-before-buying",
-    category: "Buying Creator Assets",
+    category: "Buying Social Pages & Digital Assets",
     description: "Identify fake followers, inflated engagement, and scam sellers.",
     content: `
 ## Spotting the Scams
@@ -292,7 +292,7 @@ Check the account's historical growth on SocialBlade. If an account gained 50,00
     id: "b4",
     title: "How To Evaluate Audience Quality",
     slug: "how-to-evaluate-audience-quality-buying",
-    category: "Buying Creator Assets",
+    category: "Buying Social Pages & Digital Assets",
     description: "Look beyond the follower count to determine actual buyer intent and loyalty.",
     content: `
 ## Deep Dive into Audience Metrics
@@ -317,9 +317,9 @@ This real-world test provides undeniable proof of the audience's quality and pur
   },
   {
     id: "b5",
-    title: "The Ultimate Buyer Guide To Creator Assets",
+    title: "The Ultimate Buyer Guide To Social Pages & Digital Assets",
     slug: "ultimate-buyer-guide-creator-assets",
-    category: "Buying Creator Assets",
+    category: "Buying Social Pages & Digital Assets",
     description: "Everything you need to know about investing in digital media properties.",
     content: `
 ## The Digital Real Estate Investor's Playbook
@@ -350,7 +350,7 @@ Take control of all original emails, passwords, and 2FA. Spend the first 30 days
     id: "s1",
     title: "How To Sell Your Instagram Page",
     slug: "how-to-sell-your-instagram-page",
-    category: "Selling Creator Assets",
+    category: "Selling Social Pages & Digital Assets",
     description: "Step-by-step instructions on preparing your digital property for acquisition.",
     content: `
 ## Preparing for a Profitable Exit
@@ -374,9 +374,9 @@ If you sell shoutouts or sponsorships, stop accepting payments via un-trackable 
   },
   {
     id: "s2",
-    title: "Preparing Your Creator Asset For Sale",
+    title: "Preparing Your Social Pages & Digital Assets For Sale",
     slug: "preparing-your-creator-asset-for-sale",
-    category: "Selling Creator Assets",
+    category: "Selling Social Pages & Digital Assets",
     description: "Organize your financials, clean up your audience, and maximize your multiple.",
     content: `
 ## Maximizing Your Exit Value
@@ -403,7 +403,7 @@ Ensure you own 100% of the asset. If you started a YouTube channel with a friend
     id: "s3",
     title: "How To Increase Your Asset Value",
     slug: "how-to-increase-your-asset-value",
-    category: "Selling Creator Assets",
+    category: "Selling Social Pages & Digital Assets",
     description: "Strategies to boost engagement and revenue before listing.",
     content: `
 ## Strategies for Pre-Listing Growth
@@ -429,8 +429,8 @@ If you are spending $500/month on a video editor for a channel making $2000/mont
     id: "s4",
     title: "Understanding Buyer Expectations",
     slug: "understanding-buyer-expectations",
-    category: "Selling Creator Assets",
-    description: "What professional investors look for in a creator asset.",
+    category: "Selling Social Pages & Digital Assets",
+    description: "What professional investors look for in a Social Pages & Digital Assets.",
     content: `
 ## Inside the Mind of an Acquirer
 
@@ -457,7 +457,7 @@ Position your listing prospectus to appeal to the right type of buyer for your s
     id: "s5",
     title: "Common Mistakes Sellers Make",
     slug: "common-mistakes-sellers-make",
-    category: "Selling Creator Assets",
+    category: "Selling Social Pages & Digital Assets",
     description: "Avoid these pitfalls that can tank your deal.",
     content: `
 ## Deal Killers to Avoid
@@ -549,7 +549,7 @@ If an e-commerce brand spends $100,000 a month on ads to generate $300,000 in re
 
 Instead, that brand can take $500,000 and acquire an Instagram page or YouTube channel in their specific niche. They now own the distribution channel outright. They can promote their products infinitely for free, drastically lowering their blended CAC over the long term, while acquiring a revenue-generating asset that holds equity value on their balance sheet.
 
-This paradigm shift is driving intense demand for niche, high-quality creator assets.
+This paradigm shift is driving intense demand for niche, high-quality Social Pages & Digital Assets.
     `,
     readTime: "8 min read",
     publishDate: "2026-04-20",
@@ -559,7 +559,7 @@ This paradigm shift is driving intense demand for niche, high-quality creator as
   },
   {
     id: "i4",
-    title: "Why Creator Assets Are Becoming Investment Assets",
+    title: "Why Social Pages & Digital Assets Are Becoming Investment Assets",
     slug: "why-creator-assets-are-becoming-investment-assets",
     category: "Creator Economy",
     description: "Institutional money is entering the creator economy. Here is why.",
@@ -572,7 +572,7 @@ We are witnessing the financialization of the creator economy. Family offices, p
 A well-run YouTube automation channel or a premium newsletter can generate annual cash yields of 30% to 50% relative to its purchase price. This dwarfs the 5-8% yields typically found in traditional real estate or dividend stocks. 
 
 ### uncorrelated Returns
-The performance of a specialized creator asset is largely uncorrelated with the broader stock market. A highly engaged woodworking YouTube channel will continue to generate views and sponsor revenue regardless of macroeconomic interest rate fluctuations.
+The performance of a specialized Social Pages & Digital Assets is largely uncorrelated with the broader stock market. A highly engaged woodworking YouTube channel will continue to generate views and sponsor revenue regardless of macroeconomic interest rate fluctuations.
 
 As platforms mature and verification protocols (like Escrow and audited analytics) become standard, institutional capital will increasingly flow into digital asset acquisitions, driving baseline multiples higher over the next decade.
     `,
@@ -587,21 +587,21 @@ As platforms mature and verification protocols (like Escrow and audited analytic
     title: "Audience Businesses vs Traditional Businesses",
     slug: "audience-businesses-vs-traditional-businesses",
     category: "Creator Economy",
-    description: "Comparing the margins, overhead, and scalability of creator assets to SaaS or physical retail.",
+    description: "Comparing the margins, overhead, and scalability of Social Pages & Digital Assets to SaaS or physical retail.",
     content: `
 ## The Ultimate Lean Enterprise
 
-When comparing an audience-first business (creator asset) to traditional brick-and-mortar retail or even SaaS, the financial metrics heavily favor the creator.
+When comparing an audience-first business (Social Pages & Digital Assets) to traditional brick-and-mortar retail or even SaaS, the financial metrics heavily favor the creator.
 
 ### Unmatched Profit Margins
 A traditional restaurant might operate on a 10% net margin. A software company might operate on a 20-30% net margin after hefty R&D and server costs. 
-A mature, digital creator asset (like a newsletter or specialized community) frequently operates on **70% to 90% net profit margins**. 
+A mature, digital Social Pages & Digital Assets (like a newsletter or specialized community) frequently operates on **70% to 90% net profit margins**. 
 
 ### Zero Inventory, Zero Logistics
 Digital assets scale infinitely with zero marginal cost of reproduction. Serving a digital product or sponsored message to 1,000 people costs exactly the same as serving it to 1,000,000 people. There are no supply chain delays, warehousing costs, or manufacturing defects.
 
 ### Location Independence
-The entire business exists in the cloud, allowing operators to leverage global geo-arbitrage—living in a low-cost region while monetizing a high-tier global audience. This structural advantage makes creator assets some of the most capital-efficient vehicles on earth.
+The entire business exists in the cloud, allowing operators to leverage global geo-arbitrage—living in a low-cost region while monetizing a high-tier global audience. This structural advantage makes Social Pages & Digital Assets some of the most capital-efficient vehicles on earth.
     `,
     readTime: "14 min read",
     publishDate: "2026-04-30",
@@ -737,7 +737,7 @@ Sellers who professionalize their operations stand to benefit immensely from thi
 
 export const resourcesContent = {
   hero: {
-    headline: "Creator Asset Resources",
+    headline: "Social Pages & Digital Assets Resources",
     subheadline: "Guides, market reports, and tips for buying and selling digital businesses."
   },
   newsletterCta: {

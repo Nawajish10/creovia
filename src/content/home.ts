@@ -1,6 +1,6 @@
-export const homeContent = {
+﻿export const homeContent = {
   hero: {
-    headline: "Buy and Sell Creator Assets with Confidence",
+    headline: "Buy and Sell Social Pages & Digital Assets with Confidence",
     subheadline: "The premier marketplace for YouTube channels, Instagram pages, Newsletters, and more. Join thousands of creators trading digital real estate.",
     primaryCta: "Explore Marketplace",
     secondaryCta: "Sell Your Asset"

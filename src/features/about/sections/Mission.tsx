@@ -1,4 +1,4 @@
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
+﻿import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import Image from "next/image";
 
 export function Mission() {
@@ -9,7 +9,7 @@ export function Mission() {
         <div className="absolute inset-0 z-0 pointer-events-none opacity-40 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary-fixed via-background to-background"></div>
         <div className="z-10 max-w-4xl space-y-4 md:space-y-8">
           <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight text-on-surface">
-            The Marketplace for <span className="text-primary">Creator Assets</span>
+            The Marketplace for <span className="text-primary">Social Pages & Digital Assets</span>
           </h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto text-base md:text-lg">
             Buy, sell, and value digital audiences, creator communities, social channels, newsletters, and online media properties through a trusted marketplace designed for creators, operators, agencies, and investors.

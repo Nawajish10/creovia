@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
 
 export function SEOHomeContent() {
@@ -9,7 +9,7 @@ export function SEOHomeContent() {
         {/* H1 SEO Headline Section */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="font-headline-xl text-on-surface text-3xl md:text-4xl tracking-tight">
-            India&apos;s Leading <span className="text-primary">Creator Asset Marketplace</span>
+            India&apos;s Leading <span className="text-primary">Social Pages & Digital Assets Marketplace</span>
           </h2>
           <p className="font-body-lg text-on-surface-variant text-base md:text-lg leading-relaxed">
             Axcrivo is the premier digital asset marketplace designed for professional acquisitions. We connect creator businesses, digital brands, and serious investors through a transparent, secure, and data-driven platform.
@@ -25,7 +25,7 @@ export function SEOHomeContent() {
               <span className="material-symbols-outlined text-primary text-2xl">shopping_cart</span>
             </div>
             <div className="space-y-3 flex-grow">
-              <h3 className="font-headline-md text-xl md:text-2xl text-on-surface">Buy Creator Assets</h3>
+              <h3 className="font-headline-md text-xl md:text-2xl text-on-surface">Buy Social Pages & Digital Assets</h3>
               <p className="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed">
                 Acquire verified digital businesses and audiences with active cash flows. Browse audited YouTube channels, high-engagement Instagram profiles, Telegram communities, and premium newsletters.
               </p>
@@ -34,7 +34,7 @@ export function SEOHomeContent() {
               href="/buy" 
               className="text-primary font-label-md text-xs md:text-sm uppercase tracking-wider font-bold flex items-center gap-2 hover:underline w-fit"
             >
-              Buy Creator Assets
+              Buy Social Pages & Digital Assets
               <span className="material-symbols-outlined text-sm">arrow_forward</span>
             </Link>
           </div>
@@ -45,7 +45,7 @@ export function SEOHomeContent() {
               <span className="material-symbols-outlined text-secondary text-2xl">sell</span>
             </div>
             <div className="space-y-3 flex-grow">
-              <h3 className="font-headline-md text-xl md:text-2xl text-on-surface">Sell Creator Assets</h3>
+              <h3 className="font-headline-md text-xl md:text-2xl text-on-surface">Sell Social Pages & Digital Assets</h3>
               <p className="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed">
                 Connect with serious private equity investors, digital roll-ups, and D2C brands. List your digital property, command premium multiples, and exit safely with structured escrow contracts.
               </p>
@@ -54,7 +54,7 @@ export function SEOHomeContent() {
               href="/sell" 
               className="text-secondary font-label-md text-xs md:text-sm uppercase tracking-wider font-bold flex items-center gap-2 hover:underline w-fit"
             >
-              Sell Creator Assets
+              Sell Social Pages & Digital Assets
               <span className="material-symbols-outlined text-sm">arrow_forward</span>
             </Link>
           </div>
@@ -65,7 +65,7 @@ export function SEOHomeContent() {
               <span className="material-symbols-outlined text-tertiary text-2xl">calculate</span>
             </div>
             <div className="space-y-3 flex-grow">
-              <h3 className="font-headline-md text-xl md:text-2xl text-on-surface">Creator Asset Valuation</h3>
+              <h3 className="font-headline-md text-xl md:text-2xl text-on-surface">Social Pages & Digital Assets Valuation</h3>
               <p className="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed">
                 Calculate the accurate enterprise value of your digital property. Our algorithm factors in niche multiples, historical net revenue, audience demographics, and geographic distribution.
               </p>

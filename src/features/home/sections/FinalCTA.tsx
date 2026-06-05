@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export function FinalCTA() {
   return (
@@ -21,7 +21,7 @@ export function FinalCTA() {
               color: "#191b24",
             }}
           >
-            Buy or sell your creator asset at the{" "}
+            Buy or sell your Social Pages & Digital Assets at the{" "}
             <span style={{ color: "#003fd8" }}>right price</span>
           </h2>
           <p

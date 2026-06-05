@@ -1,6 +1,6 @@
-export const sellContent = {
+﻿export const sellContent = {
   hero: {
-    headline: "Sell Your Creator Asset",
+    headline: "Sell Your Social Pages & Digital Assets",
     subheadline: "Reach thousands of vetted buyers and get the best price for the digital business you've built."
   },
   benefits: {

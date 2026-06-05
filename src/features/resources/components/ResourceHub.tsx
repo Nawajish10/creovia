@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
@@ -88,7 +88,7 @@ export function ResourceHub() {
       <section className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 md:gap-6 mb-6 md:mb-12">
         <div className="max-w-3xl">
           <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2 md:mb-3 tracking-tight">
-            Creator Asset Intelligence
+            Social Pages & Digital Assets Intelligence
           </h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
             Research, valuation frameworks, market insights, and practical guides to navigating the institutional creator economy.
@@ -354,7 +354,7 @@ export function ResourceHub() {
       {/* Section 8: Final CTA */}
       <section className="text-center py-8 md:py-16 border-t border-outline-variant/30">
         <h2 className="font-headline-md text-title-large md:text-display-lg mb-2 md:mb-4 tracking-tight">
-          Want To Know What Your Creator Asset Is Worth?
+          Want To Know What Your Social Pages & Digital Assets Is Worth?
         </h2>
         <p className="font-body-lg text-sm md:text-body-lg text-on-surface-variant mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
           Use our proprietary valuation engine to get a baseline estimate of your brand&apos;s market value in under 2 minutes.

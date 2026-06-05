@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -86,7 +86,7 @@ export function Footer() {
           <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 md:gap-8">
             <div className="max-w-2xl space-y-2 md:space-y-3">
               <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-text-primary tracking-tight leading-tight">
-                Know What Your Creator Asset Is Worth?
+                Know What Your Social Pages & Digital Assets Is Worth?
               </h2>
               <p className="font-body-md md:font-body-lg text-on-surface-variant leading-relaxed">
                 Get a professional valuation for your Instagram page, YouTube channel, Telegram community, newsletter, or digital audience.
@@ -135,7 +135,7 @@ export function Footer() {
                 Stay Ahead of the Creator Economy
               </h3>
               <p className="font-body-md text-sm md:text-body-md text-on-surface-variant">
-                Receive creator asset valuation insights, marketplace trends, and acquisition opportunities.
+                Receive Social Pages & Digital Assets valuation insights, marketplace trends, and acquisition opportunities.
               </p>
             </div>
             {subscribed ? (
@@ -175,7 +175,7 @@ export function Footer() {
                   <span className="font-headline-lg text-text-primary tracking-tight font-bold text-lg md:text-[22px]">Axcrivo</span>
                 </div>
                 <span className="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest leading-none mt-1">
-                  The Marketplace for Creator Assets
+                  The Marketplace for Social Pages & Digital Assets
                 </span>
               </div>
               <p className="font-body-md text-sm md:text-body-md text-on-surface-variant leading-relaxed">
@@ -248,10 +248,10 @@ export function Footer() {
                 <span className="font-headline-lg text-text-primary tracking-tight font-bold text-lg">Axcrivo</span>
               </div>
               <span className="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest leading-none">
-                The Marketplace for Creator Assets
+                The Marketplace for Social Pages & Digital Assets
               </span>
               <p className="font-body-md text-sm text-on-surface-variant leading-relaxed">
-                Buy, sell, and value creator assets through a trusted marketplace.
+                Buy, sell, and value Social Pages & Digital Assets through a trusted marketplace.
               </p>
               
               {/* SOCIAL ICONS (LinkedIn and X only, per guidelines) */}
@@ -346,7 +346,7 @@ export function Footer() {
 
           {/* SECTION 5: SUPPORTED ASSETS */}
           <div className="border-t border-outline-variant/10 pt-6 pb-2 mb-6 md:pt-8 md:pb-4 md:mb-8">
-            <h4 className="font-label-md text-label-md font-bold text-on-surface uppercase tracking-widest text-[11px] md:text-[12px] mb-3 md:mb-4">Supported Creator Assets</h4>
+            <h4 className="font-label-md text-label-md font-bold text-on-surface uppercase tracking-widest text-[11px] md:text-[12px] mb-3 md:mb-4">Supported Social Pages & Digital Assets</h4>
             <div className="flex flex-wrap gap-1.5 md:gap-2">
               {[
                 "Instagram Pages",

@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navLinks = [
-  { href: "/sell", label: "Sell" },
-  { href: "/buy", label: "Buy" },
-  { href: "/about", label: "About" },
-  { href: "/resources", label: "Resources" },
+  { href: "/sell", label: "Sell Social Pages & Assets", mobileLabel: "Sell Assets" },
+  { href: "/buy", label: "Buy Social Pages & Assets", mobileLabel: "Buy Assets" },
+  { href: "/about", label: "About", mobileLabel: "About" },
+  { href: "/resources", label: "Resources", mobileLabel: "Resources" },
 ];
 
 export function Navbar() {
@@ -33,7 +33,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-8 items-center">
+        <nav className="hidden md:flex gap-5 items-center">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -45,9 +45,10 @@ export function Navbar() {
               }
               style={{
                 fontFamily: "var(--font-inter)",
-                fontSize: "16px",
+                fontSize: "15px",
                 lineHeight: "24px",
                 color: pathname === link.href ? "#003fd8" : "#434656",
+                whiteSpace: "nowrap",
               }}
             >
               {link.label}
@@ -90,14 +91,14 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`block rounded-lg px-3 py-1.5 font-medium transition-colors ${
+                className={`block rounded-lg px-3 py-2 font-medium transition-colors ${
                   pathname === link.href
                     ? "bg-primary/10 text-primary"
                     : "text-on-surface-variant hover:text-primary hover:bg-surface-container-low"
                 }`}
                 style={{ fontFamily: "var(--font-inter)", fontSize: "15px" }}
               >
-                {link.label}
+                {link.mobileLabel}
               </Link>
             ))}
             <Link

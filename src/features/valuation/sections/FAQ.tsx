@@ -1,4 +1,4 @@
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
+﻿import { SectionWrapper } from "@/components/layout/SectionWrapper";
 
 export function FAQ() {
   return (
@@ -6,7 +6,7 @@ export function FAQ() {
       <section className="space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-4">
           <h2 className="font-headline-xl text-on-surface">How Valuation Works</h2>
-          <p className="font-body-lg text-on-surface-variant">Our proprietary algorithm evaluates four core pillars to determine the institutional value of a creator asset.</p>
+          <p className="font-body-lg text-on-surface-variant">Our proprietary algorithm evaluates four core pillars to determine the institutional value of a Social Pages & Digital Assets.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Card 1 */}
