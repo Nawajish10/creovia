@@ -2,28 +2,28 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative pt-24 pb-32 px-margin-mobile md:px-margin-desktop overflow-hidden bg-white">
+    <section className="relative pt-20 pb-12 md:pt-24 md:pb-32 px-margin-mobile md:px-margin-desktop overflow-hidden bg-white">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-container/5 rounded-full blur-[120px] pointer-events-none"></div>
       
-      <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-        <div className="flex flex-col gap-6">
+      <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center relative z-10">
+        <div className="flex flex-col gap-4 md:gap-6">
           <h1 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-text-primary leading-tight">
             Buy & Sell Creator Assets With <span className="text-primary">Confidence</span>
           </h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
             Acquire or sell Instagram pages, YouTube channels, Telegram communities, and digital audiences through a trusted, data-driven marketplace designed for professionals.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 mt-4">
+          <div className="flex flex-col sm:flex-row gap-3 mt-2 md:mt-4">
             <Link
               href="/valuation"
-              className="bg-primary text-white font-body-md text-body-md px-8 py-4 rounded-xl hover:opacity-95 transition-all glow-effect text-center font-medium shadow-lg shadow-primary/20 active:scale-98"
+              className="bg-primary text-white font-body-md text-body-md px-8 py-3 md:py-4 rounded-xl hover:opacity-95 transition-all glow-effect text-center font-medium shadow-lg shadow-primary/20 active:scale-98"
             >
               Get Valuation
             </Link>
             <Link
               href="/buy"
-              className="glass-panel text-text-primary font-body-md text-body-md px-8 py-4 rounded-xl hover:bg-surface-container-high transition-all text-center font-medium flex items-center justify-center gap-2 active:scale-98"
+              className="glass-panel text-text-primary font-body-md text-body-md px-8 py-3 md:py-4 rounded-xl hover:bg-surface-container-high transition-all text-center font-medium flex items-center justify-center gap-2 active:scale-98"
             >
               Browse Opportunities
               <span className="material-symbols-outlined text-sm">arrow_forward</span>
@@ -32,15 +32,15 @@ export function Hero() {
         </div>
 
         {/* Hero Visual Mockup */}
-        <div className="glass-panel rounded-2xl p-6 relative glow-effect border-border-subtle bg-white/40 shadow-xl">
+        <div className="glass-panel rounded-2xl p-4 md:p-6 relative glow-effect border-border-subtle bg-white/40 shadow-xl">
           {/* Faux Browser Header */}
-          <div className="flex items-center gap-2 mb-6 pb-4 border-b border-border-subtle">
+          <div className="flex items-center gap-2 mb-4 pb-3 md:mb-6 md:pb-4 border-b border-border-subtle">
             <div className="w-3 h-3 rounded-full bg-surface-container-highest"></div>
             <div className="w-3 h-3 rounded-full bg-surface-container-highest"></div>
             <div className="w-3 h-3 rounded-full bg-surface-container-highest"></div>
             <div className="mx-auto text-on-surface-variant font-label-sm text-label-sm">Asset Valuation Dashboard</div>
           </div>
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             <div className="flex justify-between items-end">
               <div>
                 <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Est. Asset Value</div>

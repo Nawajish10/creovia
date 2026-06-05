@@ -86,46 +86,46 @@ export function FeaturedOpportunities() {
               }}
             >
               {/* Image */}
-              <div className="h-48 w-full relative" style={{ backgroundColor: "#e8e7f4" }}>
+              <div className="h-40 md:h-48 w-full relative" style={{ backgroundColor: "#e8e7f4" }}>
                 <img src={listing.image} alt={listing.title} className="w-full h-full object-cover" />
                 <div
-                  className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1 rounded-full"
+                  className="absolute top-3 left-3 md:top-4 md:left-4 flex items-center gap-1.5 px-2.5 py-0.5 md:px-3 md:py-1 rounded-full"
                   style={{ background: "rgba(255,255,255,0.9)", backdropFilter: "blur(8px)", border: "1px solid rgba(0,0,0,0.08)" }}
                 >
-                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: "#006c49" }}></span>
-                  <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "12px", fontWeight: 500 }}>Verified</span>
+                  <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full" style={{ backgroundColor: "#006c49" }}></span>
+                  <span style={{ fontFamily: "var(--font-jetbrains)", fontWeight: 500 }} className="text-[11px] md:text-xs">Verified</span>
                 </div>
                 <div
-                  className="absolute bottom-4 right-4 px-2 py-1 rounded"
+                  className="absolute bottom-3 right-3 md:bottom-4 md:right-4 px-2 py-0.5 md:py-1 rounded"
                   style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(4px)" }}
                 >
-                  <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "11px", color: "#ffffff" }}>{listing.tag}</span>
+                  <span style={{ fontFamily: "var(--font-jetbrains)", color: "#ffffff" }} className="text-[10px] md:text-xs">{listing.tag}</span>
                 </div>
               </div>
               {/* Content */}
-              <div className="p-6 flex flex-col gap-4 flex-grow">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 style={{ fontFamily: "var(--font-inter)", fontSize: "18px", lineHeight: "28px", fontWeight: 600, color: "#191b24" }}>
+              <div className="p-4 md:p-6 flex flex-col gap-3 md:gap-4 flex-grow">
+                <div className="flex justify-between items-start gap-2">
+                  <div className="flex-1">
+                    <h3 style={{ fontFamily: "var(--font-inter)", fontWeight: 600, color: "#191b24" }} className="text-base md:text-lg leading-snug">
                       {listing.title}
                     </h3>
-                    <p style={{ fontFamily: "var(--font-jetbrains)", fontSize: "12px", letterSpacing: "0.04em", textTransform: "uppercase", color: "#434656", marginTop: "4px" }}>
+                    <p style={{ fontFamily: "var(--font-jetbrains)", letterSpacing: "0.04em", textTransform: "uppercase", color: "#434656", marginTop: "2px" }} className="text-[11px] md:text-xs">
                       {listing.platform}
                     </p>
                   </div>
-                  <span style={{ fontFamily: "var(--font-hanken)", fontSize: "24px", lineHeight: "32px", fontWeight: 600, color: "#003fd8" }}>
+                  <span style={{ fontFamily: "var(--font-hanken)", fontWeight: 600, color: "#003fd8" }} className="text-lg md:text-2xl shrink-0 leading-none">
                     {listing.price}
                   </span>
                 </div>
                 <hr style={{ borderColor: "rgba(0,0,0,0.08)" }} />
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 md:gap-4">
                   <div>
-                    <p style={{ fontFamily: "var(--font-jetbrains)", fontSize: "12px", textTransform: "uppercase", color: "#434656" }}>{listing.audienceLabel}</p>
-                    <p style={{ fontFamily: "var(--font-inter)", fontSize: "16px", fontWeight: 500, color: "#191b24", marginTop: "4px" }}>{listing.subscribers}</p>
+                    <p style={{ fontFamily: "var(--font-jetbrains)", textTransform: "uppercase", color: "#434656" }} className="text-[11px] md:text-xs">{listing.audienceLabel}</p>
+                    <p style={{ fontFamily: "var(--font-inter)", fontWeight: 500, color: "#191b24", marginTop: "2px" }} className="text-sm md:text-base">{listing.subscribers}</p>
                   </div>
                   <div>
-                    <p style={{ fontFamily: "var(--font-jetbrains)", fontSize: "12px", textTransform: "uppercase", color: "#434656" }}>{listing.revenueLabel}</p>
-                    <p style={{ fontFamily: "var(--font-inter)", fontSize: "16px", fontWeight: 500, color: "#191b24", marginTop: "4px" }}>{listing.revenue}</p>
+                    <p style={{ fontFamily: "var(--font-jetbrains)", textTransform: "uppercase", color: "#434656" }} className="text-[11px] md:text-xs">{listing.revenueLabel}</p>
+                    <p style={{ fontFamily: "var(--font-inter)", fontWeight: 500, color: "#191b24", marginTop: "2px" }} className="text-sm md:text-base">{listing.revenue}</p>
                   </div>
                 </div>
               </div>

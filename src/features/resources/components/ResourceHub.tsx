@@ -83,11 +83,11 @@ export function ResourceHub() {
   };
 
   return (
-    <div className="pt-28 pb-16 px-margin-mobile md:px-margin-desktop max-w-screen-2xl mx-auto">
+    <div className="pt-20 md:pt-28 pb-8 md:pb-16 px-margin-mobile md:px-margin-desktop max-w-screen-2xl mx-auto">
       {/* Section 1: Compact Hero */}
-      <section className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+      <section className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 md:gap-6 mb-6 md:mb-12">
         <div className="max-w-3xl">
-          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-3 tracking-tight">
+          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2 md:mb-3 tracking-tight">
             Creator Asset Intelligence
           </h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
@@ -95,27 +95,27 @@ export function ResourceHub() {
           </p>
         </div>
         
-        <div className="flex gap-6 bg-surface-container rounded-xl p-4 border border-outline-variant/20 shrink-0 w-full md:w-auto">
+        <div className="flex gap-3 md:gap-6 bg-surface-container rounded-xl p-3 md:p-4 border border-outline-variant/20 shrink-0 w-full md:w-auto">
           <div className="text-center flex-1 md:flex-initial">
             <div className="font-headline-sm text-headline-sm text-primary">{RESOURCES.length}+</div>
-            <div className="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider">Resources</div>
+            <div className="font-label-sm text-[10px] md:font-label-sm text-on-surface-variant uppercase tracking-wider">Resources</div>
           </div>
-          <div className="w-[1px] h-10 bg-outline-variant/30 self-center"></div>
+          <div className="w-[1px] h-8 md:h-10 bg-outline-variant/30 self-center"></div>
           <div className="text-center flex-1 md:flex-initial">
             <div className="font-headline-sm text-headline-sm text-primary">{CATEGORIES.length - 1}</div>
-            <div className="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider">Categories</div>
+            <div className="font-label-sm text-[10px] md:font-label-sm text-on-surface-variant uppercase tracking-wider">Categories</div>
           </div>
-          <div className="w-[1px] h-10 bg-outline-variant/30 self-center"></div>
+          <div className="w-[1px] h-8 md:h-10 bg-outline-variant/30 self-center"></div>
           <div className="text-center flex-1 md:flex-initial">
             <div className="font-headline-sm text-headline-sm text-primary">Weekly</div>
-            <div className="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider">Updates</div>
+            <div className="font-label-sm text-[10px] md:font-label-sm text-on-surface-variant uppercase tracking-wider">Updates</div>
           </div>
         </div>
       </section>
 
       {/* Section 2: Search Experience */}
-      <section className="mb-12">
-        <div className="relative max-w-4xl">
+      <section className="mb-6 md:mb-12">
+        <div className="relative max-w-4xl font-body-md">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">
             search
           </span>
@@ -141,9 +141,9 @@ export function ResourceHub() {
 
       {/* Section 3: Featured Research (Only shown under All Categories / No Search) */}
       {showFeatured && featuredResource && (
-        <section className="mb-12">
-          <div className="group relative bg-surface-container-lowest border border-outline-variant/20 rounded-[2rem] overflow-hidden flex flex-col md:flex-row shadow-sm hover:shadow-xl transition-all duration-500">
-            <Link href={`/resources/${featuredResource.slug}`} className="md:w-1/2 h-64 md:h-auto overflow-hidden relative min-h-[250px]">
+        <section className="mb-6 md:mb-12">
+          <div className="group relative bg-surface-container-lowest border border-outline-variant/20 rounded-2xl md:rounded-[2rem] overflow-hidden flex flex-col md:flex-row shadow-sm hover:shadow-xl transition-all duration-500">
+            <Link href={`/resources/${featuredResource.slug}`} className="md:w-1/2 h-48 md:h-auto overflow-hidden relative min-h-[200px] md:min-h-[250px]">
               <Image
                 src={featuredResource.thumbnail}
                 alt={featuredResource.title}
@@ -152,8 +152,8 @@ export function ResourceHub() {
                 priority
               />
             </Link>
-            <div className="md:w-1/2 p-8 flex flex-col justify-center">
-              <div className="inline-flex items-center gap-2 bg-secondary-container/20 text-on-secondary-container px-3 py-1 rounded-full w-fit mb-4">
+            <div className="md:w-1/2 p-5 md:p-8 flex flex-col justify-center">
+              <div className="inline-flex items-center gap-2 bg-secondary-container/20 text-on-secondary-container px-2.5 py-0.5 md:px-3 md:py-1 rounded-full w-fit mb-3 md:mb-4">
                 <span className="material-symbols-outlined text-[16px] text-secondary" style={{ fontVariationSettings: "'FILL' 1" }}>
                   auto_awesome
                 </span>
@@ -161,16 +161,16 @@ export function ResourceHub() {
               </div>
               
               <Link href={`/resources/${featuredResource.slug}`}>
-                <h2 className="font-display-lg text-headline-md md:text-headline-lg mb-4 leading-tight group-hover:text-primary transition-colors">
+                <h2 className="font-headline-md text-title-large md:text-headline-lg mb-2 md:mb-4 leading-tight group-hover:text-primary transition-colors">
                   {featuredResource.title}
                 </h2>
               </Link>
               
-              <p className="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-3">
+              <p className="font-body-md text-sm md:text-body-md text-on-surface-variant mb-4 md:mb-6 line-clamp-3">
                 {featuredResource.description}
               </p>
               
-              <div className="flex items-center gap-6 mb-8 text-outline">
+              <div className="flex items-center gap-6 mb-4 md:mb-8 text-outline">
                 <div className="flex items-center gap-1">
                   <span className="material-symbols-outlined text-sm">schedule</span>
                   <span className="font-label-sm text-[12px]">{featuredResource.readTime}</span>
@@ -193,13 +193,13 @@ export function ResourceHub() {
       )}
 
       {/* Section 4: Category Navigation */}
-      <section className="mb-8 overflow-x-auto hide-scrollbar whitespace-nowrap mask-linear-fade">
+      <section className="mb-4 md:mb-8 overflow-x-auto hide-scrollbar whitespace-nowrap mask-linear-fade">
         <div className="flex gap-2 pb-2">
           {CATEGORIES.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2.5 rounded-full font-label-md text-label-md transition-all whitespace-nowrap cursor-pointer ${
+              className={`px-4 py-2 md:px-6 md:py-2.5 rounded-full font-label-md text-[13px] md:text-label-md transition-all whitespace-nowrap cursor-pointer ${
                 activeCategory === category
                   ? "bg-primary text-on-primary shadow-md"
                   : "bg-surface-container-high text-on-surface-variant hover:bg-outline-variant/30 transition-colors"
@@ -212,14 +212,14 @@ export function ResourceHub() {
       </section>
 
       {/* Section 5: Popular Topics */}
-      <section className="mb-12 bg-surface-container-low/50 p-6 rounded-3xl border border-outline-variant/10">
-        <h3 className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-4">Popular Topics</h3>
-        <div className="flex flex-wrap gap-2">
+      <section className="mb-6 md:mb-12 bg-surface-container-low/50 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-outline-variant/10">
+        <h3 className="font-label-sm text-[11px] md:text-label-sm text-on-surface-variant uppercase tracking-widest mb-3 md:mb-4">Popular Topics</h3>
+        <div className="flex flex-wrap gap-1.5 md:gap-2">
           {POPULAR_TOPICS.map((topic) => (
             <button
               key={topic}
               onClick={() => handleTopicClick(topic)}
-              className={`px-4 py-2 bg-surface-container-lowest border border-outline-variant/30 rounded-lg font-body-md text-body-md hover:border-primary hover:text-primary transition-all shadow-sm cursor-pointer ${
+              className={`px-3 py-1.5 md:px-4 md:py-2 bg-surface-container-lowest border border-outline-variant/30 rounded-lg font-body-md text-sm md:text-body-md hover:border-primary hover:text-primary transition-all shadow-sm cursor-pointer ${
                 searchQuery === topic ? "border-primary text-primary ring-1 ring-primary" : ""
               }`}
             >
@@ -231,13 +231,13 @@ export function ResourceHub() {
 
       {/* Section 6: Resource Grid */}
       {gridResources.length > 0 ? (
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-16">
           {gridResources.map((resource) => (
             <article
               key={resource.id}
               className="group bg-surface-container-lowest border border-outline-variant/20 rounded-xl overflow-hidden hover:shadow-lg transition-all flex flex-col h-full"
             >
-              <Link href={`/resources/${resource.slug}`} className="h-48 overflow-hidden relative block">
+              <Link href={`/resources/${resource.slug}`} className="h-40 md:h-48 overflow-hidden relative block">
                 <Image
                   src={resource.thumbnail}
                   alt={resource.title}
@@ -245,9 +245,9 @@ export function ResourceHub() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </Link>
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-label-sm text-[12px] text-primary uppercase font-bold">
+              <div className="p-4 md:p-6 flex-1 flex flex-col">
+                <div className="flex items-center justify-between mb-3 md:mb-4">
+                  <span className="font-label-sm text-[11px] md:text-[12px] text-primary uppercase font-bold">
                     {resource.category}
                   </span>
                   <span className="font-label-sm text-[12px] text-outline">
@@ -260,19 +260,19 @@ export function ResourceHub() {
                 </div>
                 
                 <Link href={`/resources/${resource.slug}`}>
-                  <h3 className="font-headline-sm text-headline-sm mb-3 group-hover:text-primary transition-colors leading-snug">
+                  <h3 className="font-headline-sm text-title-medium md:text-headline-sm mb-2 md:mb-3 group-hover:text-primary transition-colors leading-snug">
                     {resource.title}
                   </h3>
                 </Link>
                 
-                <p className="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-6">
+                <p className="font-body-md text-sm md:text-body-md text-on-surface-variant line-clamp-3 mb-4 md:mb-6">
                   {resource.description}
                 </p>
                 
-                <div className="mt-auto pt-4 flex items-center justify-between border-t border-outline-variant/10 text-outline">
-                  <span className="font-label-sm text-[12px]">{resource.readTime}</span>
+                <div className="mt-auto pt-3 md:pt-4 flex items-center justify-between border-t border-outline-variant/10 text-outline">
+                  <span className="font-label-sm text-[11px] md:text-[12px]">{resource.readTime}</span>
                   <Link href={`/resources/${resource.slug}`} className="text-primary hover:scale-110 transition-transform">
-                    <span className="material-symbols-outlined text-[20px]">open_in_new</span>
+                    <span className="material-symbols-outlined text-[18px] md:text-[20px]">open_in_new</span>
                   </Link>
                 </div>
               </div>
@@ -302,7 +302,7 @@ export function ResourceHub() {
       )}
 
       {/* Section 7: Newsletter */}
-      <section className="mb-16 bg-inverse-surface rounded-[2rem] p-8 md:p-12 text-white relative overflow-hidden">
+      <section className="mb-8 md:mb-16 bg-inverse-surface rounded-2xl md:rounded-[2rem] p-6 md:p-12 text-white relative overflow-hidden">
         {/* Decorative background pattern */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <svg height="100%" preserveAspectRatio="none" viewBox="0 0 100 100" width="100%">
@@ -313,8 +313,8 @@ export function ResourceHub() {
           </svg>
         </div>
         <div className="relative z-10 max-w-2xl">
-          <h2 className="font-headline-md text-headline-md mb-2">Stay Ahead of the Creator Economy</h2>
-          <p className="font-body-md text-body-md text-surface-variant/80 mb-6">
+          <h2 className="font-headline-md text-title-large md:text-headline-md mb-2">Stay Ahead of the Creator Economy</h2>
+          <p className="font-body-md text-sm md:text-body-md text-surface-variant/80 mb-4 md:mb-6">
             Get institutional-grade market intelligence, acquisition alerts, and valuation trends delivered to your inbox weekly.
           </p>
           {subscribed ? (
@@ -352,17 +352,17 @@ export function ResourceHub() {
       </section>
 
       {/* Section 8: Final CTA */}
-      <section className="text-center py-16 border-t border-outline-variant/30">
-        <h2 className="font-display-lg text-headline-md md:text-display-lg mb-4 tracking-tight">
+      <section className="text-center py-8 md:py-16 border-t border-outline-variant/30">
+        <h2 className="font-headline-md text-title-large md:text-display-lg mb-2 md:mb-4 tracking-tight">
           Want To Know What Your Creator Asset Is Worth?
         </h2>
-        <p className="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-2xl mx-auto leading-relaxed">
+        <p className="font-body-lg text-sm md:text-body-lg text-on-surface-variant mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
           Use our proprietary valuation engine to get a baseline estimate of your brand's market value in under 2 minutes.
         </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
           <Link
             href="/valuation"
-            className="bg-primary text-on-primary px-10 py-4 rounded-xl font-headline-sm text-[18px] font-semibold shadow-xl shadow-primary/20 hover:scale-105 active:scale-98 transition-all text-center"
+            className="bg-primary text-on-primary px-6 py-3.5 md:px-10 md:py-4 rounded-xl font-headline-sm text-[16px] md:text-[18px] font-semibold shadow-xl shadow-primary/20 hover:scale-105 active:scale-98 transition-all text-center"
           >
             Get Free Valuation
           </Link>
@@ -373,7 +373,7 @@ export function ResourceHub() {
               setActiveCategory("Insights");
               window.scrollTo({ top: 350, behavior: "smooth" });
             }}
-            className="bg-surface-container-lowest text-primary border border-primary/20 px-10 py-4 rounded-xl font-headline-sm text-[18px] font-semibold hover:bg-surface-container active:scale-98 transition-all text-center"
+            className="bg-surface-container-lowest text-primary border border-primary/20 px-6 py-3.5 md:px-10 md:py-4 rounded-xl font-headline-sm text-[16px] md:text-[18px] font-semibold hover:bg-surface-container active:scale-98 transition-all text-center"
           >
             View Market Data
           </Link>

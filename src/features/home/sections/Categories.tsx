@@ -17,30 +17,29 @@ export function Categories() {
     >
       <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
         {/* Header */}
-        <div className="flex flex-col gap-3 mb-10">
+        <div className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-10">
           <h2
             style={{
               fontFamily: "var(--font-hanken)",
-              fontSize: "30px",
-              lineHeight: "38px",
               letterSpacing: "-0.01em",
               fontWeight: 600,
               color: "#191b24",
             }}
+            className="text-[26px] md:text-[30px] leading-[34px] md:leading-[38px]"
           >
             Explore by Platform
           </h2>
-          <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", lineHeight: "28px", color: "#434656" }}>
+          <p style={{ fontFamily: "var(--font-inter)", fontSize: "16px", lineHeight: "24px", color: "#434656" }} className="text-sm md:text-base">
             Browse verified assets across major Indian platforms
           </p>
         </div>
         {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
           {categories.map((cat) => (
             <Link
               key={cat.label}
               href={cat.href}
-              className="group flex flex-col items-center justify-center gap-4 p-6 rounded-xl transition-all duration-300 hover:-translate-y-1"
+              className="group flex flex-col items-center justify-center gap-2 md:gap-4 p-4 md:p-6 rounded-xl transition-all duration-300 hover:-translate-y-1"
               style={{
                 background: "rgba(255,255,255,0.7)",
                 backdropFilter: "blur(12px)",
@@ -50,7 +49,7 @@ export function Categories() {
             >
               <span
                 className="material-symbols-outlined transition-colors duration-300"
-                style={{ color: "#434656", fontSize: "36px" }}
+                style={{ color: "#434656", fontSize: "32px" }}
               >
                 {cat.icon}
               </span>

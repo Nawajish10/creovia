@@ -36,12 +36,11 @@ const benefits = [
 export function Trust() {
   return (
     <section
-      className="px-[20px] md:px-[64px]"
-      style={{ paddingTop: "80px", paddingBottom: "80px" }}
+      className="px-[20px] md:px-[64px] py-8 md:py-20"
     >
       <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <h2
             style={{
               fontFamily: "var(--font-hanken)",
@@ -54,32 +53,32 @@ export function Trust() {
           >
             Why Professionals Choose Us
           </h2>
-          <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", lineHeight: "28px", color: "#434656" }}>
+          <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", lineHeight: "28px", color: "#434656" }} className="text-base md:text-lg">
             Built for institutional-grade transactions with unmatched security
           </p>
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {benefits.map((b) => (
             <div
               key={b.title}
-              className="flex flex-col gap-4 p-8 rounded-xl transition-colors duration-300"
+              className="flex flex-col gap-3 md:gap-4 p-4 md:p-8 rounded-xl transition-colors duration-300"
               style={{
                 backgroundColor: "#ffffff",
                 border: "1px solid #c4c5d8",
               }}
             >
               <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center"
                 style={{ backgroundColor: b.iconBg }}
               >
-                <span className="material-symbols-outlined" style={{ color: b.iconColor }}>{b.icon}</span>
+                <span className="material-symbols-outlined text-[20px] md:text-[24px]" style={{ color: b.iconColor }}>{b.icon}</span>
               </div>
-              <h3 style={{ fontFamily: "var(--font-hanken)", fontSize: "24px", lineHeight: "32px", fontWeight: 600, color: "#191b24" }}>
+              <h3 style={{ fontFamily: "var(--font-hanken)", fontWeight: 600, color: "#191b24" }} className="text-lg md:text-2xl">
                 {b.title}
               </h3>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: "16px", lineHeight: "24px", color: "#434656" }}>
+              <p style={{ fontFamily: "var(--font-inter)", color: "#434656" }} className="text-sm md:text-base leading-relaxed">
                 {b.description}
               </p>
             </div>

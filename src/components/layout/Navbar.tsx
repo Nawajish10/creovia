@@ -17,7 +17,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant shadow-sm" style={{ backgroundColor: "rgba(251,248,255,0.85)" }}>
-      <div className="flex justify-between items-center px-margin-mobile px-[20px] md:px-[64px] h-20 max-w-container-max mx-auto">
+      <div className="flex justify-between items-center px-margin-mobile px-[20px] md:px-[64px] h-16 md:h-20 max-w-container-max mx-auto">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <span
@@ -82,21 +82,20 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {mobileOpen && (
         <div className="md:hidden border-t border-outline-variant" style={{ backgroundColor: "#fbf8ff" }}>
-          <div className="flex flex-col px-5 py-4 gap-1">
+          <div className="flex flex-col px-5 py-2.5 gap-0.5">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`block rounded-lg px-3 py-2.5 font-medium transition-colors ${
+                className={`block rounded-lg px-3 py-1.5 font-medium transition-colors ${
                   pathname === link.href
                     ? "bg-primary/10 text-primary"
                     : "text-on-surface-variant hover:text-primary hover:bg-surface-container-low"
                 }`}
-                style={{ fontFamily: "var(--font-inter)", fontSize: "16px" }}
+                style={{ fontFamily: "var(--font-inter)", fontSize: "15px" }}
               >
                 {link.label}
               </Link>
@@ -104,7 +103,7 @@ export function Navbar() {
             <Link
               href="/valuation"
               onClick={() => setMobileOpen(false)}
-              className="mt-3 block text-center bg-primary text-on-primary px-6 py-3 rounded-xl"
+              className="mt-2 block text-center bg-primary text-on-primary px-6 py-2.5 rounded-xl"
               style={{ backgroundColor: "#003fd8", color: "#ffffff", fontFamily: "var(--font-jetbrains)", fontSize: "12px" }}
             >
               Get Valuation

@@ -197,16 +197,16 @@ export function SubmissionForm() {
     }
   };
 
-  const inputClasses = "w-full bg-white/50 dark:bg-surface-container/50 border border-outline-variant/50 rounded-xl px-4 py-3.5 font-label-md placeholder:text-outline/40 focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all shadow-sm hover:shadow-md text-on-surface";
+  const inputClasses = "w-full bg-white/50 dark:bg-surface-container/50 border border-outline-variant/50 rounded-xl px-3.5 md:px-4 py-2.5 md:py-3.5 font-body-md text-sm md:text-base placeholder:text-outline/40 focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all shadow-sm hover:shadow-md text-on-surface";
   
   const inputGroupContainerClasses = "flex rounded-xl border border-outline-variant/50 focus-within:ring-2 focus-within:ring-primary/50 focus-within:border-primary transition-all shadow-sm bg-white/50 dark:bg-surface-container/50 hover:shadow-md overflow-hidden";
-  const inputGroupInputClasses = "flex-1 bg-transparent px-4 py-3.5 font-label-md placeholder:text-outline/40 focus:outline-none text-on-surface";
-  const inputGroupUnitClasses = "bg-surface-container border-l border-outline-variant/30 px-4 py-3.5 text-on-surface-variant font-label-md font-bold select-none shrink-0 flex items-center justify-center min-w-[120px] text-center text-xs";
+  const inputGroupInputClasses = "flex-1 bg-transparent px-3.5 md:px-4 py-2.5 md:py-3.5 font-body-md text-sm md:text-base placeholder:text-outline/40 focus:outline-none text-on-surface";
+  const inputGroupUnitClasses = "bg-surface-container border-l border-outline-variant/30 px-2.5 md:px-4 py-2.5 md:py-3.5 text-on-surface-variant font-body-md font-bold select-none shrink-0 flex items-center justify-center min-w-[75px] md:min-w-[120px] text-center text-[10px] md:text-xs";
 
   return (
-    <SectionWrapper id="submissionform" className="py-12">
-      <section className="px-margin-mobile md:px-margin-desktop max-w-[1000px] mx-auto py-12" id="submit-form">
-        <div className="bg-surface-container-lowest/80 backdrop-blur-xl border border-outline-variant/30 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-3xl p-8 md:p-14 relative overflow-hidden transition-all duration-500">
+    <SectionWrapper id="submissionform" className="py-6 md:py-12">
+      <section className="px-margin-mobile md:px-margin-desktop max-w-[1000px] mx-auto py-4 md:py-12" id="submit-form">
+        <div className="bg-surface-container-lowest/80 backdrop-blur-xl border border-outline-variant/30 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-2xl md:rounded-3xl p-5 md:p-14 relative overflow-hidden transition-all duration-500">
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-secondary/20 rounded-full blur-[100px] pointer-events-none"></div>
           
@@ -225,35 +225,35 @@ export function SubmissionForm() {
             </div>
           ) : (
             <>
-              <div className="text-center mb-10 relative z-10">
-                <h2 className="font-headline-xl text-on-surface font-bold tracking-tight mb-3">List Your Asset</h2>
-                <p className="font-body-lg text-on-surface-variant max-w-2xl mx-auto">Provide the details below to initiate the selling process. All submissions are strictly confidential.</p>
+              <div className="text-center mb-6 md:mb-10 relative z-10">
+                <h2 className="font-headline-xl text-2xl md:text-headline-xl text-on-surface font-bold tracking-tight mb-2">List Your Asset</h2>
+                <p className="font-body-md md:font-body-lg text-on-surface-variant max-w-2xl mx-auto">Provide the details below to initiate the selling process. All submissions are strictly confidential.</p>
               </div>
 
-              {errorMsg && <p className="text-error text-sm text-center font-medium bg-error-container text-on-error-container p-3 rounded-xl mb-8">{errorMsg}</p>}
+              {errorMsg && <p className="text-error text-sm text-center font-medium bg-error-container text-on-error-container p-3 rounded-xl mb-6 md:mb-8">{errorMsg}</p>}
               
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 relative z-10">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 md:space-y-8 relative z-10">
                 {/* Honeypot — hidden from real users, filled by bots */}
                 <div style={{ display: "none" }} aria-hidden="true">
                   <input {...register("website")} type="text" tabIndex={-1} autoComplete="off" />
                 </div>
                 
                 {/* Section 1: Contact Information */}
-                <div className="space-y-5">
-                  <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">Section 1: Contact Information</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Full Name *</label>
+                <div className="space-y-3 md:space-y-5">
+                  <h3 className="font-label-md md:font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-1.5 md:pb-2">Section 1: Contact Information</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5">
+                    <div className="space-y-1 group">
+                      <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Full Name *</label>
                       <input {...register("name")} onFocus={handleStart} className={`${inputClasses} ${errors.name ? 'border-error ring-1 ring-error' : ''}`} placeholder="John Doe" type="text" />
                       {errors.name && <span className="text-error text-xs font-medium">{errors.name.message}</span>}
                     </div>
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Email *</label>
+                    <div className="space-y-1 group">
+                      <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Email *</label>
                       <input {...register("email")} className={`${inputClasses} ${errors.email ? 'border-error ring-1 ring-error' : ''}`} placeholder="john@example.com" type="email" />
                       {errors.email && <span className="text-error text-xs font-medium">{errors.email.message}</span>}
                     </div>
-                    <div className="space-y-1.5 group">
-                      <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Phone *</label>
+                    <div className="space-y-1 group">
+                      <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Phone *</label>
                       <input {...register("phone")} className={`${inputClasses} ${errors.phone ? 'border-error ring-1 ring-error' : ''}`} placeholder="+91 98765 43210" type="tel" />
                       {errors.phone && <span className="text-error text-xs font-medium">{errors.phone.message}</span>}
                     </div>
@@ -261,13 +261,13 @@ export function SubmissionForm() {
                 </div>
 
                 {/* Section 2: Asset Information */}
-                <div className="space-y-5">
-                  <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">Section 2: Asset Information</h3>
-                  <div className="space-y-5">
+                <div className="space-y-3 md:space-y-5">
+                  <h3 className="font-label-md md:font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-1.5 md:pb-2">Section 2: Asset Information</h3>
+                  <div className="space-y-3 md:space-y-5">
                     {/* Row 1: Platform, URL, Niche */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                      <div className="space-y-1.5 group">
-                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Platform *</label>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5">
+                      <div className="space-y-1 group">
+                        <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Platform *</label>
                         <div className="relative">
                           <select {...register("platform")} className={`${inputClasses} appearance-none ${errors.platform ? 'border-error ring-1 ring-error' : ''}`}>
                             <option value="youtube">YouTube Channel</option>
@@ -278,36 +278,36 @@ export function SubmissionForm() {
                             <option value="website">Website / Blog</option>
                             <option value="other">Other</option>
                           </select>
-                          <span className="absolute right-4 top-3.5 text-outline-variant pointer-events-none material-symbols-outlined">expand_more</span>
+                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-outline-variant pointer-events-none material-symbols-outlined">expand_more</span>
                         </div>
                         {errors.platform && <span className="text-error text-xs font-medium">{errors.platform.message}</span>}
                       </div>
                       
-                      <div className="space-y-1.5 group">
-                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Asset URL</label>
+                      <div className="space-y-1 group">
+                        <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Asset URL</label>
                         <div className="relative">
-                          <span className="absolute left-4 top-3.5 text-on-surface-variant material-symbols-outlined text-[20px]">link</span>
+                          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined text-[20px]">link</span>
                           <input {...register("asset_url")} className={`${inputClasses} pl-11`} placeholder="https://..." type="url" />
                         </div>
                       </div>
 
-                      <div className="space-y-1.5 group">
-                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Niche *</label>
+                      <div className="space-y-1 group">
+                        <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Niche *</label>
                         <input {...register("niche")} className={`${inputClasses} ${errors.niche ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. Finance, Gaming, Tech" type="text" />
                         {errors.niche && <span className="text-error text-xs font-medium">{errors.niche.message}</span>}
                       </div>
                     </div>
 
                     {/* Row 2: Geography, Asset Age */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      <div className="space-y-1.5 group">
-                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Audience Geography *</label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
+                      <div className="space-y-1 group">
+                        <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Audience Geography *</label>
                         <input {...register("country")} className={`${inputClasses} ${errors.country ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. India, US, Global" type="text" />
                         {errors.country && <span className="text-error text-xs font-medium">{errors.country.message}</span>}
                       </div>
 
-                      <div className="space-y-1.5 group">
-                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Asset Age *</label>
+                      <div className="space-y-1 group">
+                        <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Asset Age *</label>
                         <div className={inputGroupContainerClasses}>
                           <input 
                             type="number" 
@@ -320,7 +320,7 @@ export function SubmissionForm() {
                           <select 
                             value={ageUnit} 
                             onChange={(e) => setAgeUnit(e.target.value)} 
-                            className="bg-surface-container border-l border-outline-variant/30 px-4 py-3.5 text-on-surface-variant font-label-md outline-none cursor-pointer text-on-surface"
+                            className="bg-surface-container border-l border-outline-variant/30 px-2.5 md:px-4 py-2.5 md:py-3.5 text-on-surface-variant font-body-md outline-none cursor-pointer text-on-surface text-xs md:text-sm select-none shrink-0"
                           >
                             <option value="Years">Years</option>
                             <option value="Months">Months</option>
@@ -333,13 +333,13 @@ export function SubmissionForm() {
                 </div>
 
                 {/* Section 3: Performance */}
-                <div className="space-y-5">
-                  <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">Section 3: Performance</h3>
-                  <div className="space-y-5">
+                <div className="space-y-3 md:space-y-5">
+                  <h3 className="font-label-md md:font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-1.5 md:pb-2">Section 3: Performance</h3>
+                  <div className="space-y-3 md:space-y-5">
                     {/* Row 1: Audience Size, Monthly Reach, Revenue */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                      <div className="space-y-1.5 group">
-                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Audience Size *</label>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5">
+                      <div className="space-y-1 group">
+                        <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Audience Size *</label>
                         <div className={inputGroupContainerClasses}>
                           <input {...register("audience_size")} className={inputGroupInputClasses} placeholder="e.g. 500000" type="number" />
                           <span className={inputGroupUnitClasses}>
@@ -349,14 +349,14 @@ export function SubmissionForm() {
                         {errors.audience_size && <span className="text-error text-xs font-medium">{errors.audience_size.message}</span>}
                       </div>
 
-                      <div className="space-y-1.5 group">
-                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Monthly Reach/Traffic *</label>
+                      <div className="space-y-1 group">
+                        <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Monthly Reach/Traffic *</label>
                         <input {...register("monthly_reach")} className={`${inputClasses} ${errors.monthly_reach ? 'border-error ring-1 ring-error' : ''}`} placeholder="e.g. 1M reach or 50K visits" type="text" />
                         {errors.monthly_reach && <span className="text-error text-xs font-medium">{errors.monthly_reach.message}</span>}
                       </div>
                       
-                      <div className="space-y-1.5 group">
-                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Revenue Last 12 Months</label>
+                      <div className="space-y-1 group">
+                        <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Revenue Last 12 Months</label>
                         <div className={inputGroupContainerClasses}>
                           <input {...register("revenue_last_12_months")} className={inputGroupInputClasses} placeholder="0" type="number" />
                           <span className={inputGroupUnitClasses}>INR</span>
@@ -366,9 +366,9 @@ export function SubmissionForm() {
                     </div>
 
                     {/* Row 2: Monthly Profit, Expected Price */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      <div className="space-y-1.5 group">
-                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Average Monthly Profit</label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
+                      <div className="space-y-1 group">
+                        <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Average Monthly Profit</label>
                         <div className={inputGroupContainerClasses}>
                           <input {...register("average_monthly_profit")} className={inputGroupInputClasses} placeholder="0" type="number" />
                           <span className={inputGroupUnitClasses}>INR</span>
@@ -376,8 +376,8 @@ export function SubmissionForm() {
                         {errors.average_monthly_profit && <span className="text-error text-xs font-medium">{errors.average_monthly_profit.message}</span>}
                       </div>
 
-                      <div className="space-y-1.5 group">
-                        <label className="font-label-md text-on-surface-variant block transition-colors group-focus-within:text-primary">Expected Price *</label>
+                      <div className="space-y-1 group">
+                        <label className="text-xs md:text-sm font-medium text-on-surface-variant block transition-colors group-focus-within:text-primary">Expected Price *</label>
                         <div className={inputGroupContainerClasses}>
                           <input {...register("asking_price")} className={`${inputGroupInputClasses} ${errors.asking_price ? 'border-error' : ''}`} placeholder="0" type="number" />
                           <span className={inputGroupUnitClasses}>INR</span>
@@ -389,13 +389,13 @@ export function SubmissionForm() {
                 </div>
 
                 {/* Section 4: Verification & Monetization */}
-                <div className="space-y-5">
-                  <h3 className="font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-2">Section 4: Verification</h3>
+                <div className="space-y-3 md:space-y-5">
+                  <h3 className="font-label-md md:font-label-lg text-on-surface font-bold border-b border-outline-variant/30 pb-1.5 md:pb-2">Section 4: Verification</h3>
                   
                   {/* Monetization Status Checklist */}
-                  <div className="space-y-3">
-                    <label className="font-label-md text-on-surface font-bold block text-on-surface">Monetization Status *</label>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <div className="space-y-2">
+                    <label className="text-xs md:text-sm font-bold block text-on-surface">Monetization Status *</label>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
                       {[
                         "Ad Revenue",
                         "Sponsorships",
@@ -410,13 +410,13 @@ export function SubmissionForm() {
                             key={option}
                             type="button"
                             onClick={() => handleMonetizationToggle(option)}
-                            className={`flex items-center gap-3 p-3.5 rounded-xl border text-left font-body-md transition-all cursor-pointer ${
+                            className={`flex items-center gap-2 md:gap-3 p-2 md:p-3.5 rounded-xl border text-left text-xs md:text-sm transition-all cursor-pointer ${
                               isChecked
                                 ? 'bg-primary/10 border-primary text-primary font-semibold shadow-sm'
                                 : 'bg-white/30 dark:bg-surface-container/30 border-outline-variant/50 text-on-surface-variant hover:bg-surface-container'
                             }`}
                           >
-                            <span className="material-symbols-outlined text-[20px]">
+                            <span className="material-symbols-outlined text-[16px] md:text-[20px]">
                               {isChecked ? 'check_box' : 'check_box_outline_blank'}
                             </span>
                             {option}
@@ -427,14 +427,20 @@ export function SubmissionForm() {
                     {errors.monetization_status && <span className="text-error text-xs font-medium block">{errors.monetization_status.message}</span>}
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5 mt-2 md:mt-4">
                     {/* Analytics Screenshot Upload */}
-                    <div className="space-y-2">
-                      <label className="font-label-md text-on-surface-variant block">Analytics Screenshot Upload *</label>
+                    <div className="space-y-1">
+                      <label className="text-xs md:text-sm font-medium text-on-surface-variant block">Analytics Screenshot Upload *</label>
                       
                       {previewUrl ? (
-                        <div className="relative border border-outline-variant/30 rounded-2xl overflow-hidden bg-surface-container-low max-w-[400px] shadow-sm group">
-                          <img src={previewUrl} className="w-full h-48 object-contain p-2" alt="Screenshot Preview" />
+                        <div className="relative border border-outline-variant/30 rounded-xl overflow-hidden bg-surface-container-low p-2 flex items-center gap-3 max-w-[400px] shadow-sm">
+                          <img src={previewUrl} className="w-12 h-12 md:w-14 md:h-14 object-cover rounded-lg border border-outline-variant/30" alt="Screenshot Preview" />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-bold text-on-surface truncate">{screenshotName}</p>
+                            <p className="text-[10px] md:text-xs text-on-surface-variant">
+                              {(watch("analytics_file_size") || 0) ? `${((watch("analytics_file_size") || 0) / 1024 / 1024).toFixed(2)} MB` : "Uploaded"}
+                            </p>
+                          </div>
                           <button
                             type="button"
                             disabled={screenshotUploading}
@@ -450,17 +456,14 @@ export function SubmissionForm() {
                                 setPreviewUrl("");
                               }
                             }}
-                            className="absolute top-2 right-2 bg-error text-on-error w-8 h-8 rounded-full flex items-center justify-center shadow-md hover:bg-error/90 active:scale-95 transition-all cursor-pointer disabled:opacity-50"
+                            className="bg-error/10 text-error hover:bg-error/20 w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer disabled:opacity-50"
                             title="Remove image"
                           >
-                            <span className="material-symbols-outlined text-[18px]">close</span>
+                            <span className="material-symbols-outlined text-[18px]">delete</span>
                           </button>
-                          <div className="p-3 bg-surface-container-lowest text-xs font-label-md text-on-surface-variant truncate border-t border-outline-variant/10 flex justify-between items-center">
-                            <span className="truncate">{screenshotName}</span>
-                          </div>
                         </div>
                       ) : (
-                        <div className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer relative group transition-all ${
+                        <div className={`border-2 border-dashed rounded-xl p-4 md:p-6 text-center cursor-pointer relative group transition-all ${
                           errors.analytics_image_path
                             ? 'border-error bg-error/5'
                             : 'border-outline-variant/50 hover:border-primary/50 bg-white/10 dark:bg-surface-container/10'
@@ -472,29 +475,29 @@ export function SubmissionForm() {
                             className="absolute inset-0 opacity-0 cursor-pointer"
                             disabled={screenshotUploading}
                           />
-                          <div className="space-y-2">
-                            <span className={`material-symbols-outlined text-4xl transition-colors ${
+                          <div className="space-y-1.5">
+                            <span className={`material-symbols-outlined text-3xl md:text-4xl transition-colors ${
                               errors.analytics_image_path
                                 ? 'text-error'
                                 : 'text-outline-variant group-hover:text-primary'
                             }`}>
                               cloud_upload
                             </span>
-                            <p className="font-label-md text-on-surface-variant">
+                            <p className="text-xs md:text-sm font-medium text-on-surface-variant">
                               Click or drag screenshot here
                             </p>
-                            <p className="font-label-sm text-xs text-outline-variant/70">PNG, JPG, JPEG, or WEBP up to 5MB</p>
+                            <p className="text-[10px] md:text-xs text-outline-variant/70">PNG, JPG, JPEG, or WEBP up to 5MB</p>
                           </div>
                         </div>
                       )}
 
                       {screenshotUploading && (
-                        <div className="space-y-1.5 mt-2">
-                          <div className="flex justify-between text-xs font-label-sm text-on-surface-variant">
+                        <div className="space-y-1 mt-1">
+                          <div className="flex justify-between text-[10px] md:text-xs text-on-surface-variant">
                             <span>Uploading screenshot...</span>
                             <span>{uploadProgress}%</span>
                           </div>
-                          <div className="w-full bg-surface-container rounded-full h-2 overflow-hidden border border-outline-variant/10">
+                          <div className="w-full bg-surface-container rounded-full h-1.5 overflow-hidden border border-outline-variant/10">
                             <div className="bg-primary h-full transition-all duration-300" style={{ width: `${uploadProgress}%` }}></div>
                           </div>
                         </div>
@@ -505,25 +508,25 @@ export function SubmissionForm() {
                     </div>
 
                     {/* Reason for Selling */}
-                    <div className="space-y-2">
-                      <label className="font-label-md text-on-surface-variant block">Reason for Selling</label>
+                    <div className="space-y-1">
+                      <label className="text-xs md:text-sm font-medium text-on-surface-variant block">Reason for Selling</label>
                       <textarea
                         {...register("reason_for_selling")}
-                        className={`${inputClasses} resize-none h-[120px]`}
+                        className={`${inputClasses} resize-none h-[90px] md:h-[120px]`}
                         placeholder="e.g. Moving to other projects, Need capital..."
                       />
                     </div>
                   </div>
 
                   {/* Ownership Confirmation Checkbox */}
-                  <div className="space-y-2 pt-2">
-                    <label className="flex items-start gap-3 cursor-pointer">
+                  <div className="space-y-1 pt-1">
+                    <label className="flex items-start gap-2.5 cursor-pointer">
                       <input
                         type="checkbox"
                         {...register("ownership_confirmed")}
-                        className="rounded border-outline-variant text-primary focus:ring-primary h-5 w-5 mt-0.5 cursor-pointer"
+                        className="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4 md:h-5 md:w-5 mt-0.5 cursor-pointer"
                       />
-                      <span className="font-body-md text-on-surface-variant select-none">
+                      <span className="text-xs md:text-sm font-medium text-on-surface-variant select-none leading-relaxed">
                         I confirm that I am the legal owner of this asset or authorized to negotiate its sale. *
                       </span>
                     </label>
@@ -532,8 +535,8 @@ export function SubmissionForm() {
                 </div>
 
                 {/* Submit */}
-                <div className="pt-4">
-                  <button disabled={isSubmitting || screenshotUploading} className="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-on-primary font-label-md font-bold uppercase tracking-widest hover:shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.4)] hover:-translate-y-0.5 transition-all duration-300 flex justify-center items-center gap-2 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none cursor-pointer" type="submit">
+                <div className="pt-2 md:pt-4">
+                  <button disabled={isSubmitting || screenshotUploading} className="w-full h-12 md:h-14 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-on-primary font-body-md font-bold uppercase tracking-widest hover:shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.4)] hover:-translate-y-0.5 transition-all duration-300 flex justify-center items-center gap-2 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none cursor-pointer" type="submit">
                     {isSubmitting ? (
                       <><span className="material-symbols-outlined text-[18px] animate-spin">refresh</span> Submitting...</>
                     ) : screenshotUploading ? (
@@ -542,8 +545,8 @@ export function SubmissionForm() {
                       "Submit Asset for Review"
                     )}
                   </button>
-                  <p className="font-label-sm text-on-surface-variant text-center mt-4 flex items-center justify-center gap-1.5">
-                    <span className="material-symbols-outlined text-[16px]">lock</span>
+                  <p className="text-[11px] md:text-xs text-on-surface-variant text-center mt-2.5 md:mt-4 flex items-center justify-center gap-1">
+                    <span className="material-symbols-outlined text-[14px] md:text-[16px]">lock</span>
                     Your data is secure and will not be shared without an NDA.
                   </p>
                 </div>

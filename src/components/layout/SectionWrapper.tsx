@@ -34,7 +34,7 @@ export function SectionWrapper({
   return (
     <section
       id={id}
-      className={cn("w-full py-16 md:py-24", bgColors[background], className)}
+      className={cn("w-full py-8 md:py-20", bgColors[background], className)}
     >
       <div className={cn("mx-auto px-4 sm:px-6 lg:px-8 w-full", maxW[containerWidth])}>
         {children}
