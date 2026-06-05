@@ -55,6 +55,11 @@ export function Footer() {
   ];
 
   const [errorMsg, setErrorMsg] = useState("");
+  const [openSection, setOpenSection] = useState<string | null>(null);
+
+  const toggleSection = (section: string) => {
+    setOpenSection(openSection === section ? null : section);
+  };
 
   const handleSubscribeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -160,8 +165,8 @@ export function Footer() {
             )}
           </div>
 
-          {/* SECTION 3: 4-COLUMN FOOTER LINKS */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8 mb-6 md:mb-12">
+          {/* SECTION 3: 4-COLUMN FOOTER LINKS - DESKTOP ONLY */}
+          <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8 mb-6 md:mb-12">
             {/* COLUMN 1: Brand Section */}
             <div className="lg:col-span-4 flex flex-col gap-3 md:gap-4">
               <div className="flex flex-col">
@@ -234,6 +239,111 @@ export function Footer() {
             </nav>
           </div>
 
+          {/* MOBILE ACCORDION LINKS SECTION */}
+          <div className="md:hidden flex flex-col gap-6 mb-6">
+            {/* BRAND BLOCK */}
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>grid_view</span>
+                <span className="font-headline-lg text-text-primary tracking-tight font-bold text-lg">Axcrivo</span>
+              </div>
+              <span className="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest leading-none">
+                The Marketplace for Creator Assets
+              </span>
+              <p className="font-body-md text-sm text-on-surface-variant leading-relaxed">
+                Buy, sell, and value creator assets through a trusted marketplace.
+              </p>
+              
+              {/* SOCIAL ICONS (LinkedIn and X only, per guidelines) */}
+              <div className="flex items-center gap-4 text-on-surface-variant mt-1">
+                {SOCIAL_LINKS.map((social) => {
+                  if (!social.url) return null;
+                  if (social.platform !== "LinkedIn" && social.platform !== "X") return null;
+                  return (
+                    <a
+                      key={social.platform}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-primary transition-colors p-2 hover:bg-surface-container rounded-lg"
+                      aria-label={social.platform}
+                    >
+                      {social.svg}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* ACCORDION NAVIGATION */}
+            <div className="border-t border-outline-variant/20 mt-4">
+              {/* ACCORDION 1: MARKETPLACE */}
+              <div className="border-b border-outline-variant/20">
+                <button
+                  onClick={() => toggleSection('marketplace')}
+                  className="flex justify-between items-center w-full py-4 text-left font-bold text-on-surface text-[12px] uppercase tracking-widest focus:outline-none"
+                >
+                  <span>Marketplace</span>
+                  <span className={`material-symbols-outlined text-[20px] transition-transform duration-300 ${openSection === 'marketplace' ? 'rotate-180' : ''}`}>expand_more</span>
+                </button>
+                <div className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${openSection === 'marketplace' ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                  <div className="overflow-hidden">
+                    <ul className="flex flex-col gap-3 pb-4 pl-1 text-sm">
+                      <li><Link href="/buy" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">Buy Assets</Link></li>
+                      <li><Link href="/sell" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">Sell Assets</Link></li>
+                      <li><Link href="/valuation" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">Get Valuation</Link></li>
+                      <li><Link href="/#how-it-works" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">How It Works</Link></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* ACCORDION 2: RESOURCES */}
+              <div className="border-b border-outline-variant/20">
+                <button
+                  onClick={() => toggleSection('resources')}
+                  className="flex justify-between items-center w-full py-4 text-left font-bold text-on-surface text-[12px] uppercase tracking-widest focus:outline-none"
+                >
+                  <span>Resources</span>
+                  <span className={`material-symbols-outlined text-[20px] transition-transform duration-300 ${openSection === 'resources' ? 'rotate-180' : ''}`}>expand_more</span>
+                </button>
+                <div className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${openSection === 'resources' ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                  <div className="overflow-hidden">
+                    <ul className="flex flex-col gap-3 pb-4 pl-1 text-sm">
+                      <li><Link href="/resources" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">Valuation Guides</Link></li>
+                      <li><Link href="/resources" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">Buying Guides</Link></li>
+                      <li><Link href="/resources" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">Selling Guides</Link></li>
+                      <li><Link href="/resources" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">Insights</Link></li>
+                      <li><Link href="/resources" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">News</Link></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* ACCORDION 3: COMPANY */}
+              <div className="border-b border-outline-variant/20">
+                <button
+                  onClick={() => toggleSection('company')}
+                  className="flex justify-between items-center w-full py-4 text-left font-bold text-on-surface text-[12px] uppercase tracking-widest focus:outline-none"
+                >
+                  <span>Company</span>
+                  <span className={`material-symbols-outlined text-[20px] transition-transform duration-300 ${openSection === 'company' ? 'rotate-180' : ''}`}>expand_more</span>
+                </button>
+                <div className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${openSection === 'company' ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                  <div className="overflow-hidden">
+                    <ul className="flex flex-col gap-3 pb-4 pl-1 text-sm">
+                      <li><Link href="/about" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">About</Link></li>
+                      <li><a href="mailto:support@axcrivo.in" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">Contact</a></li>
+                      <li><Link href="/privacy" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">Privacy Policy</Link></li>
+                      <li><Link href="/privacy" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">Terms of Service</Link></li>
+                      <li><Link href="/privacy" className="text-on-surface-variant hover:text-primary transition-colors py-0.5 block">Disclaimer</Link></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* SECTION 5: SUPPORTED ASSETS */}
           <div className="border-t border-outline-variant/10 pt-6 pb-2 mb-6 md:pt-8 md:pb-4 md:mb-8">
             <h4 className="font-label-md text-label-md font-bold text-on-surface uppercase tracking-widest text-[11px] md:text-[12px] mb-3 md:mb-4">Supported Creator Assets</h4>
@@ -257,14 +367,24 @@ export function Footer() {
             </div>
           </div>
 
-          {/* SECTION 6: LEGAL DISCLAIMER & COPYRIGHT */}
-          <div className="border-t border-outline-variant/10 pt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6">
+          {/* DESKTOP BOTTOM BAR */}
+          <div className="hidden md:flex border-t border-outline-variant/10 pt-6 flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6">
             <p className="font-body-md text-xs text-outline leading-relaxed max-w-3xl">
               Axcrivo provides marketplace intelligence, valuation tools, and educational resources. Users are responsible for complying with the policies and terms of the platforms associated with their assets.
             </p>
             <span className="font-body-md text-xs text-on-surface-variant shrink-0">
               © 2026 Axcrivo. All rights reserved.
             </span>
+          </div>
+
+          {/* MOBILE BOTTOM BAR */}
+          <div className="md:hidden border-t border-outline-variant/10 pt-4 flex justify-between items-center text-xs text-on-surface-variant">
+            <span>© 2026 Axcrivo</span>
+            <div className="flex gap-3">
+              <Link href="/privacy" className="hover:text-primary transition-colors">Privacy</Link>
+              <span>•</span>
+              <Link href="/privacy" className="hover:text-primary transition-colors">Terms</Link>
+            </div>
           </div>
         </div>
       </div>
