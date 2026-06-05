@@ -6,7 +6,6 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { TableOfContents } from "@/features/resources/components/TableOfContents";
 import { createMetadata } from "@/lib/seo";
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 // Generate static routes at build time for all resources
@@ -73,6 +72,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const getTakeaways = (category: string) => {
     switch (category) {
       case "Valuation Guides":
+      case "Valuation":
         return [
           "Standard multiples range from 2x to 4.5x annual profit for verified accounts.",
           "Engagement rate (ER) above 3.5% triggers a valuation premium of 20% or more.",
@@ -80,6 +80,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           "Niche specialization in Fintech or B2B SaaS doubles typical asset value."
         ];
       case "Buying Guides":
+      case "Buying Assets":
         return [
           "Always transact using a secure escrow service like Axcrivo to protect funds.",
           "Verify the Original Email (OG Email) to ensure the seller cannot recover the account.",
@@ -87,6 +88,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           "Perform a comprehensive due diligence audit covering legal rights and copyright status."
         ];
       case "Selling Guides":
+      case "Selling Assets":
         return [
           "Document clean trailing 12-month financials via Stripe, bank statements, or PayPal.",
           "Create Standard Operating Procedures (SOPs) to prove operations are turnkey.",
@@ -137,15 +139,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           { name: resource.title, item: `https://www.axcrivo.in/resources/${resource.slug}` }
         ]}
       />
-      <div className="pt-28 pb-16 bg-surface text-on-surface min-h-screen">
+      <div className="pt-3 md:pt-6 pb-16 bg-surface text-on-surface min-h-screen">
         {/* Minimal Hero */}
         <section className="max-w-4xl mx-auto px-margin-mobile md:px-0 mb-8 space-y-4">
-          <Breadcrumbs 
-            steps={[
-              { name: "Resources", href: "/resources" },
-              { name: resource.title }
-            ]}
-          />
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="px-3 py-1 bg-primary/10 text-primary border border-primary-container/20 rounded-full font-label-sm text-label-sm">
               {resource.category}

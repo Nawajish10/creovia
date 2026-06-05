@@ -7,12 +7,16 @@ import { RESOURCES, CATEGORIES } from "@/content/resources";
 import { submitNewsletterSubscriber } from "@/app/actions/leads";
 
 const POPULAR_TOPICS = [
-  "Instagram Valuation",
-  "YouTube Multiples",
-  "Letter of Intent (LOI)",
-  "Due Diligence",
-  "EBITDA Analysis",
-  "Creator IP Rights"
+  { name: "Instagram Valuation", slug: "instagram-valuation-guide" },
+  { name: "YouTube Multiples", slug: "youtube-multiples-explained" },
+  { name: "Letter of Intent (LOI)", slug: "letter-of-intent-loi-creator-asset-acquisitions" },
+  { name: "Due Diligence", slug: "creator-asset-due-diligence-checklist" },
+  { name: "EBITDA Analysis", slug: "ebitda-analysis-for-digital-businesses" },
+  { name: "Creator IP Rights", slug: "creator-intellectual-property-rights" },
+  { name: "Telegram Valuation", slug: "telegram-channel-valuation-guide" },
+  { name: "WhatsApp Valuation", slug: "whatsapp-community-valuation-guide" },
+  { name: "Website Acquisition", slug: "website-acquisition-framework" },
+  { name: "Social Media Buying", slug: "social-media-account-buying-guide" }
 ];
 
 export function ResourceHub() {
@@ -60,12 +64,16 @@ export function ResourceHub() {
     ? filteredResources.filter((r) => r.id !== featuredResource?.id)
     : filteredResources;
 
-  // Popular topics click handler
-  const handleTopicClick = (topic: string) => {
-    setSearchQuery(topic);
-    setActiveCategory("All Resources");
-    searchInputRef.current?.focus();
-  };
+  // Only show topics that have at least one article
+  const activeTopics = POPULAR_TOPICS.filter((topic) =>
+    RESOURCES.some((r) => r.slug === topic.slug)
+  );
+
+  // Show only categories that have at least one resource, plus All Resources
+  const activeCategories = CATEGORIES.filter((category) => {
+    if (category === "All Resources") return true;
+    return RESOURCES.some((r) => r.category === category);
+  });
 
   const handleSubscribeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,7 +124,7 @@ export function ResourceHub() {
             <div className="text-on-surface-variant uppercase tracking-wider" style={{ fontSize: "10px" }}>Resources</div>
           </div>
           <div className="text-center border-x border-outline-variant/30">
-            <div className="font-headline-sm text-primary" style={{ fontSize: "clamp(18px, 4vw, 24px)", fontWeight: 700 }}>{CATEGORIES.length - 1}</div>
+            <div className="font-headline-sm text-primary" style={{ fontSize: "clamp(18px, 4vw, 24px)", fontWeight: 700 }}>{activeCategories.length - 1}</div>
             <div className="text-on-surface-variant uppercase tracking-wider" style={{ fontSize: "10px" }}>Categories</div>
           </div>
           <div className="text-center">
@@ -205,7 +213,7 @@ export function ResourceHub() {
       {/* Section 4: Category Navigation */}
       <section className="mb-4 md:mb-8 overflow-x-auto hide-scrollbar whitespace-nowrap mask-linear-fade">
         <div className="flex gap-2 pb-2">
-          {CATEGORIES.map((category) => (
+          {activeCategories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
@@ -225,16 +233,15 @@ export function ResourceHub() {
       <section className="mb-6 md:mb-12 bg-surface-container-low/50 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-outline-variant/10">
         <h3 className="font-label-sm text-[11px] md:text-label-sm text-on-surface-variant uppercase tracking-widest mb-3 md:mb-4">Popular Topics</h3>
         <div className="flex flex-wrap gap-1.5 md:gap-2">
-          {POPULAR_TOPICS.map((topic) => (
-            <button
-              key={topic}
-              onClick={() => handleTopicClick(topic)}
-              className={`px-3 py-1.5 md:px-4 md:py-2 bg-surface-container-lowest border border-outline-variant/30 rounded-lg font-body-md text-sm md:text-body-md hover:border-primary hover:text-primary transition-all shadow-sm cursor-pointer ${
-                searchQuery === topic ? "border-primary text-primary ring-1 ring-primary" : ""
-              }`}
+          {activeTopics.map((topic) => (
+            <Link
+              key={topic.slug}
+              href={`/resources/${topic.slug}`}
+              className="px-3 py-1.5 md:px-4 md:py-2 bg-surface-container-lowest border border-outline-variant/30 rounded-lg font-body-md text-sm md:text-body-md hover:border-primary hover:text-primary transition-all shadow-sm cursor-pointer inline-flex items-center"
+              style={{ minHeight: "unset" }}
             >
-              {topic}
-            </button>
+              {topic.name}
+            </Link>
           ))}
         </div>
       </section>

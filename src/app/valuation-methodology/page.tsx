@@ -1,6 +1,5 @@
-﻿import { PageWrapper } from "@/components/layout/PageWrapper";
+import { PageWrapper } from "@/components/layout/PageWrapper";
 import { createMetadata } from "@/lib/seo";
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { FAQJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
 
@@ -33,13 +32,8 @@ const methodologyFaqs = [
 ];
 
 export default function ValuationMethodologyPage() {
-  const breadcrumbs = [
-    { name: "Valuation Hub", href: "/valuation" },
-    { name: "Methodology" }
-  ];
-
   return (
-    <PageWrapper className="pt-24 pb-16 bg-surface text-on-surface min-h-screen">
+    <PageWrapper className="pt-4 pb-16 bg-surface text-on-surface min-h-screen">
       <BreadcrumbJsonLd 
         items={[
           { name: "Home", item: "https://www.axcrivo.in" },
@@ -50,14 +44,10 @@ export default function ValuationMethodologyPage() {
       <FAQJsonLd items={methodologyFaqs} />
 
       <div className="max-w-[1000px] mx-auto px-margin-mobile md:px-0 space-y-12">
-        
-        {/* Navigation Breadcrumbs */}
-        <Breadcrumbs steps={breadcrumbs} />
-
         {/* Hero / Introduction */}
         <header className="space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5">
-            <span className="w-2 h-2 rounded-full bg-primary pulse-dot"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-primary pulse-dot"></span>
             <span className="font-label-sm text-xs text-primary uppercase tracking-widest font-bold">Advisory & Mathematics</span>
           </div>
           <h1 className="font-display-lg-mobile md:font-display-lg text-on-surface tracking-tight leading-tight">

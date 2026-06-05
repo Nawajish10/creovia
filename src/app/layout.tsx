@@ -111,7 +111,13 @@ export default function RootLayout({
           <span className="material-symbols-outlined hidden sm:inline" style={{ fontSize: "16px" }}>campaign</span>
           <span className="hidden md:inline">Early Access Open — Get a Free Social Pages &amp; Digital Assets Valuation.</span>
           <span className="md:hidden">Get a Free Asset Valuation.</span>
-          <Link className="underline font-semibold ml-1 hover:opacity-90 transition-opacity whitespace-nowrap" href="/valuation">Apply Now</Link>
+          <Link 
+            className="underline font-semibold ml-1 hover:opacity-90 transition-opacity whitespace-nowrap inline-flex items-center" 
+            href="/valuation"
+            style={{ minHeight: "unset" }}
+          >
+            Apply Now
+          </Link>
         </div>
         <Navbar />
         <div className="flex-1 flex flex-col">
