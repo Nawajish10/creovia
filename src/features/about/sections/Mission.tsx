@@ -1,4 +1,5 @@
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
+import Image from "next/image";
 
 export function Mission() {
   return (
@@ -25,7 +26,7 @@ export function Mission() {
             </p>
           </div>
           <div className="glass-panel rounded-xl p-4 md:p-8 aspect-video flex items-center justify-center glow-accent relative overflow-hidden">
-            <img alt="Abstract representation of data and trust" className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo8wrTPB2Y0vc4bDsIbLjGi2kd5_AuTA1N1uzsKLZuoXWjzmgnxr7oISxCr3BVosQ6OlX8kkY9mkoGuaFsK9nGHu4bAOFDbJSIeePt1BIoJDiRAMJljUAwFdbi93Gaa6xp7S8KvPhTAx7jrmepmoWu_tNI55XWV7WcJnEfHtZqS1tCbx3TcvxnPJ9hfBAMR3NquQPewUkGqKXRNJaHZ8xkP_2QoxUotczvIndF7hgBlZco-Nice3_9B5EPkZXntpLa2LYSFfEpF7A"/>
+            <Image alt="Abstract representation of data and trust" className="object-cover opacity-20 mix-blend-multiply" fill src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo8wrTPB2Y0vc4bDsIbLjGi2kd5_AuTA1N1uzsKLZuoXWjzmgnxr7oISxCr3BVosQ6OlX8kkY9mkoGuaFsK9nGHu4bAOFDbJSIeePt1BIoJDiRAMJljUAwFdbi93Gaa6xp7S8KvPhTAx7jrmepmoWu_tNI55XWV7WcJnEfHtZqS1tCbx3TcvxnPJ9hfBAMR3NquQPewUkGqKXRNJaHZ8xkP_2QoxUotczvIndF7hgBlZco-Nice3_9B5EPkZXntpLa2LYSFfEpF7A"/>
             <span className="material-symbols-outlined text-4xl md:text-6xl text-primary z-10" style={{ fontVariationSettings: "'FILL' 1" }}>account_balance</span>
           </div>
         </div>
