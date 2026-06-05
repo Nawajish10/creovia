@@ -30,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <meta name="debug-ga-id" content={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "not-set"} />
         {/* Google tag (gtag.js) */}
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && !process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID.includes('X') && (
           <>
