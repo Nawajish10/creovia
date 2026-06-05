@@ -14,11 +14,11 @@ export interface ResourceType {
 
 export const CATEGORIES = [
   "All Resources",
-  "Valuation Guides",
-  "Buying Guides",
-  "Selling Guides",
-  "Insights",
-  "News",
+  "Valuation",
+  "Buying Creator Assets",
+  "Selling Creator Assets",
+  "Creator Economy",
+  "Marketplace Insights",
 ];
 
 const DEFAULT_IMAGE = "https://lh3.googleusercontent.com/aida-public/AB6AXuDm40IbhlBxgb9H2j85mf35m32Rb3z2EOdVnv5g9k_3we94Us2Y7xs2KMup33k0bLG_Jjt5J20cMAjDLfYsSep2XBvoLqj1NUI8cDFj6yx6FB1H6pOTeT6U1kGZ_FG_0Lhm0mA6EfLokFdgynHgfDDXJ-UzonHMQNLF503bp_yfQ6kwLhtrfyFG9F2KRR_52NyABwMLx9N1kEbFP86MqBfREys_glqfzza9ZUdf3V6XbqsjVbMLV5k6tzr7JjpnDCdD1rQjSsqJVpg";
@@ -29,7 +29,7 @@ export const RESOURCES: ResourceType[] = [
     id: "v1",
     title: "How Much Is My Instagram Page Worth?",
     slug: "how-much-is-my-instagram-page-worth",
-    category: "Valuation Guides",
+    category: "Valuation",
     description: "Learn how audience size, engagement, niche, and geography impact valuation.",
     content: `
 ## The Anatomy of an Instagram Valuation
@@ -63,7 +63,7 @@ Ultimately, Instagram pages are digital real estate. Buyers value them based on 
     id: "v2",
     title: "YouTube Channel Valuation Guide",
     slug: "youtube-channel-valuation-guide",
-    category: "Valuation Guides",
+    category: "Valuation",
     description: "Understand the factors that determine channel value.",
     content: `
 ## Pricing YouTube Channels in 2026
@@ -93,7 +93,7 @@ Depending on the niche, consistency of uploads, and subscriber loyalty, channels
     id: "v3",
     title: "Telegram Community Valuation Framework",
     slug: "telegram-community-valuation-framework",
-    category: "Valuation Guides",
+    category: "Valuation",
     description: "A complete guide to pricing Telegram assets.",
     content: `
 ## Evaluating Telegram Groups and Channels
@@ -127,7 +127,7 @@ Valuations generally fall between **8x to 15x monthly revenue**, reflecting the 
     id: "v4",
     title: "Creator Asset Pricing Explained",
     slug: "creator-asset-pricing-explained",
-    category: "Valuation Guides",
+    category: "Valuation",
     description: "How buyers evaluate digital audiences.",
     content: `
 ## The Framework for Pricing Creator Businesses
@@ -167,7 +167,7 @@ If the asset has a large, engaged audience but is not yet monetized, it is price
     id: "v5",
     title: "Audience Quality vs Audience Size",
     slug: "audience-quality-vs-audience-size",
-    category: "Valuation Guides",
+    category: "Valuation",
     description: "Why engagement matters more than followers.",
     content: `
 ## Why Big Numbers Can Be Deceiving
@@ -199,7 +199,7 @@ A micro-influencer with 25,000 highly engaged followers in a specialized B2B nic
     id: "b1",
     title: "How To Buy An Instagram Page Safely",
     slug: "how-to-buy-instagram-page-safely",
-    category: "Buying Guides",
+    category: "Buying Creator Assets",
     description: "Mitigate risk during acquisition with our due diligence checklist and escrow best practices.",
     content: `
 ## Securing Your Acquisition
@@ -230,7 +230,7 @@ When taking ownership:
     id: "b2",
     title: "Creator Asset Due Diligence Checklist",
     slug: "creator-asset-due-diligence-checklist",
-    category: "Buying Guides",
+    category: "Buying Creator Assets",
     description: "A comprehensive checklist for verifying asset authenticity.",
     content: `
 ## The Complete Buyer's Checklist
@@ -262,7 +262,7 @@ Before making an offer on a digital asset, run through this rigorous due diligen
     id: "b3",
     title: "Red Flags To Watch Before Buying",
     slug: "red-flags-to-watch-before-buying",
-    category: "Buying Guides",
+    category: "Buying Creator Assets",
     description: "Identify fake followers, inflated engagement, and scam sellers.",
     content: `
 ## Spotting the Scams
@@ -292,7 +292,7 @@ Check the account's historical growth on SocialBlade. If an account gained 50,00
     id: "b4",
     title: "How To Evaluate Audience Quality",
     slug: "how-to-evaluate-audience-quality-buying",
-    category: "Buying Guides",
+    category: "Buying Creator Assets",
     description: "Look beyond the follower count to determine actual buyer intent and loyalty.",
     content: `
 ## Deep Dive into Audience Metrics
@@ -319,7 +319,7 @@ This real-world test provides undeniable proof of the audience's quality and pur
     id: "b5",
     title: "The Ultimate Buyer Guide To Creator Assets",
     slug: "ultimate-buyer-guide-creator-assets",
-    category: "Buying Guides",
+    category: "Buying Creator Assets",
     description: "Everything you need to know about investing in digital media properties.",
     content: `
 ## The Digital Real Estate Investor's Playbook
@@ -350,7 +350,7 @@ Take control of all original emails, passwords, and 2FA. Spend the first 30 days
     id: "s1",
     title: "How To Sell Your Instagram Page",
     slug: "how-to-sell-your-instagram-page",
-    category: "Selling Guides",
+    category: "Selling Creator Assets",
     description: "Step-by-step instructions on preparing your digital property for acquisition.",
     content: `
 ## Preparing for a Profitable Exit
@@ -376,7 +376,7 @@ If you sell shoutouts or sponsorships, stop accepting payments via un-trackable 
     id: "s2",
     title: "Preparing Your Creator Asset For Sale",
     slug: "preparing-your-creator-asset-for-sale",
-    category: "Selling Guides",
+    category: "Selling Creator Assets",
     description: "Organize your financials, clean up your audience, and maximize your multiple.",
     content: `
 ## Maximizing Your Exit Value
@@ -403,7 +403,7 @@ Ensure you own 100% of the asset. If you started a YouTube channel with a friend
     id: "s3",
     title: "How To Increase Your Asset Value",
     slug: "how-to-increase-your-asset-value",
-    category: "Selling Guides",
+    category: "Selling Creator Assets",
     description: "Strategies to boost engagement and revenue before listing.",
     content: `
 ## Strategies for Pre-Listing Growth
@@ -429,7 +429,7 @@ If you are spending $500/month on a video editor for a channel making $2000/mont
     id: "s4",
     title: "Understanding Buyer Expectations",
     slug: "understanding-buyer-expectations",
-    category: "Selling Guides",
+    category: "Selling Creator Assets",
     description: "What professional investors look for in a creator asset.",
     content: `
 ## Inside the Mind of an Acquirer
@@ -457,7 +457,7 @@ Position your listing prospectus to appeal to the right type of buyer for your s
     id: "s5",
     title: "Common Mistakes Sellers Make",
     slug: "common-mistakes-sellers-make",
-    category: "Selling Guides",
+    category: "Selling Creator Assets",
     description: "Avoid these pitfalls that can tank your deal.",
     content: `
 ## Deal Killers to Avoid
@@ -488,7 +488,7 @@ Once you sign an Asset Purchase Agreement and enter escrow, fully commit to the 
     id: "i1",
     title: "State Of India's Creator Economy",
     slug: "state-of-indias-creator-economy",
-    category: "Insights",
+    category: "Creator Economy",
     description: "An in-depth report on the growth, trends, and future of digital creators in India.",
     content: `
 ## The Maturation of the Indian Market
@@ -511,7 +511,7 @@ We are witnessing the early stages of M&A (Mergers and Acquisitions) within the 
     id: "i2",
     title: "Most Valuable Creator Niches In 2026",
     slug: "most-valuable-creator-niches-2026",
-    category: "Insights",
+    category: "Creator Economy",
     description: "Which industries are commanding the highest multiples in the marketplace.",
     content: `
 ## Where the Money Flows
@@ -537,7 +537,7 @@ Fitness, nutrition, and wellness audiences are highly convertible. Buyers acquir
     id: "i3",
     title: "The Rise Of Digital Audience Acquisitions",
     slug: "rise-of-digital-audience-acquisitions",
-    category: "Insights",
+    category: "Creator Economy",
     description: "Why traditional brands are buying up meme pages and communities.",
     content: `
 ## The New Customer Acquisition Strategy
@@ -561,7 +561,7 @@ This paradigm shift is driving intense demand for niche, high-quality creator as
     id: "i4",
     title: "Why Creator Assets Are Becoming Investment Assets",
     slug: "why-creator-assets-are-becoming-investment-assets",
-    category: "Insights",
+    category: "Creator Economy",
     description: "Institutional money is entering the creator economy. Here is why.",
     content: `
 ## Digital Real Estate
@@ -586,7 +586,7 @@ As platforms mature and verification protocols (like Escrow and audited analytic
     id: "i5",
     title: "Audience Businesses vs Traditional Businesses",
     slug: "audience-businesses-vs-traditional-businesses",
-    category: "Insights",
+    category: "Creator Economy",
     description: "Comparing the margins, overhead, and scalability of creator assets to SaaS or physical retail.",
     content: `
 ## The Ultimate Lean Enterprise
@@ -615,7 +615,7 @@ The entire business exists in the cloud, allowing operators to leverage global g
     id: "n1",
     title: "Marketplace Updates",
     slug: "marketplace-updates",
-    category: "News",
+    category: "Marketplace Insights",
     description: "The latest features and improvements to the Axcrivo platform.",
     content: `
 ## Welcome to the new Axcrivo
@@ -639,7 +639,7 @@ We continue to build the foundational infrastructure required to support the fin
     id: "n2",
     title: "New Valuation Methodologies",
     slug: "new-valuation-methodologies",
-    category: "News",
+    category: "Marketplace Insights",
     description: "How we are updating our pricing algorithm to reflect the latest market trends.",
     content: `
 ## Updating the Algorithm for 2026
@@ -661,7 +661,7 @@ The market moves fast, and our valuation engine moves with it. Based on Q1 data 
     id: "n3",
     title: "Industry Trends",
     slug: "industry-trends",
-    category: "News",
+    category: "Marketplace Insights",
     description: "A roundup of recent news affecting the creator economy.",
     content: `
 ## Market Pulse: May 2026
@@ -687,7 +687,7 @@ In the Indian market, demand for Hindi, Tamil, and Telugu content assets is expl
     id: "n4",
     title: "Platform Policy Changes",
     slug: "platform-policy-changes",
-    category: "News",
+    category: "Marketplace Insights",
     description: "How recent updates to YouTube and Instagram algorithms affect asset value.",
     content: `
 ## Policy Shifts and Market Reactions
@@ -712,7 +712,7 @@ As a seller, aligning your content strategy with these platform priorities is th
     id: "n5",
     title: "Creator Economy Developments",
     slug: "creator-economy-developments",
-    category: "News",
+    category: "Marketplace Insights",
     description: "Major acquisitions, funding rounds, and launches in the space.",
     content: `
 ## The Financialization of Influence

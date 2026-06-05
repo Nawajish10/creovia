@@ -91,9 +91,9 @@ export function Calculator() {
     
     // Simulate API/calculation delay for premium feel
     setTimeout(() => {
-      let rev = Number(revenue) || 0;
-      let aud = Number(audience) || 0;
-      let eng = Number(engagement) || 2.5;
+      const rev = Number(revenue) || 0;
+      const aud = Number(audience) || 0;
+      const eng = Number(engagement) || 2.5;
       
       // Basic mock valuation formula for INR
       let mult = 3;

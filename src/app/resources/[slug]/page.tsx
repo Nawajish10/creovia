@@ -5,6 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { TableOfContents } from "@/features/resources/components/TableOfContents";
+import { createMetadata } from "@/lib/seo";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 // Generate static routes at build time for all resources
 export function generateStaticParams() {
@@ -20,12 +23,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const cleanSlug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
   const resource = RESOURCES.find((r) => cleanSlug(r.slug) === cleanSlug(decodedSlug));
   
-  if (!resource) return { title: "Resource Not Found" };
+  if (!resource) return createMetadata({ title: "Resource Not Found" });
 
-  return {
-    title: `${resource.title} | Axcrivo Resources`,
+  return createMetadata({
+    title: `${resource.title} | Guides`,
     description: resource.description,
-  };
+    path: `/resources/${resource.slug}`,
+    ogImage: resource.thumbnail,
+  });
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -116,15 +121,32 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <PageWrapper>
+      <ArticleJsonLd 
+        title={resource.title}
+        description={resource.description}
+        images={[resource.thumbnail]}
+        datePublished={resource.publishDate}
+        dateModified={resource.publishDate}
+        authorName={resource.author}
+        url={`https://www.axcrivo.in/resources/${resource.slug}`}
+      />
+      <BreadcrumbJsonLd 
+        items={[
+          { name: "Home", item: "https://www.axcrivo.in" },
+          { name: "Resources", item: "https://www.axcrivo.in/resources" },
+          { name: resource.title, item: `https://www.axcrivo.in/resources/${resource.slug}` }
+        ]}
+      />
       <div className="pt-28 pb-16 bg-surface text-on-surface min-h-screen">
         {/* Minimal Hero */}
-        <section className="max-w-4xl mx-auto px-margin-mobile md:px-0 mb-8">
+        <section className="max-w-4xl mx-auto px-margin-mobile md:px-0 mb-8 space-y-4">
+          <Breadcrumbs 
+            steps={[
+              { name: "Resources", href: "/resources" },
+              { name: resource.title }
+            ]}
+          />
           <div className="flex flex-wrap items-center gap-2 mb-4">
-            <Link href="/resources" className="flex items-center gap-1 text-primary font-label-md text-label-md hover:underline">
-              <span className="material-symbols-outlined text-sm">arrow_back</span>
-              Back to Resources
-            </Link>
-            <span className="h-4 w-px bg-outline-variant/50"></span>
             <span className="px-3 py-1 bg-primary/10 text-primary border border-primary-container/20 rounded-full font-label-sm text-label-sm">
               {resource.category}
             </span>

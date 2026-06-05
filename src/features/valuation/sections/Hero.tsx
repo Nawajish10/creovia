@@ -5,11 +5,11 @@ export function Hero() {
         <span className="w-2 h-2 rounded-full bg-secondary pulse-dot"></span>
         <span className="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Market Intelligence</span>
       </div>
-      <h1 className="font-display-lg-mobile md:font-display-lg text-on-surface tracking-tight">
-        Get Your Creator Asset <span className="text-primary">Valuation</span>
+      <h1 className="font-display-lg-mobile md:font-display-lg text-on-surface tracking-tight leading-tight">
+        Get a Professional <span className="text-primary">Creator Asset Valuation</span>
       </h1>
-      <p className="font-body-lg text-on-surface-variant max-w-2xl mx-auto">
-        Leverage institutional-grade data models to understand the true market value of your digital presence. Enter your metrics below to generate a real-time estimate.
+      <p className="font-body-lg text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+        Understand the true value of your Instagram page, YouTube channel, Telegram community, or newsletter.
       </p>
     </section>
   );

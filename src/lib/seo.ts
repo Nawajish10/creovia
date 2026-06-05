@@ -7,6 +7,7 @@ interface SeoProps {
   ogImage?: string;
   path?: string;
   keywords?: string[];
+  exactTitle?: boolean;
 }
 
 export function createMetadata({
@@ -15,9 +16,10 @@ export function createMetadata({
   ogImage = "/og-image.png",
   path = "",
   keywords = [],
+  exactTitle = false,
 }: SeoProps = {}): Metadata {
   const url = `${SITE_URL}${path}`;
-  const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+  const fullTitle = exactTitle && title ? title : (title ? `${title} | ${SITE_NAME}` : SITE_NAME);
 
   return {
     title: fullTitle,

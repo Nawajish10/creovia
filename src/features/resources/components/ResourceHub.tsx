@@ -83,7 +83,7 @@ export function ResourceHub() {
   };
 
   return (
-    <div className="pt-20 md:pt-28 pb-8 md:pb-16 px-margin-mobile md:px-margin-desktop max-w-screen-2xl mx-auto">
+    <div className="pt-4 md:pt-6 pb-8 md:pb-16 px-margin-mobile md:px-margin-desktop max-w-screen-2xl mx-auto">
       {/* Section 1: Compact Hero */}
       <section className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 md:gap-6 mb-6 md:mb-12">
         <div className="max-w-3xl">
@@ -287,7 +287,7 @@ export function ResourceHub() {
           </div>
           <h3 className="font-headline-sm text-on-surface mb-2">No resources found</h3>
           <p className="font-body-md text-on-surface-variant max-w-md mx-auto mb-6">
-            We couldn't find any resources matching "{searchQuery}". Try adjusting your filters or search term.
+            We couldn&apos;t find any resources matching &ldquo;{searchQuery}&rdquo;. Try adjusting your filters or search term.
           </p>
           <button
             onClick={() => {
@@ -357,7 +357,7 @@ export function ResourceHub() {
           Want To Know What Your Creator Asset Is Worth?
         </h2>
         <p className="font-body-lg text-sm md:text-body-lg text-on-surface-variant mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
-          Use our proprietary valuation engine to get a baseline estimate of your brand's market value in under 2 minutes.
+          Use our proprietary valuation engine to get a baseline estimate of your brand&apos;s market value in under 2 minutes.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
           <Link
