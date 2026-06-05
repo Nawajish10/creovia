@@ -24,5 +24,5 @@ export const ASSET_CATEGORIES = [
 export const SOCIAL_LINKS = {
   twitter: "https://twitter.com/axcrivo",
   instagram: "https://instagram.com/axcrivo",
-  linkedin: "https://linkedin.com/company/axcrivo",
+  linkedin: "https://www.linkedin.com/company/axcrivo",
 };
