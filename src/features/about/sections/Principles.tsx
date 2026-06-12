@@ -1,4 +1,4 @@
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
+﻿import { SectionWrapper } from "@/components/layout/SectionWrapper";
 
 export function Principles() {
   return (
@@ -9,7 +9,7 @@ export function Principles() {
           <h2 className="font-headline-md text-headline-md text-on-surface">Marketplace Principles</h2>
           <p className="font-body-md text-body-md text-on-surface-variant text-sm md:text-base">The core tenets that govern our platform architecture and operations.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 gap-4 md:gap-6">
           {/* Principle 1 */}
           <div className="bg-surface-container-low rounded-xl p-4 md:p-8 space-y-3 md:space-y-4 border border-outline-variant hover:border-primary transition-colors">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary-fixed flex items-center justify-center">

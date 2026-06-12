@@ -1,4 +1,4 @@
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
+﻿import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import Link from "next/link";
 
 const processes = [
@@ -42,7 +42,7 @@ export function Process() {
         </div>
 
         {/* Process Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 gap-8">
           {processes.map((p, idx) => (
             <div 
               key={idx} 

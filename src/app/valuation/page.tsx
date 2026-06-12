@@ -1,6 +1,5 @@
 import { PageWrapper } from "@/components/layout/PageWrapper";
 import { createMetadata } from "@/lib/seo";
-import { Hero } from "@/features/valuation/sections/Hero";
 import { Calculator } from "@/features/valuation/sections/Calculator";
 import { HowWorks } from "@/features/valuation/sections/HowWorks";
 import { ValuationFAQ } from "@/features/valuation/sections/ValuationFAQ";
@@ -22,9 +21,12 @@ export const metadata = createMetadata({
 
 export default function ValuationPage() {
   return (
-    <PageWrapper className="full-bg-image !bg-transparent">
-      <div className="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-24 pb-24 flex flex-col gap-lg">
-        <Hero />
+    <PageWrapper className="bg-[#020617] relative overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#2563EB]/10 rounded-full blur-[150px] pointer-events-none"></div>
+      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-[#7C3AED]/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+      <div className="relative z-10 flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-24 pb-24 flex flex-col gap-lg">
         <Calculator />
         <HowWorks />
         <ValuationFAQ />

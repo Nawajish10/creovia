@@ -8,7 +8,7 @@ export function FAQ() {
           <h2 className="font-headline-xl text-on-surface">How Valuation Works</h2>
           <p className="font-body-lg text-on-surface-variant">Our proprietary algorithm evaluates four core pillars to determine the institutional value of a Social Pages & Digital Assets.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-4 gap-6">
           {/* Card 1 */}
           <div className="bg-surface-container-lowest p-6 rounded-xl space-y-4 border border-outline-variant/20 hover:border-primary/30 transition-colors group">
             <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">

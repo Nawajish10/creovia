@@ -84,7 +84,7 @@ export function ValuationFAQ() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-3 gap-6">
           {factors.map((f, i) => (
             <div key={i} className="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow">
               <h3 className="font-headline-sm text-base md:text-lg text-on-surface font-semibold mb-2">{f.title}</h3>
@@ -103,7 +103,7 @@ export function ValuationFAQ() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-4 gap-6">
           {categories.map((c, i) => (
             <div key={i} className="bg-surface-container p-6 rounded-2xl border border-outline-variant/30 space-y-2">
               <h3 className="font-headline-sm text-base md:text-lg text-on-surface font-bold">{c.title}</h3>
@@ -114,7 +114,7 @@ export function ValuationFAQ() {
       </div>
 
       {/* Section 3: Why Choose Axcrivo */}
-      <div className="bg-surface-container-lowest p-8 md:p-12 rounded-3xl border border-outline-variant/25 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center shadow-sm">
+      <div className="bg-surface-container-lowest p-8 md:p-12 rounded-3xl border border-outline-variant/25 grid grid-cols-2 gap-8 items-center shadow-sm">
         <div className="space-y-4">
           <h2 className="font-headline-xl text-2xl md:text-3xl text-on-surface">Why Value & Sell Through Axcrivo?</h2>
           <p className="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed">

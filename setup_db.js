@@ -45,6 +45,23 @@ async function run() {
       } else {
         console.log('Bucket analytics-screenshots already exists.');
       }
+
+      const hasProofsBucket = buckets.some(b => b.name === 'verification-proofs');
+      if (!hasProofsBucket) {
+        console.log('Creating bucket verification-proofs...');
+        const { data, error } = await supabase.storage.createBucket('verification-proofs', {
+          public: false, // private bucket
+          fileSizeLimit: 2 * 1024 * 1024, // 2MB limit
+          allowedMimeTypes: ['image/png', 'image/jpeg', 'image/jpg', 'image/webp']
+        });
+        if (error) {
+          console.error('Error creating verification-proofs bucket:', error);
+        } else {
+          console.log('Bucket verification-proofs created successfully:', data);
+        }
+      } else {
+        console.log('Bucket verification-proofs already exists.');
+      }
     }
   } catch (err) {
     console.error('Error:', err);

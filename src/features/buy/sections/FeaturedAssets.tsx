@@ -1,4 +1,4 @@
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
+﻿import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import Image from "next/image";
 
 export function FeaturedAssets() {
@@ -9,7 +9,7 @@ export function FeaturedAssets() {
           <h2 className="font-headline-md text-on-surface">Featured Listings</h2>
           <a className="font-label-md text-primary hover:text-primary-container uppercase tracking-wider flex items-center gap-1" href="#">View All <span className="material-symbols-outlined text-sm">arrow_forward</span></a>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+        <div className="grid grid-cols-3 gap-gutter">
           {/* Card 1 */}
           <div className="glass-panel rounded-xl overflow-hidden flex flex-col hover:-translate-y-1 transition-transform duration-300">
             <div className="h-48 w-full bg-surface-container-high relative">

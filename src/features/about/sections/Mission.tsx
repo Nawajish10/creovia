@@ -18,7 +18,7 @@ export function Mission() {
       </section>
       {/* Mission Section */}
       <section className="py-6 md:py-12 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto w-full border-t border-outline-variant">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+        <div className="grid grid-cols-2 gap-6 md:gap-8 items-center">
           <div className="space-y-4 md:space-y-6">
             <h2 className="font-headline-md text-headline-md text-on-surface">Creating the most trusted platform.</h2>
             <p className="font-body-md text-body-md text-on-surface-variant text-sm md:text-base">

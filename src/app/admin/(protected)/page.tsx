@@ -55,7 +55,7 @@ export default async function AdminDashboardPage() {
       )}
 
       {/* Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-4 gap-6">
         <Link href="/admin/leads?tab=valuation" className="block transform hover:-translate-y-1 transition-all duration-300 cursor-pointer">
           <MetricCard 
             title="Total Leads" 
@@ -97,7 +97,7 @@ export default async function AdminDashboardPage() {
       {/* Quick Links Section */}
       <div>
         <h3 className="font-headline-sm text-on-surface mb-6">Quick Actions</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-3 gap-6">
           <Link href="/admin/leads" className="group block">
             <div className="bg-surface-container-low border border-outline-variant hover:border-primary/50 transition-all duration-300 p-6 rounded-2xl h-full flex flex-col justify-between group-hover:shadow-md">
               <div>

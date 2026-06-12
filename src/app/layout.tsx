@@ -103,8 +103,7 @@ export default function RootLayout({
         )}
       </head>
       <body
-        className={`${inter.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable} antialiased min-h-screen flex flex-col`}
-        style={{ backgroundColor: "#fbf8ff", color: "#191b24" }}
+        className={`${inter.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable} antialiased min-h-screen flex flex-col bg-[#0B0F19] text-white`}
       >
         {/* Announcement Bar */}
         <div className="bg-primary-container text-white text-center py-2 px-3 text-[12px] md:text-[14px] flex items-center justify-center gap-1.5 z-50 relative flex-wrap">

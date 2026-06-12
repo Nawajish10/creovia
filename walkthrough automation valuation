@@ -1,0 +1,283 @@
+# Automated Valuation Engine — Implementation Walkthrough
+
+## Overview
+
+Implemented a production-ready, server-side valuation engine that automatically calculates creator/business asset valuations when users submit the `/valuation` or `/sell` forms. The engine integrates seamlessly with the existing Next.js 16 + Supabase architecture without modifying any UI or existing form fields.
+
+---
+
+## File Tree Created
+
+```
+src/lib/valuation/engine/
+├── index.ts                    ← Barrel export
+├── types.ts                    ← Shared type definitions
+├── calculateValuation.ts       ← Core valuation formula & orchestrator
+├── calculateConfidence.ts      ← Confidence score calculator
+├── revenueMultipliers.ts       ← Revenue tier → multiplier mapping
+├── engagementMultipliers.ts    ← Engagement rate → multiplier mapping
+├── nicheMultipliers.ts         ← Content niche → multiplier mapping
+├── countryMultipliers.ts       ← Audience geography → multiplier mapping
+├── ageMultipliers.ts           ← Asset age → multiplier mapping
+├── monetizationMultipliers.ts  ← Monetization diversity → multiplier mapping
+└── __tests__/
+    └── valuationEngine.test.ts ← 118 test cases
+```
+
+> [!NOTE]
+> The engine lives in `engine/` subdirectory to coexist with the existing `src/lib/valuation/` module (which handles the separate authenticated valuation_assets/verification flow). Both systems are fully independent.
+
+---
+
+## Files Modified
+
+### [leads.ts](file:///c:/Users/Afreen/OneDrive/Desktop/socialXchange/src/app/actions/leads.ts)
+
+The core integration point. Changes:
+
+1. **Imports** the valuation engine
+2. **`submitValuationLead()`** — after Zod validation, maps form data → `ValuationInput`, runs `calculateValuation()`, stores result as `valuation_result` jsonb column, returns valuation to client
+3. **`submitSellerLead()`** — same integration, additionally maps `revenue_last_12_months / 12` as monthly revenue and uses `analytics_image_path` presence for confidence scoring
+4. **Removed all `console.error`** calls and `any` types per code quality requirements
+5. Both functions now return `{ success: true, valuation: ValuationResult }` on success
+
+---
+
+## Database Changes Required
+
+### Migration: [add_valuation_result_column.sql](file:///c:/Users/Afreen/OneDrive/Desktop/socialXchange/supabase_migrations/add_valuation_result_column.sql)
+
+```sql
+ALTER TABLE valuation_requests
+  ADD COLUMN IF NOT EXISTS valuation_result JSONB DEFAULT NULL;
+
+ALTER TABLE seller_leads
+  ADD COLUMN IF NOT EXISTS valuation_result JSONB DEFAULT NULL;
+```
+
+> [!IMPORTANT]
+> **This migration must be run against your Supabase database** before the new code deploys. Run it via the Supabase SQL editor or CLI. Without this column, inserts from the updated `leads.ts` will fail.
+
+---
+
+## Valuation Engine Flow
+
+```mermaid
+flowchart TD
+    U([User]) -->|Fills /valuation or /sell form| F[Next.js Page]
+    F -->|Server Action| SA[leads.ts]
+    SA -->|1. Zod Validation| ZV{Valid?}
+    ZV -->|No| ERR[Return Error to UI]
+    ZV -->|Yes| MAP[Map form fields → ValuationInput]
+    MAP --> ENG[calculateValuation]
+    ENG --> RM[revenueMultipliers]
+    ENG --> EM[engagementMultipliers]
+    ENG --> NM[nicheMultipliers]
+    ENG --> CM[countryMultipliers]
+    ENG --> AM[ageMultipliers]
+    ENG --> MM[monetizationMultipliers]
+    ENG --> CC[calculateConfidence]
+    ENG -->|ValuationResult| DB[(Supabase DB)]
+    DB --> VR[valuation_requests or seller_leads]
+    ENG -->|Return to client| RES[success + valuation]
+```
+
+---
+
+## Valuation Formula
+
+### Step 1: Revenue Value
+```
+revenueValue = monthlyRevenue × revenueMultiplier
+```
+
+| Revenue Tier | Threshold | Multiplier |
+|---|---|---|
+| Premium | > $5,000 | 36× |
+| Good | > $1,000 | 30× |
+| Average | > $250 | 24× |
+| Low | ≤ $250 | 18× |
+
+### Step 2: Audience Value
+```
+audienceValue = audienceSize × platformRate
+```
+
+| Platform | Rate per follower |
+|---|---|
+| YouTube | $0.12 |
+| Instagram | $0.05 |
+| Twitter/X | $0.04 |
+| Telegram | $0.03 |
+| Default | $0.03 |
+
+### Step 3: Base Value
+```
+baseValue = max(revenueValue, audienceValue)
+```
+
+### Step 4: Apply Multipliers
+```
+estimatedValue = baseValue × engagement × niche × country × age × monetization
+```
+
+### Step 5: Range
+```
+lowRange  = estimatedValue × 0.85
+highRange = estimatedValue × 1.15
+```
+
+---
+
+## Example Inputs & Outputs
+
+### Example 1: Instagram Finance Account (Full Data)
+
+**Input:**
+```json
+{
+  "platform": "instagram",
+  "audienceSize": 100000,
+  "engagementRate": 5.5,
+  "monthlyRevenue": 3000,
+  "niche": "finance",
+  "country": "us",
+  "assetAge": "3 years",
+  "assetUrl": "https://instagram.com/test",
+  "analyticsScreenshot": true,
+  "monetizationStatus": ["Ad Revenue", "Sponsorships"]
+}
+```
+
+**Output:**
+```json
+{
+  "estimatedValue": 201247,
+  "lowRange": 171060,
+  "highRange": 231434,
+  "confidenceScore": 100,
+  "confidenceLevel": "High",
+  "breakdown": {
+    "revenueValue": 90000,
+    "audienceValue": 5000,
+    "engagementMultiplier": 1.10,
+    "nicheMultiplier": 1.40,
+    "countryMultiplier": 1.20,
+    "ageMultiplier": 1.10,
+    "monetizationMultiplier": 1.10
+  }
+}
+```
+
+### Example 2: YouTube Education Channel
+
+**Input:**
+```json
+{
+  "platform": "YouTube",
+  "audienceSize": 500000,
+  "engagementRate": 3.2,
+  "monthlyRevenue": 8000,
+  "niche": "education",
+  "country": "global",
+  "assetAge": "5 years",
+  "monetizationStatus": ["Ad Revenue", "Sponsorships", "Digital Products"]
+}
+```
+
+**Output:**
+```json
+{
+  "estimatedValue": 459043,
+  "lowRange": 390187,
+  "highRange": 527899,
+  "confidenceScore": 60,
+  "confidenceLevel": "Medium",
+  "breakdown": {
+    "revenueValue": 288000,
+    "audienceValue": 60000,
+    "engagementMultiplier": 1.00,
+    "nicheMultiplier": 1.20,
+    "countryMultiplier": 1.05,
+    "ageMultiplier": 1.10,
+    "monetizationMultiplier": 1.15
+  }
+}
+```
+
+### Example 3: Revenue-Only Asset (Minimal Data)
+
+**Input:**
+```json
+{
+  "platform": "website",
+  "audienceSize": 0,
+  "engagementRate": 0,
+  "monthlyRevenue": 2000
+}
+```
+
+**Output:**
+```json
+{
+  "estimatedValue": 51000,
+  "lowRange": 43350,
+  "highRange": 58650,
+  "confidenceScore": 25,
+  "confidenceLevel": "Low",
+  "breakdown": {
+    "revenueValue": 60000,
+    "audienceValue": 0,
+    "engagementMultiplier": 0.85,
+    "nicheMultiplier": 1.00,
+    "countryMultiplier": 1.00,
+    "ageMultiplier": 1.00,
+    "monetizationMultiplier": 1.00
+  }
+}
+```
+
+---
+
+## Testing
+
+**118 test cases** covering:
+
+| Category | Tests |
+|---|---|
+| Revenue Multipliers | 11 (all tiers + boundaries) |
+| Engagement Multipliers | 8 (all tiers + boundaries) |
+| Niche Multipliers | 14 (all niches + case insensitive + defaults) |
+| Country Multipliers | 10 (all regions + case insensitive + defaults) |
+| Age Multipliers | 16 (all brackets + flexible text parsing) |
+| Monetization Multipliers | 6 (0–4 sources) |
+| Confidence Scoring | 6 (full, minimal, medium data) |
+| End-to-End Instagram | 15 (full breakdown verification) |
+| End-to-End YouTube | 8 (full breakdown verification) |
+| Revenue Only Asset | 3 |
+| Audience Only Asset | 2 |
+| Low Engagement Asset | 3 |
+| High Engagement Asset | 3 |
+| Premium Niche | 2 |
+| Default Niche | 1 |
+| No Monetization | 1 |
+| Multi Monetization | 4 |
+| Range Verification | 5 |
+
+All 118 tests pass ✓
+
+---
+
+## Assumptions Made
+
+1. **Currency neutrality**: The valuation engine operates on raw numbers without currency conversion. The existing forms submit revenue in INR for the `/sell` form; the multipliers produce a currency-agnostic estimate. The existing UI already formats values as INR.
+
+2. **Seller form engagement rate**: The `/sell` form (sellerSchema) does not collect `engagement_rate`, so the engine defaults to `0` for seller submissions. This impacts the engagement multiplier (0.85× applied). The valuation form does collect engagement rate.
+
+3. **Engine placement**: Created in `src/lib/valuation/engine/` subdirectory to avoid conflicts with the existing `src/lib/valuation/` module (which is a separate verification-based valuation system using `valuation_assets`, `verification_uploads`, and `valuation_reports` tables).
+
+4. **Server-side only**: All valuation calculations run exclusively in server actions (`"use server"`). No calculation logic is exposed to the client.
+
+5. **Return value**: Both `submitValuationLead()` and `submitSellerLead()` now return a `valuation` property on success. The existing client forms currently don't consume this — the valuation result is stored in the database and available for future PDF generation or admin dashboard display.
+
+6. **No schema changes to existing columns**: Only a new `valuation_result` jsonb column is added. All existing columns and validations remain untouched.

@@ -17,7 +17,7 @@ export function SEOHomeContent() {
         </div>
 
         {/* 3 Core Services Grid: Buy, Sell, Value */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-3 gap-6 md:gap-8">
           
           {/* Card 1: Buy */}
           <div className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 flex flex-col gap-6 shadow-sm hover:shadow-md transition-shadow">
@@ -82,7 +82,7 @@ export function SEOHomeContent() {
         </div>
 
         {/* Verification, Due Diligence & Benefits Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center pt-8 border-t border-outline-variant/30">
+        <div className="grid grid-cols-2 gap-8 md:gap-12 items-center pt-8 border-t border-outline-variant/30">
           
           {/* Due Diligence details */}
           <div className="space-y-6">
@@ -129,7 +129,7 @@ export function SEOHomeContent() {
             <p className="font-body-md text-sm md:text-base text-on-surface-variant">
               Why professional acquirers and high-growth creators transact on our platform:
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
                 <h4 className="font-headline-sm text-base text-on-surface font-semibold">100% Secure Escrow</h4>
                 <p className="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed">

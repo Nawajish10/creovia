@@ -82,7 +82,7 @@ export function BuySEOInfo() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-4 gap-6">
             {steps.map((s, idx) => (
               <div 
                 key={idx} 
@@ -106,7 +106,7 @@ export function BuySEOInfo() {
         </div>
 
         {/* Section 2: Due Diligence & Investment Criteria */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center pt-8 border-t border-outline-variant/30">
+        <div className="grid grid-cols-2 gap-8 md:gap-12 items-center pt-8 border-t border-outline-variant/30">
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-secondary/20 bg-secondary/5">
               <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>

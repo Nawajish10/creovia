@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -93,10 +93,10 @@ export function Footer() {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 shrink-0 w-full lg:w-auto">
-              <Link href="/valuation" className="bg-primary text-on-primary px-6 md:px-8 py-3 md:py-4 rounded-xl font-label-md text-label-md hover:opacity-95 text-center transition-all shadow-md shadow-primary/20 active:scale-98">
+              <Link href="/valuation" className="bg-primary text-on-primary px-6 md:px-8 py-3 md:py-4 rounded-xl font-label-md text-label-md hover:opacity-95 text-center transition-all shadow-md shadow-primary/20 active:scale-98 bg-gradient-to-r from-[#2563EB] to-[#7C3AED] text-white">
                 Get Free Valuation
               </Link>
-              <Link href="/sell" className="bg-white text-text-primary border border-outline-variant/30 px-6 md:px-8 py-3 md:py-4 rounded-xl font-label-md text-label-md hover:bg-surface-container-low text-center transition-all active:scale-98">
+              <Link href="/sell" className="bg-white/5 text-gray-200 border border-white/10 px-6 md:px-8 py-3 md:py-4 rounded-xl font-label-md text-label-md hover:bg-white/10 text-center transition-all active:scale-98">
                 Sell Your Asset
               </Link>
             </div>
@@ -113,11 +113,11 @@ export function Footer() {
             { icon: "verified", title: "Verified Opportunities", desc: "100% verified metrics & analytics." },
             { icon: "lock", title: "Secure Data Handling", desc: "Protected due diligence & escrow." }
           ].map((item, idx) => (
-            <div key={idx} className="flex gap-3 md:gap-4 p-3 md:p-4 bg-white rounded-2xl border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow">
-              <span className="material-symbols-outlined text-primary text-3xl shrink-0 mt-0.5">{item.icon}</span>
+            <div key={idx} className="flex gap-3 md:gap-4 p-3 md:p-4 bg-[#07111F]/70 rounded-2xl border border-white/5 shadow-sm hover:shadow-md transition-shadow">
+              <span className="material-symbols-outlined text-primary text-3xl shrink-0 mt-0.5" style={{ color: "#3b82f6" }}>{item.icon}</span>
               <div>
-                <h4 className="font-headline-sm text-[16px] font-bold text-on-surface mb-0.5">{item.title}</h4>
-                <p className="font-body-md text-[13px] text-on-surface-variant leading-relaxed">{item.desc}</p>
+                <h4 className="font-headline-sm text-[16px] font-bold text-white mb-0.5">{item.title}</h4>
+                <p className="font-body-md text-[13px] text-gray-400 leading-relaxed">{item.desc}</p>
               </div>
             </div>
           ))}

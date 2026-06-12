@@ -1,10 +1,10 @@
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
+﻿import { SectionWrapper } from "@/components/layout/SectionWrapper";
 
 export function Benefits() {
   return (
     <SectionWrapper id="benefits" className="py-12">
       <section className="px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+        <div className="grid grid-cols-4 gap-gutter">
           {/* Card 1 */}
           <div className="bg-surface-container-lowest border border-outline-variant p-8 rounded-xl hover:border-primary transition-colors duration-300 flex flex-col gap-4 shadow-sm">
             <div className="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center">

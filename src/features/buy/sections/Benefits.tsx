@@ -1,9 +1,9 @@
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
+﻿import { SectionWrapper } from "@/components/layout/SectionWrapper";
 
 export function Benefits() {
   return (
     <SectionWrapper id="benefits" className="py-12">
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-border-subtle">
+      <section className="grid grid-cols-3 gap-8 pt-12 border-t border-border-subtle">
         <div className="flex flex-col gap-4">
           <div className="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center border border-border-subtle">
             <span className="material-symbols-outlined text-secondary">verified_user</span>
