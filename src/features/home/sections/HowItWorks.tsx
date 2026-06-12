@@ -52,11 +52,22 @@ export function HowItWorks() {
         </div>
 
         {/* Steps */}
-        <div className="grid grid-cols-4 gap-4 md:gap-6">
+        <div 
+          className="flex md:grid md:grid-cols-4 gap-4 md:gap-6 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory scroll-smooth no-scrollbar"
+          style={{
+            scrollbarWidth: 'none', /* Firefox */
+            msOverflowStyle: 'none', /* IE and Edge */
+          }}
+        >
+          <style dangerouslySetInnerHTML={{__html: `
+            .no-scrollbar::-webkit-scrollbar {
+              display: none;
+            }
+          `}} />
           {steps.map((step) => (
             <div
               key={step.number}
-              className="flex flex-col gap-3 md:gap-4 p-5 md:p-8 rounded-[24px] bg-[#07111F]/75 border border-white/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/15 hover:shadow-[0_8px_30px_rgba(37,99,235,0.08)]"
+              className="flex flex-col gap-3 md:gap-4 p-5 md:p-8 rounded-[24px] bg-[#07111F]/75 border border-white/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/15 hover:shadow-[0_8px_30px_rgba(37,99,235,0.08)] shrink-0 w-[280px] md:w-auto snap-center"
             >
               <div className="flex items-start justify-between">
                 <div
